@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getNameVideogame } from '../redux/actions';
 
+import moduleStyles from '../Styles.module.css';
+
 export default function SearchBar({setCurrentPage}) {
     const dispatch = useDispatch();
 
@@ -16,13 +18,13 @@ export default function SearchBar({setCurrentPage}) {
         e.preventDefault();
         dispatch(getNameVideogame(searchName));
         setSearchName("");
-        setCurrentPage(1);
+        // setCurrentPage(1);
     }
 
     return(
-        <div>
-            <input onChange={(e) => handleInputChange(e)} type= 'text' placeholder='Start searching...'></input>
-            <button onClick={(e) => handleSearchSubmit(e)} type='submit'>Search</button>
+        <div className={moduleStyles.searchbar}>
+            <input className={moduleStyles.searchInput} onChange={(e) => handleInputChange(e)} type= 'text' placeholder='Start searching...'></input>
+            <button className={moduleStyles.searchButton} onClick={(e) => handleSearchSubmit(e)} type='submit'>Search</button>
         </div>
     )
 };
