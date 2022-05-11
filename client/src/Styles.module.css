@@ -1,0 +1,370 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    /* background-image: url(./img/bg1.jpg);
+    background-size: cover; */
+    background-color: #070C14;
+    background-attachment: fixed;
+    color: #F1FAEE;
+    height: 100%;
+    width: 100%;
+}
+
+.nav {
+    background-color: #0D172695;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);;
+    color: #F1FAEE;
+    display: flex;
+    flex: auto;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: .5rem 2rem .5rem 2rem;
+    margin-bottom: 1rem;
+}
+
+.navleft {
+    color: #F1FAEE;
+    display: flex;
+    flex: auto;
+    padding: .5rem 2rem .5rem 0rem;
+}
+
+.navRight {
+    color: #F1FAEE;
+    display: flex;
+    justify-content: right;
+    flex: auto;
+    padding: .5rem 0rem .5rem 0rem;
+}
+
+.nav h1 {
+    font-size: large;
+}
+
+.filtersAndOrders {
+    background-color: #0D172600;
+    color: #F1FAEE;
+    display: flex;
+    flex: auto;
+    align-items: flex-end;
+    flex-direction: row;
+    justify-content: right;
+    padding: .5rem 2rem .5rem 2rem;
+    font-size: .8rem;
+}
+
+.select {
+    border-radius: 0.4rem;
+    border-style: none;
+    width: auto;
+    background-color: #F1FAEE;
+    color: #E63946;
+    padding: 0.5em;
+    margin-top: .5rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    font-family: 'Poppins', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: .8rem;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: start;
+    height: 100%;
+}
+
+.card {
+    background-color: #F1FAEE25;
+    border-radius: .5rem;
+    overflow: hidden;
+    margin: 1rem;
+    padding: 24px;
+    box-shadow: 4px 4px 12px #F1FAEE20;
+    cursor: pointer;
+    transition-duration: 350ms;
+    font-family: 'Poppins', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 360px;
+    height: 440px;
+    justify-items: center;
+
+}
+
+.card:hover {
+    transform: translateY(-0.2%);
+    transition-timing-function: ease-in-out;
+    transition-duration: 350ms;
+    box-shadow: 4px 4px 28px #F1FAEE50;
+}
+
+.cardContent {
+    padding: .4rem;
+}
+
+.cardHeader {
+    color: #E63946;
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-bottom: .4rem;
+}
+
+.cardSecondaryText {
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    line-height: 1.2;
+    color: #F1FAEE;
+    margin-bottom: .8rem;
+}
+
+.card img {
+    display: block;
+    border-radius: 0.4rem;
+    width: 100%;
+    height: 17rem;
+    object-fit: cover;
+}
+
+.button {
+    border-radius: 0.4rem;
+    border-style: none;
+    width: 12em;
+    background-color: #E63946;
+    color: #F1FAEE;
+    padding: 0.5em;
+    text-transform: uppercase;
+    align-content: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.buttonSecondary {
+    border-radius: 0.4rem;
+    border-style: solid;
+    border-color: #E63946;
+    width: 12em;
+    background-color: #F1FAEE;
+    color: #E63946;
+    padding: 0.5em;
+    text-transform: uppercase;
+    text-align: center;
+    align-content: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.searchInput {
+    border-radius: 0.4rem 0 0 0.4rem;
+    border-style: none;
+    width: auto;
+    background-color: #F1FAEE;
+    color: #E63946;
+    padding: 0.5em;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+.searchButton {
+    border-radius: 0 0.4rem 0.4rem 0;
+    border-style: none;
+    width: min-content;
+    background-color: #E63946;
+    color: #F1FAEE;
+    padding: 0.5em;
+    text-transform: uppercase;
+    align-content: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.paginatedBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: initial;
+    margin: 2rem;
+}
+
+.pages {
+    display: flex;
+}
+
+.page {
+    padding: 12px;
+    margin: 4px;
+    border-radius: 0.4rem;
+    border-style: none;
+    width: 100%;
+    background-color: #E63946;
+    color: #F1FAEE;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.footer{
+    background-color: #0D172695;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);;
+    color: #F1FAEE;
+    display: flex;
+    flex: auto;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: .5rem 2rem .5rem 2rem;
+    margin-top: 2rem;
+}
+
+.footer ul {
+    list-style: none;
+    display: flex;
+    flex: auto;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.footer ul li {
+    margin-right: 2rem;
+}
+
+.footer h1 {
+    font-size: medium;
+    font-weight: normal;
+}
+
+
+@keyframes spin {
+    to {transform: rotate(360deg);}
+}
+
+.loader {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border-top: 8px solid #E63946;
+    border-left: 8px solid #E63946;
+    border-right: 8px solid #E63946;
+
+    animation: spin 0.575s infinite linear;
+}
+
+.mainCover {
+    display: flex;
+    flex: auto;
+    justify-content: left;
+    align-items: center;
+    height: 100vh;
+    padding-left: 2rem;
+}
+
+.mainCover div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    justify-items: center;
+    text-align: left;
+}
+
+.mainCover h1 {
+    width: 26rem;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.mainCover p {
+    width: 56rem;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.buttonRegular {
+    border-radius: 0.4rem;
+    border-style: none;
+    width: 6rem;
+    background-color: #E63946;
+    color: #F1FAEE;
+    padding: 0.5em;
+    text-transform: uppercase;
+    align-content: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+.gamedetail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 2rem;
+}
+
+.gameinfo {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: flex-start;
+    text-align: left;
+    margin-top: 10rem;
+}
+
+.gameinfo h1 {
+    margin-bottom: .5rem;
+}
+
+.gameinfo h2 {
+    margin-bottom: .5rem;
+    color: #e65e69;
+}
+
+.gameinfo h3 {
+    margin-bottom: .5rem;
+}
+
+.gameinfo h4 {
+    font-size: small;
+}
+
+.gamecover{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: right;
+}
+
+.gamecover img {
+    height: 64vh;
+    width: 100%;
+    border-radius: .8rem;
+    box-shadow: 4px 4px 12px #F1FAEE20;
+    margin-bottom: 2rem;
+}
+
+.gamecover h4 {
+    text-align: right;
+    font-size: medium;
+    font-weight: bolder;
+    margin-bottom: .5rem;
+    color: #e65e69;
+}
+
+.gamecover p {
+    text-align: left;
+    font-size: small;
+    font-weight: normal;
+}
