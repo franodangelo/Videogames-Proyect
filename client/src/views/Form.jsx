@@ -1,20 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGenres, createVideogame, getVideogames } from '../redux/actions';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function validate(videogameLocalState) {
     let errors = {};
-    if (!videogameLocalState.name) errors.name = "You must provide a name";
-    if(!videogameLocalState.description) errors.description = "You must provide a description";
-    if (!videogameLocalState.released) errors.released = "You must provide a release date";
-    if (!videogameLocalState.rating) errors.rating = "You must provide a rate";
+    if (!videogameLocalState.name) {
+        errors.name = "You must provide a name"
+    } else if(videogameLocalState.name.length < 3) {
+        errors.name = "Check the length of your name. It doesn't have at least 3 characters"
+    } else if(!videogameLocalState.description) {
+        errors.description = "You must provide a description"
+    } else if(videogameLocalState.description.length < 20) {
+        errors.description = "Come on... give us some more words about your videogame!"
+    } else if(!videogameLocalState.released) {
+        errors.released = "You must provide a release date"
+    } else if(!videogameLocalState.rating) {
+        errors.rating = "You must provide a rate"
+    }  else if(videogameLocalState.rating > 5 || videogameLocalState.rating < 0) {
+        errors.rating = "Rate must be a number between 1-5"
+    }
     return errors;
 }
 
 export default function Form() {
 
     const dispatch = useDispatch();
+    let navigate = useNavigate();
 
     const [videogameLocalState, setVideogameLocalState] = useState({
         name: '',
@@ -136,6 +148,7 @@ export default function Form() {
             platforms: [],
             genres: []
         })
+        navigate('/home');
     }
 
     function handleDeletePlatforms(e) { // manejo eliminaciones en el select de platforms
@@ -182,7 +195,7 @@ export default function Form() {
                 
                 <div>
                     <label htmlFor='rating'>Rating:</label>
-                    <input type='text' name='rating' placeholder='A number between 1 and 5' value={videogameLocalState.rating} onChange={(e) => handleChange(e)}></input>
+                    <input type='number' name='rating' placeholder='A number between 1 and 5' value={videogameLocalState.rating} onChange={(e) => handleChange(e)}></input>
                     {formErrors.rating && (<p>{formErrors.rating}</p>)}
                 </div>
 
@@ -190,7 +203,7 @@ export default function Form() {
 
                 <div>
                     <label htmlFor='img'>Image:</label>
-                    <input type='text' name='img' value={videogameLocalState.img} onChange={(e) => handleChange(e)}></input>
+                    <input type='url' name='img' value={videogameLocalState.img} onChange={(e) => handleChange(e)}></input>
                 </div>
 
                 <br />
@@ -202,7 +215,11 @@ export default function Form() {
                     {platforms.map(pl => <option value={pl}>{pl}</option>)}
                 </select>
                 {formErrors.platforms && (<p>{formErrors.platforms}</p>)}
-                <div>{videogameLocalState.platforms.map(p => p + ' ')}</div>
+                {videogameLocalState.platforms.map(p => 
+                    <div>
+                        <button onClick={() => handleDeletePlatforms(p)}>{p}</button>
+                    </div>
+                )}
                 <br />
 
                 <label htmlFor='genres'>Genres:</label>
@@ -210,19 +227,15 @@ export default function Form() {
                     <option hidden={true}>Select some genres</option>
                     {genres.map(g => <option value={g.name}>{g.name}</option>)}
                 </select>
-                <div>{videogameLocalState.genres.map(g => g + ' ')}</div>
-                
-                
+                {videogameLocalState.genres.map(g => 
+                    <div>
+                        <button onClick={() => handleDeleteGenres(g)}>{g}</button>
+                    </div>
+                )}
                 <br />
-                
                 <button type='submit'>Create</button>
                 <Link to='/home'><button>Cancel</button></Link>
             </form>
-                {videogameLocalState.genres.map(g => 
-                    <div>
-                        <button onClick={() => handleDeleteGenres(g)}>X</button>
-                    </div>
-                )}
         </div>
     );
 }
