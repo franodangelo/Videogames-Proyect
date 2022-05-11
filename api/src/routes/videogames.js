@@ -5,6 +5,8 @@ const axios = require('axios');
 const {apiKey} = process.env;
 const {Videogame, Genre} = require('../db');
 
+let videogames = [];
+
 router.get("/", async (req, res, next) => {
     try {
         const {name} = req.query;

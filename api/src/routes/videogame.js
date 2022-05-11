@@ -8,7 +8,7 @@ const {Videogame, Genre} = require('../db');
 router.get('/:id', async (req, res, next) => {
     try {
         const {id} = req.params;
-        let foundVideogames;
+        let foundVideogame;
 
         if (id.length > 6) {
             response = await Videogame.findOne({
@@ -16,7 +16,7 @@ router.get('/:id', async (req, res, next) => {
                 include: Genre
             });
 
-            foundVideogames = {
+            foundVideogame = {
                 id: response.id,
                 name: response.name,
                 img: response.img,
@@ -29,7 +29,7 @@ router.get('/:id', async (req, res, next) => {
 
         } else {
             response = await axios.get(`https://api.rawg.io/api/games/${id}?key=${apiKey}`);
-            foundVideogames = {
+            foundVideogame = {
                 id: response.data.id,
                 name: response.data.name,
                 img: response.data.background_image,
@@ -40,7 +40,7 @@ router.get('/:id', async (req, res, next) => {
                 genres: response.data.genres.map(g => g.name)
             };
         }
-        res.send(foundVideogames);
+        res.send(foundVideogame);
     } catch (error) {
         console.log(error)
     }
@@ -69,6 +69,35 @@ router.post('/', async (req, res, next) => {
         res.send(newVideogame);
     } catch (error) {
         console.log(error)
+    }
+});
+
+router.put('/:id', async (req, res, next) => {
+    try {
+        const {id} = req.params;
+        const videogame = req.body;
+        await Videogame.update(videogame, {
+            where: {
+                id: id
+            }
+        });
+        res.status(200).send(`The videogame with id ${id} was updated`);
+    } catch (error) {
+        next(error)
+    }
+});
+
+router.delete('/:id', async (req, res, next) => {
+    try {
+        const {id} = req.params;
+        await Videogame.destroy({
+            where: {
+                id: id
+            }
+        });
+        res.status(200).send(`The videogame with id ${id} was deleted`);
+    } catch (error) {
+        next(error)
     }
 });
 
