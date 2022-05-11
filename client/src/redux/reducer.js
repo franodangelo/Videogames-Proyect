@@ -29,32 +29,35 @@ export default function reducer(state = initialState, action) {
                 genres: action.payload
             };
         case "FILTER_BY_CREATION":
-            let creationFilter;
+            let videogamesToFilterByCreation; 
+            if(action.payload === 'original') {
+                let filterByOriginal = state.videogamesCopy.filter(c => c.id.toString().length < 7)
+                videogamesToFilterByCreation = filterByOriginal;
+            }
+            if(action.payload === 'created') {
+                let filterByCreated = state.videogamesCopy.filter(c => c.id.toString().length > 7)
+                videogamesToFilterByCreation = filterByCreated;
+            }
             if(action.payload === 'all') {
-                let noFilter = state.videogames;
-                creationFilter = noFilter;
-            } else if(action.payload === 'original') {
-                let originalFilter = state.videogamesCopy.filter(data => data.id.toString().length < 7)
-                creationFilter = originalFilter;
-            } else if(action.payload === 'created') {
-                let createdFilter = state.videogamesCopy.filter(data => data.id.toString().length > 6)
-                creationFilter = createdFilter;
+                let noFilter = state.videogamesCopy;
+                videogamesToFilterByCreation = noFilter;
+            }
+            if(videogamesToFilterByCreation.length === 0) {
+                videogamesToFilterByCreation = ['No games created']
             }
             return {
-                ...state,
-                videogames: creationFilter
-            };
+                    ...state,
+                    videogames: videogamesToFilterByCreation
+                };
         case "FILTER_BY_GENRE":
-            let filterGenre = state.allVideogames.filter(p => { //filtro los videojuegos buscando coincidencia
-                                        if(p.genres?.includes(action.payload)) return p  //si el genero es el mismo al del payload me lo trae
-                                    })
-                                    if(action.payload === "All"){
-                                        filterGenre = state.allVideogames
-                                    }
-                                    return {
-                                        ...state,
-                                        videogames: filterGenre
-                                    };
+            const videogamesToFilterByGenre = state.videogamesCopy;
+            const genreFilter = action.payload === 'All' 
+            ? videogamesToFilterByGenre 
+            : videogamesToFilterByGenre.filter(v => v.genres.includes(action.payload)) // tengo genres, debo mostarlos individualmente
+            return {
+                ...state,
+                videogames: genreFilter
+            };
         case "ORDER_BY_NAME":
             let sortedName = action.payload === 'AZ' ?
             state.videogames.sort((a,b) => {
