@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {Provider} from 'react-redux';
+import {Provider} from 'react-redux'; // para poder trabajar con redux. Luego se le asigna el store como prop
 import store from './redux/store'
 
 ReactDOM.render(
