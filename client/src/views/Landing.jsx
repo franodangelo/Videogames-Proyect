@@ -13,7 +13,8 @@ export default function Landing() {
                     <p>Find all the video games that the world is currently talking about, the all-time classics on each platform, and more. Do you want to enter and see what this site is about?</p>
                     <Link to='/home'><button className={moduleStyles.buttonRegular}>Enter</button></Link>
                 </div>
-                <img src="" alt="fotito" />
+                <div className={moduleStyles.imgLanding}>
+                </div>
             </section>
         </main>
     )

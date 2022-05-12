@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getVideogameDetail } from '../redux/actions';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { deleteVideogame } from '../redux/actions';
 
 import moduleStyles from '../Styles.module.css';
 
@@ -10,10 +11,16 @@ export default function VideogameDetail() {
     let videogameDetail = useSelector((state) => state.videogameDetail);
     const dispatch = useDispatch();
     const {id} = useParams();
+    let navigate = useNavigate();
 
     useEffect(() => {
         dispatch(getVideogameDetail(id));
     }, [dispatch, id])
+
+    function handleDelete(id) {
+        dispatch(deleteVideogame(id));
+        navigate('/home');
+    }
 
     return(
         <div className={moduleStyles.main}>
@@ -31,11 +38,14 @@ export default function VideogameDetail() {
                     <h2>{videogameDetail.genres?.join(" - ")}</h2>
                     <h3>Platforms: {videogameDetail.platforms?.join(", ")} </h3>
                     <h4>Date of released: {videogameDetail.released}</h4>
+                    {typeof videogameDetail.id !== 'number' 
+                    ? <button className={moduleStyles.buttonSecondary} onClick={() => handleDelete(id)}>DELETE VIDEOGAME</button>
+                    : null
+                    }
                 </div>
                 <div className={moduleStyles.gamecover}>
                     <h4>Rating: {videogameDetail.rating}</h4>
                     <img src={videogameDetail.img} alt="Videogame cover" />
-                    {/* <p>{videogameDetail.description}</p> */}
                     <p dangerouslySetInnerHTML={{__html: videogameDetail.description}}></p>
                 </div>
             </div>

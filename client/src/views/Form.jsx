@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getGenres, createVideogame, getVideogames } from '../redux/actions';
 import { Link, useNavigate } from 'react-router-dom';
 
+import moduleStyles from '../Styles.module.css';
+
 function validate(videogameLocalState) {
     let errors = {};
     if (!videogameLocalState.name) {
@@ -136,19 +138,25 @@ export default function Form() {
     }
 
     function handleSubmit(e) { // controlo la creacion de un videojuego
-        e.preventDefault();
-        dispatch(createVideogame(videogameLocalState)); // creo el videojuego con la info almacenada en el estado
-        alert('Videogame created succesfully!'); // envio un mensaje al usuario al crear el videojuego
-        setVideogameLocalState({ // una vez creado, seteo el estado vacio nuevamente
-            name: '',
-            description: '',
-            img: '',
-            released: '',
-            rating: '',
-            platforms: [],
-            genres: []
-        })
-        navigate('/home');
+        if(!videogameLocalState.name || !videogameLocalState.description || !videogameLocalState.img || !videogameLocalState.released || !videogameLocalState.rating || videogameLocalState.platforms.length < 1 || videogameLocalState.genres.length < 1) {
+            e.preventDefault();
+            alert('The form is incomplete')
+        }
+        else {
+            e.preventDefault();
+            dispatch(createVideogame(videogameLocalState)); // creo el videojuego con la info almacenada en el estado
+            alert('Videogame created succesfully!'); // envio un mensaje al usuario al crear el videojuego
+            setVideogameLocalState({ // una vez creado, seteo el estado vacio nuevamente
+                name: '',
+                description: '',
+                img: '',
+                released: '',
+                rating: '',
+                platforms: [],
+                genres: []
+            })
+            navigate('/home');
+        }
     }
 
     function handleDeletePlatforms(e) { // manejo eliminaciones en el select de platforms
@@ -166,75 +174,61 @@ export default function Form() {
     }
 
     return (
-        <div>
+        <div className={moduleStyles.formContainer}>
             <h1>Create your own videogame</h1>
-            <form onSubmit={(e) => handleSubmit(e)}> 
-                <div>
+            <form className={moduleStyles.formContainer} onSubmit={(e) => handleSubmit(e)}>
+                <div className={moduleStyles.formInput}>
                     <label htmlFor='name'>Name:</label>
-                    <input required type='text' name='name' placeholder='3 characters at least' value={videogameLocalState.name} onChange={(e) => handleChange(e)}></input>
+                    <input required name='name' type='text' className={moduleStyles.select} placeholder='3 characters at least' value={videogameLocalState.name} onChange={(e) => handleChange(e)}></input>
                     {formErrors.name && (<p>{formErrors.name}</p>)}
                 </div>
-
-                <br />
-
-                <div>
+                <div className={moduleStyles.formInput}>
                     <label htmlFor='description'>Description:</label>
-                    <input required type='text' name='description' value={videogameLocalState.description} onChange={(e) => handleChange(e)}></input>
+                    <input required name='description' type='text' className={moduleStyles.select} value={videogameLocalState.description} onChange={(e) => handleChange(e)}></input>
                     {formErrors.description && (<p>{formErrors.description}</p>)}
                 </div>
-
-                <br />
-
-                <div>
+                <div className={moduleStyles.formInput}>
                     <label htmlFor='released'>Date of release:</label>
-                    <input type='date' name='released' value={videogameLocalState.released} onChange={(e) => handleChange(e)}></input>
+                    <input name='released' type='date' className={moduleStyles.select} value={videogameLocalState.released} onChange={(e) => handleChange(e)}></input>
                     {formErrors.released && (<p>{formErrors.released}</p>)}
                 </div>
-
-                <br />
-                
-                <div>
+                <div className={moduleStyles.formInput}>
                     <label htmlFor='rating'>Rating:</label>
-                    <input type='number' name='rating' placeholder='A number between 1 and 5' value={videogameLocalState.rating} onChange={(e) => handleChange(e)}></input>
+                    <input name='rating' type='number' className={moduleStyles.select} placeholder='Rate between 1-5' value={videogameLocalState.rating} onChange={(e) => handleChange(e)}></input>
                     {formErrors.rating && (<p>{formErrors.rating}</p>)}
                 </div>
-
-                <br />
-
-                <div>
+                <div className={moduleStyles.formInput}>
                     <label htmlFor='img'>Image:</label>
-                    <input type='url' name='img' value={videogameLocalState.img} onChange={(e) => handleChange(e)}></input>
+                    <input name='img' type='url' className={moduleStyles.select} value={videogameLocalState.img} onChange={(e) => handleChange(e)}></input>
                 </div>
-
-                <br />
-
-                <div></div>
-                <label htmlFor='platforms'>Platforms:</label>
-                <select name='platforms' onChange={(e) => handleChangePlatforms(e)}>
-                    <option hidden={true}>Select some platforms</option>
-                    {platforms.map(pl => <option value={pl}>{pl}</option>)}
-                </select>
-                {formErrors.platforms && (<p>{formErrors.platforms}</p>)}
-                {videogameLocalState.platforms.map(p => 
-                    <div>
-                        <button onClick={() => handleDeletePlatforms(p)}>{p}</button>
-                    </div>
-                )}
-                <br />
-
-                <label htmlFor='genres'>Genres:</label>
-                <select name='genres' onChange={(e) => handleChangeGenres(e)}>
-                    <option hidden={true}>Select some genres</option>
-                    {genres.map(g => <option value={g.name}>{g.name}</option>)}
-                </select>
-                {videogameLocalState.genres.map(g => 
-                    <div>
-                        <button onClick={() => handleDeleteGenres(g)}>{g}</button>
-                    </div>
-                )}
-                <br />
-                <button type='submit'>Create</button>
-                <Link to='/home'><button>Cancel</button></Link>
+                <div className={moduleStyles.formInput}>
+                    <label htmlFor='platforms'>Platforms:</label>
+                    <select name='platforms' className={moduleStyles.select} onChange={(e) => handleChangePlatforms(e)}>
+                        <option hidden={true}>Select some platforms</option>
+                        {platforms.map(pl => <option value={pl}>{pl}</option>)}
+                    </select>
+                    {formErrors.platforms && (<p>{formErrors.platforms}</p>)}
+                    {videogameLocalState.platforms.map(p =>
+                        <div>
+                            <button type='button' onClick={() => handleDeletePlatforms(p)}>{p}</button>
+                        </div>
+                    )}
+                    <br />
+                    <label htmlFor='genres'>Genres:</label>
+                    <select name='genres' className={moduleStyles.select} onChange={(e) => handleChangeGenres(e)}>
+                        <option hidden={true}>Select some genres</option>
+                        {genres.map(g => <option value={g.name}>{g.name}</option>)}
+                    </select>
+                    {videogameLocalState.genres.map(g =>
+                        <div>
+                            <button type='button' onClick={() => handleDeleteGenres(g)}>{g}</button>
+                        </div>
+                    )}
+                </div>
+                <div>
+                    <button type='submit' className={moduleStyles.button}>Create videogame</button>
+                    <Link to='/home'><button className={moduleStyles.buttonSecondary}>Cancel</button></Link>
+                </div>
             </form>
         </div>
     );

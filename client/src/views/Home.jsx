@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Card from "../components/Card";
 import Paginated from "../components/Paginated";
 import SearchBar from "../components/Searchbar";
+import InvalidPath from "./InvalidPath";
 import { Link } from 'react-router-dom';
 import { getVideogames, filterByCreation, filterByGenre, orderByName, orderByRating } from "../redux/actions";
 
@@ -35,11 +36,13 @@ export default function Home() {
     function handleFilterByCreation(e) {
         e.preventDefault();
         dispatch(filterByCreation(e.target.value))
+        setCurrentPage(1);
     }
 
     function handleFilterByGenre(e) {
         e.preventDefault();
         dispatch(filterByGenre(e.target.value))
+        setCurrentPage(1);
     }
 
     const [order, setOrder] = useState('');
@@ -117,7 +120,7 @@ export default function Home() {
                 
                 <div className={moduleStyles.cards}>
                     { currentVideogames[0] === 'No games created' ? <h2>No games created yet</h2>
-                    : currentVideogames[0] === "No existe el juego" ? <h2>No results</h2>
+                    : currentVideogames[0] === "No existe el juego" ? <InvalidPath/>
                     : currentVideogames.length === 0 ? <div className={moduleStyles.loader}></div>
                     : currentVideogames.map(vg => 
                         <Link key={vg.id} to={`/videogame/${vg.id}`}>
