@@ -6,8 +6,8 @@
 .main {
     /* background-image: url(./img/bg1.jpg);
     background-size: cover; */
+    /* background-attachment: fixed; */
     background-color: #070C14;
-    background-attachment: fixed;
     color: #F1FAEE;
     height: 100%;
     width: 100%;
@@ -253,7 +253,7 @@
 .mainCover {
     display: flex;
     flex: auto;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     height: 100vh;
     padding-left: 2rem;
@@ -261,8 +261,9 @@
 
 .mainCover div {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    justify-content: left;
+    justify-content: center;
     justify-items: center;
     text-align: left;
 }
@@ -290,6 +291,7 @@
     align-content: center;
     font-weight: bold;
     cursor: pointer;
+    margin-top: 1rem;
 }
 
 a:link {
@@ -367,4 +369,54 @@ a:active {
     text-align: left;
     font-size: small;
     font-weight: normal;
+}
+
+.invalid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #070C14;
+    color: #F1FAEE;
+    height: 100vh;
+    width: 100%;
+}
+
+.invalid p {
+    margin-top: 1rem;
+}
+
+.invalid button {
+    margin-top: 2rem;
+}
+
+.imgLanding {
+    display: flex;
+    background-image: url(./img/finalLogo.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 45%;
+    height: 80%;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #070C14;
+    color: #F1FAEE;
+    height: 100vh;
+    width: 100%;
+}
+
+.formInput {
+    display: flex;
+    align-self: center;
+    align-items: center;
+    border-radius: 0.4rem;
+    border-style: none;
+    width: 50%;
+    background-color: #F1FAEE25;
+    padding: 0.5em;
+    margin-top: .5rem;
+    margin-left: 1rem;
 }
