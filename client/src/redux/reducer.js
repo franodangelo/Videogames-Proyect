@@ -90,6 +90,12 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 payload: sortedRating
             };
+        case "DELETE_VIDEOGAME" :
+            let withoutDeleted = state.videogamesCopy.filter(c => c.id !== action.payload)
+            return {
+                ...state,
+                videogamesCopy: withoutDeleted
+            }
         default: return state;
     }
 }
