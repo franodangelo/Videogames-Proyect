@@ -133,10 +133,12 @@ export default function Form() {
     }
 
     function handleChangeGenres(e) { // manejo cambios en el select de genres segun lo que se vaya eligiendo
-        setVideogameLocalState({
-            ...videogameLocalState,
-            genres: [...videogameLocalState.genres, e.target.value] // guardo lo que tenia el estado mas el nuevo genero a agregar
-        })
+        if(!videogameLocalState.genres.includes(e.target.value)) {
+            setVideogameLocalState({
+                ...videogameLocalState,
+                genres: [...videogameLocalState.genres, e.target.value] // guardo lo que tenia el estado mas el nuevo genero a agregar
+            })
+        }
     }
 
     function handleSubmit(e) { // controlo la creacion de un videojuego
