@@ -53,7 +53,7 @@ export default function reducer(state = initialState, action) {
             const videogamesToFilterByGenre = state.videogamesCopy;
             const genreFilter = action.payload === 'All' 
             ? videogamesToFilterByGenre 
-            : videogamesToFilterByGenre.filter(v => v.genres.includes(action.payload)) // tengo genres, debo mostarlos individualmente
+            : videogamesToFilterByGenre.filter(v => v.genres.includes(action.payload))
             return {
                 ...state,
                 videogames: genreFilter
@@ -91,7 +91,7 @@ export default function reducer(state = initialState, action) {
                 payload: sortedRating
             };
         case "DELETE_VIDEOGAME" :
-            let withoutDeleted = state.videogamesCopy.filter(c => c.id !== action.payload)
+            let withoutDeleted = state.videogamesCopy.filter(g => g.id !== action.payload)
             return {
                 ...state,
                 videogamesCopy: withoutDeleted
