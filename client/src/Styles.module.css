@@ -4,9 +4,6 @@
 }
 
 .main {
-    /* background-image: url(./img/bg1.jpg);
-    background-size: cover; */
-    /* background-attachment: fixed; */
     background-color: #070C14;
     color: #F1FAEE;
     height: 100%;
@@ -374,6 +371,7 @@ a:active {
 .invalid {
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
     background-color: #070C14;
     color: #F1FAEE;
@@ -410,13 +408,42 @@ a:active {
 
 .formInput {
     display: flex;
+    flex-wrap: wrap;
     align-self: center;
     align-items: center;
+    justify-content: left;
     border-radius: 0.4rem;
     border-style: none;
-    width: 50%;
+    width: 25%;
     background-color: #F1FAEE25;
     padding: 0.5em;
     margin-top: .5rem;
     margin-left: 1rem;
+}
+
+.formInput p {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    font-size: xx-small;
+    color: #E63946;
+    font-weight: 300;
+    width: 100%;
+}
+
+.formButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.chip {
+    display: flex;
+    border-radius: 0.6rem;
+    border-style: none;
+    color: #F1FAEE;
+    background-color: #E63946;
+    padding: 0.3rem;
+    margin: 1rem 1rem 0rem 0rem;
+    cursor: pointer;
 }
