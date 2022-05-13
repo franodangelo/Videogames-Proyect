@@ -50,9 +50,9 @@ router.get("/", async (req, res, next) => {
             }
             let videogames = [...gamesDb, ...gamesApi];
             videogames = videogames.slice(0, 15);
-            videogames.length === 0 ?
-                res.send(["No existe el juego"]) :
-                res.send(videogames);
+            videogames.length === 0 
+            ? res.send(["No results"])
+            : res.send(videogames);
         } else {
             let videogames = [];
             const videogamesDb = await Videogame.findAll({

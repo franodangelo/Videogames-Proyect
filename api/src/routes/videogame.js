@@ -72,6 +72,20 @@ router.post('/', async (req, res, next) => {
     }
 });
 
+router.delete('/:id', async (req, res, next) => {
+    try {
+        const {id} = req.params;
+        await Videogame.destroy({
+            where: {
+                id: id
+            }
+        });
+        res.status(200).send(`The videogame with id ${id} was deleted`);
+    } catch (error) {
+        next(error)
+    }
+});
+
 router.put('/:id', async (req, res, next) => {
     try {
         const {id} = req.params;
@@ -82,20 +96,6 @@ router.put('/:id', async (req, res, next) => {
             }
         });
         res.status(200).send(`The videogame with id ${id} was updated`);
-    } catch (error) {
-        next(error)
-    }
-});
-
-router.delete('/:id', async (req, res, next) => {
-    try {
-        const {id} = req.params;
-        await Videogame.destroy({
-            where: {
-                id: id
-            }
-        });
-        res.status(200).send(`The videogame with id ${id} was deleted`);
     } catch (error) {
         next(error)
     }
