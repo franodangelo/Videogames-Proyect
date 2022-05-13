@@ -18,7 +18,6 @@ export default function SearchBar({setCurrentPage}) {
         e.preventDefault();
         dispatch(getNameVideogame(searchName));
         setSearchName("");
-        // setCurrentPage(1);
     }
 
     return(
