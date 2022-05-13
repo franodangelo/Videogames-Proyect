@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux"; // Hooks
 import Card from "../components/Card";
 import Paginated from "../components/Paginated";
 import SearchBar from "../components/Searchbar";
-import InvalidPath from "./InvalidPath";
+import InvalidSearch from "./InvalidSearch";
+import Loader from "./Loader";
 import { Link } from 'react-router-dom';
 import { getVideogames, filterByCreation, filterByGenre, orderByName, orderByRating } from "../redux/actions";
 
@@ -14,7 +15,7 @@ export default function Home() {
     let allVideogames = useSelector((state) => state.videogames); // Traigo lo que existe en el estado videogames
 
     const [currentPage, setCurrentPage] = useState(1); // seteamos en 1 porque voy a arrancar en la primer página
-    const [videogamesPerPage] = useState(15); // guardo cuantos personajes quiero por página
+    const [videogamesPerPage, setvideogamesPerPage] = useState(15); // guardo cuantos personajes quiero por página
     const indexOfLastVideogame = currentPage * videogamesPerPage; 
     const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage;
     const currentVideogames = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame); // contiene los juegos que están en la página actual
@@ -63,6 +64,7 @@ export default function Home() {
 
     return(
         <main className={moduleStyles.main}>
+            {/* Navbar */}
             <div className={moduleStyles.nav}>
                 <div className={moduleStyles.navleft}>
                     <h1>Do you want to play a game?</h1>
@@ -72,7 +74,9 @@ export default function Home() {
                 <SearchBar/>
                 </div>
             </div>
+            {/* Contenido */}
             <div>
+                {/* Barra de filtros y ordenamiento */}
                 <div className={moduleStyles.filtersAndOrders}>
                     <button className={moduleStyles.buttonSecondary} onClick={e => handleReset(e)}>Clear filters</button>
                     <div>
@@ -117,21 +121,23 @@ export default function Home() {
                         </select>
                     </div>
                 </div>
-                
+                {/* Grilla con cards */}
                 <div className={moduleStyles.cards}>
                     { currentVideogames[0] === 'No games created' ? <h2>No games created yet</h2>
-                    : currentVideogames[0] === "No existe el juego" ? <InvalidPath/>
-                    : currentVideogames.length === 0 ? <div className={moduleStyles.loader}></div>
+                    : currentVideogames[0] === "No results" ? <InvalidSearch/>
+                    : currentVideogames.length === 0 ? <Loader/>
                     : currentVideogames.map(vg => 
                         <Link key={vg.id} to={`/videogame/${vg.id}`}>
                             <Card name={vg.name} img={vg.img} genres={vg.genres} released={vg.released} rating={vg.rating}/>
                         </Link>)
                     }
                 </div>
+                {/* Paginado */}
                 <div className={moduleStyles.paginatedBox}>
                     <Paginated videogamesPerPage={videogamesPerPage} allVideogames={allVideogames.length} paginated={paginated}/>
                 </div>    
             </div>
+            {/* Footer */}
             <div className={moduleStyles.footer}>
                 <ul>
                     <li><a href="https://www.linkedin.com/in/franco-dangelo/">Linkedin</a></li>

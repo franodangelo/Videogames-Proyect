@@ -19,6 +19,7 @@ export default function VideogameDetail() {
 
     function handleDelete(id) {
         dispatch(deleteVideogame(id));
+        alert('Your videogame was deleted correctly')
         navigate('/home');
     }
 

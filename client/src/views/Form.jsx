@@ -124,10 +124,12 @@ export default function Form() {
     }
 
     function handleChangePlatforms(e) { // manejo cambios en el select de platforms segun lo que se vaya eligiendo
-        setVideogameLocalState({
-            ...videogameLocalState,
-            platforms: [...videogameLocalState.platforms, e.target.value] // guardo lo que tenia el estado mas la nueva plat a agregar
-        })
+        if(!videogameLocalState.platforms.includes(e.target.value)) { 
+            setVideogameLocalState({
+                ...videogameLocalState,
+                platforms: [...videogameLocalState.platforms, e.target.value] // guardo lo que tenia el estado mas la nueva plat a agregar
+            })
+        }
     }
 
     function handleChangeGenres(e) { // manejo cambios en el select de genres segun lo que se vaya eligiendo
@@ -175,16 +177,18 @@ export default function Form() {
 
     return (
         <div className={moduleStyles.formContainer}>
+            <br />
             <h1>Create your own videogame</h1>
             <form className={moduleStyles.formContainer} onSubmit={(e) => handleSubmit(e)}>
                 <div className={moduleStyles.formInput}>
                     <label htmlFor='name'>Name:</label>
-                    <input required name='name' type='text' className={moduleStyles.select} placeholder='3 characters at least' value={videogameLocalState.name} onChange={(e) => handleChange(e)}></input>
-                    {formErrors.name && (<p>{formErrors.name}</p>)}
+                    <input name='name' type='text' className={moduleStyles.select} placeholder='3 characters at least' value={videogameLocalState.name} onChange={(e) => handleChange(e)}></input>
+                    <br />
+                    <div>{formErrors.name && (<p>{formErrors.name}</p>)}</div>
                 </div>
                 <div className={moduleStyles.formInput}>
                     <label htmlFor='description'>Description:</label>
-                    <input required name='description' type='text' className={moduleStyles.select} value={videogameLocalState.description} onChange={(e) => handleChange(e)}></input>
+                    <input name='description' type='text' className={moduleStyles.select} value={videogameLocalState.description} onChange={(e) => handleChange(e)}></input>
                     {formErrors.description && (<p>{formErrors.description}</p>)}
                 </div>
                 <div className={moduleStyles.formInput}>
@@ -207,13 +211,18 @@ export default function Form() {
                         <option hidden={true}>Select some platforms</option>
                         {platforms.map(pl => <option value={pl}>{pl}</option>)}
                     </select>
-                    {formErrors.platforms && (<p>{formErrors.platforms}</p>)}
-                    {videogameLocalState.platforms.map(p =>
-                        <div>
-                            <button type='button' onClick={() => handleDeletePlatforms(p)}>{p}</button>
-                        </div>
-                    )}
-                    <br />
+                    <div>
+                        {formErrors.platforms && (<p>{formErrors.platforms}</p>)}
+                    </div>
+                    <div>
+                        {videogameLocalState.platforms.map(p =>
+                            <div>
+                                <button type='button' className={moduleStyles.chip} onClick={() => handleDeletePlatforms(p)}>{p}</button>
+                            </div>
+                        )}
+                    </div>
+                </div>
+                <div className={moduleStyles.formInput}>
                     <label htmlFor='genres'>Genres:</label>
                     <select name='genres' className={moduleStyles.select} onChange={(e) => handleChangeGenres(e)}>
                         <option hidden={true}>Select some genres</option>
@@ -221,11 +230,12 @@ export default function Form() {
                     </select>
                     {videogameLocalState.genres.map(g =>
                         <div>
-                            <button type='button' onClick={() => handleDeleteGenres(g)}>{g}</button>
+                            <button type='button' className={moduleStyles.chip} onClick={() => handleDeleteGenres(g)}>{g}</button>
                         </div>
                     )}
                 </div>
-                <div>
+                <br />
+                <div className={moduleStyles.formButtons}>
                     <button type='submit' className={moduleStyles.button}>Create videogame</button>
                     <Link to='/home'><button className={moduleStyles.buttonSecondary}>Cancel</button></Link>
                 </div>
