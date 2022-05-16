@@ -1,15 +1,15 @@
-const {Router} = require('express');
+const { Router } = require('express');
 const router = Router();
-const {Op} = require('sequelize');
+const { Op } = require('sequelize');
 const axios = require('axios');
-const {apiKey} = process.env;
-const {Videogame, Genre} = require('../db');
+const { apiKey } = process.env;
+const { Videogame, Genre } = require('../db');
 
-let videogames = [];
+// let videogames = []; // me parece que puede funcionar sin esta declaracion, descomentar en caso de que no
 
 router.get("/", async (req, res, next) => {
     try {
-        const {name} = req.query;
+        const { name } = req.query;
         if (name) {
             let gamesDb = [];
             const nameDb = await Videogame.findAll({
@@ -69,18 +69,17 @@ router.get("/", async (req, res, next) => {
                     genres: vg.genres.map((g) => g.name)
                 });
             });
-
-            const api = axios.get(`https://api.rawg.io/api/games?key=${apiKey}`);
-            const api2 = axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=2`);
-            const api3 = axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=3`);
-            const api4 = axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=4`);
-            const api5 = axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=5`);
-            let promesas = await Promise.all([api, api2, api3, api4, api5]);
-            pageOne = promesas[0].data.results;
-            pageTwo = promesas[1].data.results;
-            pageThree = promesas[2].data.results;
-            pageFour = promesas[3].data.results;
-            pageFive = promesas[4].data.results;
+            const firstPagePetition = axios.get(`https://api.rawg.io/api/games?key=${apiKey}`);
+            const secondPagePetition = axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=2`);
+            const thirdPagePetition = axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=3`);
+            const fourthPagePetition = axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=4`);
+            const fifthPagePetition = axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=5`);
+            let allPetitions = await Promise.all([firstPagePetition, secondPagePetition, thirdPagePetition, fourthPagePetition, fifthPagePetition]);
+            pageOne = allPetitions[0].data.results;
+            pageTwo = allPetitions[1].data.results;
+            pageThree = allPetitions[2].data.results;
+            pageFour = allPetitions[3].data.results;
+            pageFive = allPetitions[4].data.results;
             let allPages = pageOne.concat(pageTwo, pageThree, pageFour, pageFive)
             allPages.forEach((vg) => {
                 videogames.push({

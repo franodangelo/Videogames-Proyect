@@ -1,21 +1,21 @@
-const {Router} = require('express');
+const { Router } = require('express');
 const router = Router();
 const axios = require('axios');
-const {apiKey} = process.env;
+const { apiKey } = process.env;
 
-const {Videogame, Genre} = require('../db');
+const { Videogame, Genre } = require('../db');
 
 router.get('/:id', async (req, res, next) => {
     try {
-        const {id} = req.params;
+        const { id } = req.params;
         let foundVideogame;
-
         if (id.length > 6) {
             response = await Videogame.findOne({
-                where: {id: id},
+                where: {
+                    id: id
+                },
                 include: Genre
             });
-
             foundVideogame = {
                 id: response.id,
                 name: response.name,
@@ -25,8 +25,7 @@ router.get('/:id', async (req, res, next) => {
                 rating: response.rating,
                 platforms: response.platforms,
                 genres: response.genres.map(g => g.name)
-            }
-
+            };
         } else {
             response = await axios.get(`https://api.rawg.io/api/games/${id}?key=${apiKey}`);
             foundVideogame = {
@@ -58,14 +57,12 @@ router.post('/', async (req, res, next) => {
             description,
             platforms
         });
-
         genres?.forEach(async g => {
             var foundGenre = await Genre.findOne({
                 where: {name: genres}
             });
             newVideogame.addGenre(foundGenre);
         });
-
         res.send(newVideogame);
     } catch (error) {
         console.log(error)
@@ -74,7 +71,7 @@ router.post('/', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
     try {
-        const {id} = req.params;
+        const { id } = req.params;
         await Videogame.destroy({
             where: {
                 id: id
@@ -88,7 +85,7 @@ router.delete('/:id', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
     try {
-        const {id} = req.params;
+        const { id } = req.params;
         const videogame = req.body;
         await Videogame.update(videogame, {
             where: {
