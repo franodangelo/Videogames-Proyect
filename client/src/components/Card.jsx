@@ -1,7 +1,7 @@
 import React from 'react';
 import moduleStyles from '../Styles.module.css';
 
-export default function Card({name, img, released, rating, genres}){
+export default function Card({ name, img, released, rating, genres }){
     return(
         <div className={moduleStyles.card}>
                 <h2 className={moduleStyles.cardSecondaryText}>{rating}</h2>

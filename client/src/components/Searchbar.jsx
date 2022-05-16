@@ -4,7 +4,7 @@ import { getNameVideogame } from '../redux/actions';
 
 import moduleStyles from '../Styles.module.css';
 
-export default function SearchBar({setCurrentPage}) {
+export default function SearchBar() {
     const dispatch = useDispatch();
 
     const [searchName, setSearchName] = useState("");

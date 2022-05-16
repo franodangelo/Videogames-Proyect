@@ -2,12 +2,12 @@ import React from "react";
 import moduleStyles from '../Styles.module.css';
 
 export default function Paginated({ videogamesPerPage, allVideogames, paginated }) {
-    const pageNumbers = []; // Comienzo sin tener páginas en mi paginado
-
+    const pageNumbers = [];
+    
     for (let i = 1; i <= Math.ceil(allVideogames / videogamesPerPage); i++) {
         pageNumbers.push(i)
     }
-
+    
     return (
         <nav>
             <div className={moduleStyles.pages}>

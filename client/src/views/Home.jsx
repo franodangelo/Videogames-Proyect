@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { useDispatch, useSelector } from "react-redux"; // Hooks
+import { useDispatch, useSelector } from "react-redux";
 import Card from "../components/Card";
 import Paginated from "../components/Paginated";
 import SearchBar from "../components/Searchbar";
@@ -12,20 +12,20 @@ import moduleStyles from '../Styles.module.css';
 
 export default function Home() {
 
-    let allVideogames = useSelector((state) => state.videogames); // Traigo lo que existe en el estado videogames
+    let allVideogames = useSelector((state) => state.videogames);
 
-    const [currentPage, setCurrentPage] = useState(1); // seteamos en 1 porque voy a arrancar en la primer página
-    const [videogamesPerPage, setvideogamesPerPage] = useState(15); // guardo cuantos personajes quiero por página
+    const [currentPage, setCurrentPage] = useState(1);
+    const [videogamesPerPage, setvideogamesPerPage] = useState(15);
     const indexOfLastVideogame = currentPage * videogamesPerPage; 
     const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage;
-    const currentVideogames = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame); // contiene los juegos que están en la página actual
+    const currentVideogames = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame);
     const paginated = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
 
-    const dispatch = useDispatch(); // Guardo en una constante el Hook para despachar acciones
+    const dispatch = useDispatch();
     
-    useEffect(() => { // Cuando el componente se monta, traemos los videojuegos del estado
+    useEffect(() => {
         dispatch(getVideogames());
     }, [dispatch])
 
