@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-// A partir de las acciones, conecto el backend con el frontend
-
 export const createVideogame = (payload) => {
     return async () => {
         try {
@@ -16,7 +14,7 @@ export const createVideogame = (payload) => {
 export const getVideogames = () => {
     return async (dispatch) => {
         try {
-            let getApi = await axios.get("http://localhost:3001/api/videogames"); // pedido del total de videojuegos
+            let getApi = await axios.get("http://localhost:3001/api/videogames");
             dispatch({
                 type: "GET_VIDEOGAMES",
                 payload: getApi.data
