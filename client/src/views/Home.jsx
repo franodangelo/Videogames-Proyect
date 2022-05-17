@@ -7,7 +7,6 @@ import InvalidSearch from "./InvalidSearch";
 import Loader from "./Loader";
 import { Link } from 'react-router-dom';
 import { getVideogames, filterByCreation, filterByGenre, orderByName, orderByRating } from "../redux/actions";
-
 import moduleStyles from '../Styles.module.css';
 
 export default function Home() {

@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { getVideogameDetail } from '../redux/actions';
 import { Link, useNavigate } from 'react-router-dom';
 import { deleteVideogame } from '../redux/actions';
-
 import moduleStyles from '../Styles.module.css';
 
 export default function VideogameDetail() {

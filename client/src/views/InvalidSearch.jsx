@@ -1,5 +1,4 @@
 import React from 'react';
-
 import moduleStyles from '../Styles.module.css';
 
 export default function InvalidSearch() {

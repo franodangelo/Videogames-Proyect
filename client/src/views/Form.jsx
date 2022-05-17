@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGenres, createVideogame, getVideogames } from '../redux/actions';
 import { Link, useNavigate } from 'react-router-dom';
-
 import moduleStyles from '../Styles.module.css';
 
 function validate(videogameLocalState) {
@@ -107,50 +106,50 @@ export default function Form() {
     ];
 
     useEffect(() => {
-        dispatch(getGenres()) // obtengo generos y luego puedo buscarlos y seleccionarlos en mi select
-        dispatch(getVideogames()) // obtengo juegos, desp mapeo por plataformas para poder buscarlas y seleccionarlas en mi select
+        dispatch(getGenres())
+        dispatch(getVideogames())
     }
         , [dispatch]);
 
-    function handleChange(e) { // manejo cambios en inputs segun lo que se vaya escribiendo
+    function handleChange(e) {
         setVideogameLocalState({
             ...videogameLocalState,
             [e.target.name]: e.target.value
         })
-        setFormErrors(validate({ // seteo el estado de error usando la funcion validate para ver su cumplimiento
+        setFormErrors(validate({
             ...videogameLocalState,
             [e.target.name]: e.target.value
         }));
     }
 
-    function handleChangePlatforms(e) { // manejo cambios en el select de platforms segun lo que se vaya eligiendo
+    function handleChangePlatforms(e) {
         if(!videogameLocalState.platforms.includes(e.target.value)) { 
             setVideogameLocalState({
                 ...videogameLocalState,
-                platforms: [...videogameLocalState.platforms, e.target.value] // guardo lo que tenia el estado mas la nueva plat a agregar
+                platforms: [...videogameLocalState.platforms, e.target.value]
             })
         }
     }
 
-    function handleChangeGenres(e) { // manejo cambios en el select de genres segun lo que se vaya eligiendo
+    function handleChangeGenres(e) {
         if(!videogameLocalState.genres.includes(e.target.value)) {
             setVideogameLocalState({
                 ...videogameLocalState,
-                genres: [...videogameLocalState.genres, e.target.value] // guardo lo que tenia el estado mas el nuevo genero a agregar
+                genres: [...videogameLocalState.genres, e.target.value]
             })
         }
     }
 
-    function handleSubmit(e) { // controlo la creacion de un videojuego
+    function handleSubmit(e) {
         if(!videogameLocalState.name || !videogameLocalState.description || !videogameLocalState.img || !videogameLocalState.released || !videogameLocalState.rating || videogameLocalState.platforms.length < 1 || videogameLocalState.genres.length < 1) {
             e.preventDefault();
             alert('The form is incomplete')
         }
         else {
             e.preventDefault();
-            dispatch(createVideogame(videogameLocalState)); // creo el videojuego con la info almacenada en el estado
-            alert('Videogame created succesfully!'); // envio un mensaje al usuario al crear el videojuego
-            setVideogameLocalState({ // una vez creado, seteo el estado vacio nuevamente
+            dispatch(createVideogame(videogameLocalState));
+            alert('Videogame created succesfully!');
+            setVideogameLocalState({
                 name: '',
                 description: '',
                 img: '',
@@ -163,14 +162,14 @@ export default function Form() {
         }
     }
 
-    function handleDeletePlatforms(e) { // manejo eliminaciones en el select de platforms
+    function handleDeletePlatforms(e) {
         setVideogameLocalState({
             ...videogameLocalState,
             platforms: videogameLocalState.platforms.filter(p => p !== e)
         })
     }
 
-    function handleDeleteGenres(e) { // manejo eliminaciones en el select de genres
+    function handleDeleteGenres(e) {
         setVideogameLocalState({
             ...videogameLocalState,
             genres: videogameLocalState.genres.filter(g => g !== e)
