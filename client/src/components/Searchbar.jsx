@@ -22,7 +22,7 @@ export default function SearchBar() {
 
     return(
         <div className={moduleStyles.searchbar}>
-            <input className={moduleStyles.searchInput} onChange={(e) => handleInputChange(e)} type= 'text' placeholder='Start searching...'></input>
+            <input className={moduleStyles.searchInput} onChange={(e) => handleInputChange(e)} type= 'text' placeholder='Find your videogame...'></input>
             <button className={moduleStyles.searchButton} onClick={(e) => handleSearchSubmit(e)} type='submit'>Search</button>
         </div>
     )
