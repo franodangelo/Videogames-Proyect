@@ -4,6 +4,7 @@ import Card from "../components/Card";
 import Paginated from "../components/Paginated";
 import SearchBar from "../components/Searchbar";
 import InvalidSearch from "./InvalidSearch";
+import NoGamesCreated from "./NoGamesCreated";
 import Loader from "./Loader";
 import { Link } from 'react-router-dom';
 import { getVideogames, filterByCreation, filterByGenre, orderByName, orderByRating } from "../redux/actions";
@@ -66,7 +67,7 @@ export default function Home() {
             {/* Navbar */}
             <div className={moduleStyles.nav}>
                 <div className={moduleStyles.navleft}>
-                    <h1>Do you want to play a game?</h1>
+                    <Link to='/home'><h1>Videogames SPA</h1></Link>
                 </div>
                 <div className={moduleStyles.navRight}>
                 <Link to='/videogame'><button className={moduleStyles.button}>Create videogame</button></Link>
@@ -81,48 +82,48 @@ export default function Home() {
                     <div>
                     <h4>Filter by:</h4>
                     <select className={moduleStyles.select} onChange={e => handleFilterByCreation(e)}>
-                        <option value='all'>All videogames</option>
-                        <option value='original'>Original videogames</option>
-                        <option value='created'>Created by user</option>
+                        <option className={moduleStyles.select} value='all'>All videogames</option>
+                        <option className={moduleStyles.select} value='created'>Created by user</option>
+                        <option className={moduleStyles.select} value='original'>Original videogames</option>
                     </select>
                     <select className={moduleStyles.select} onChange={e => handleFilterByGenre(e)}>
-                        <option value="All">All genres</option>
-                        <option value="Action">Action</option>
-                        <option value="Indie">Indie</option>
-                        <option value="Adventure">Adventure</option>
-                        <option value="RPG">RPG</option>
-                        <option value="Strategy">Strategy</option>
-                        <option value="Shooter">Shooter</option>
-                        <option value="Casual">Casual</option>
-                        <option value="Simulation">Simulation</option>
-                        <option value="Puzzle">Puzzle</option>
-                        <option value="Arcade">Arcade</option>
-                        <option value="Platformer">Platformer</option>
-                        <option value="Racing">Racing</option>
-                        <option value="Massively Multiplayer">Massively Multiplayer</option>
-                        <option value="Sports">Sports</option>
-                        <option value="Fighting">Fighting</option>
-                        <option value="Family">Family</option>
-                        <option value="Board Games">Board Games</option>
-                        <option value="Educational">Educational</option>
-                        <option value="Card">Card</option>
+                        <option className={moduleStyles.select} value="All">All genres</option>
+                        <option className={moduleStyles.select} value="Action">Action</option>
+                        <option className={moduleStyles.select} value="Adventure">Adventure</option>
+                        <option className={moduleStyles.select} value="Arcade">Arcade</option>
+                        <option className={moduleStyles.select} value="Board Games">Board Games</option>
+                        <option className={moduleStyles.select} value="Card">Card</option>
+                        <option className={moduleStyles.select} value="Casual">Casual</option>
+                        <option className={moduleStyles.select} value="Educational">Educational</option>
+                        <option className={moduleStyles.select} value="Family">Family</option>
+                        <option className={moduleStyles.select} value="Fighting">Fighting</option>
+                        <option className={moduleStyles.select} value="Indie">Indie</option>
+                        <option className={moduleStyles.select} value="Massively Multiplayer">Massively Multiplayer</option>
+                        <option className={moduleStyles.select} value="Platformer">Platformer</option>
+                        <option className={moduleStyles.select} value="Puzzle">Puzzle</option>
+                        <option className={moduleStyles.select} value="Racing">Racing</option>
+                        <option className={moduleStyles.select} value="RPG">RPG</option>
+                        <option className={moduleStyles.select} value="Shooter">Shooter</option>
+                        <option className={moduleStyles.select} value="Simulation">Simulation</option>
+                        <option className={moduleStyles.select} value="Sports">Sports</option>
+                        <option className={moduleStyles.select} value="Strategy">Strategy</option>
                     </select>
                     </div>
                     <div>
                         <h4>Order by:</h4>
                         <select className={moduleStyles.select} onChange={e => handleSortByName(e)}>
-                            <option value='AZ'># - Z</option>
-                            <option value='ZA'>Z - #</option>
+                            <option className={moduleStyles.select} value='AZ'># - Z</option>
+                            <option className={moduleStyles.select} value='ZA'>Z - #</option>
                         </select>
                         <select className={moduleStyles.select} onChange={e => handleSortByRating(e)}>
-                            <option value='LTH'>Lower ratings</option>
-                            <option value='HTL'>Higher ratings</option>
+                            <option className={moduleStyles.select} value='LTH'>Lower ratings</option>
+                            <option className={moduleStyles.select} value='HTL'>Higher ratings</option>
                         </select>
                     </div>
                 </div>
                 {/* Grilla con cards */}
                 <div className={moduleStyles.cards}>
-                    { currentVideogames[0] === 'No games created' ? <h2>No games created yet</h2>
+                    { currentVideogames[0] === 'No games created' ? <NoGamesCreated/>
                     : currentVideogames[0] === "No results" ? <InvalidSearch/>
                     : currentVideogames.length === 0 ? <Loader/>
                     : currentVideogames.map(vg => 

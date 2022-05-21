@@ -143,7 +143,7 @@ export default function Form() {
     function handleSubmit(e) {
         if(!videogameLocalState.name || !videogameLocalState.description || !videogameLocalState.img || !videogameLocalState.released || !videogameLocalState.rating || videogameLocalState.platforms.length < 1 || videogameLocalState.genres.length < 1) {
             e.preventDefault();
-            alert('The form is incomplete')
+            alert('Some of the inputs are incomplete')
         }
         else {
             e.preventDefault();
@@ -210,7 +210,7 @@ export default function Form() {
                     <label htmlFor='platforms'>Platforms:</label>
                     <select name='platforms' className={moduleStyles.select} onChange={(e) => handleChangePlatforms(e)}>
                         <option hidden={true}>Select some platforms</option>
-                        {platforms.map(pl => <option value={pl}>{pl}</option>)}
+                        {platforms.map(pl => <option value={pl} className={moduleStyles.select}>{pl}</option>)}
                     </select>
                     <div>
                         {formErrors.platforms && (<p>{formErrors.platforms}</p>)}
@@ -227,7 +227,7 @@ export default function Form() {
                     <label htmlFor='genres'>Genres:</label>
                     <select name='genres' className={moduleStyles.select} onChange={(e) => handleChangeGenres(e)}>
                         <option hidden={true}>Select some genres</option>
-                        {genres.map(g => <option value={g.name}>{g.name}</option>)}
+                        {genres.map(g => <option value={g.name} className={moduleStyles.select}>{g.name}</option>)}
                     </select>
                     {videogameLocalState.genres.map(g =>
                         <div>
@@ -238,6 +238,8 @@ export default function Form() {
                 <br />
                 <div className={moduleStyles.formButtons}>
                     <button type='submit' className={moduleStyles.button}>Create videogame</button>
+                </div>
+                <div className={moduleStyles.formButtons}>
                     <Link to='/home'><button className={moduleStyles.buttonSecondary}>Cancel</button></Link>
                 </div>
             </form>

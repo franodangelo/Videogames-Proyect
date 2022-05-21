@@ -26,7 +26,7 @@ export default function VideogameDetail() {
         <div className={moduleStyles.main}>
             <div className={moduleStyles.nav}>
                 <div className={moduleStyles.navleft}>
-                    <Link to='/home'><h1>Back home</h1></Link>
+                    <Link to='/home'><h1>{'<'} Back home</h1></Link>
                 </div>
                 <div className={moduleStyles.navRight}>
                     <Link to='/videogame'><button className={moduleStyles.button}>Create videogame</button></Link>
