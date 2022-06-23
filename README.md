@@ -1,5 +1,8 @@
 # Videogames SPA
 
+#### App created using React, Redux, Node.js, PostgreSQL and Sequelize.
+__3-week individual__ project.
+
 #### App creada utlizando React, Redux, Node.js, PostgreSQL y Sequelize.
 Proyecto realizado de manera __individual__ a lo largo de __3 semanas__. 
 
