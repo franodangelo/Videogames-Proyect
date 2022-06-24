@@ -1,0 +1,70 @@
+# Aplicación de Videojuegos
+
+#### App creada utlizando React, Redux, Node.js, PostgreSQL y Sequelize.
+Proyecto realizado de manera __individual__ a lo largo de __3 semanas__. 
+
+### Sobre el proyecto
+
+La idea general del mismo fue crear una aplicación en la cual se puedan ver los distintos videojuegos disponibles junto con información relevante de los mismos utilizando la api externa __[rawg](https://rawg.io/apidocs)__ y a partir de ella poder buscar, filtrar y ordenar videojuegos, verlos en detalle, y agregar nuevos.
+
+## Front-End
+Desarrollado con __React y Redux__. Contiene las siguientes páginas:
+
+- [ ] Landing page con botón para ingresar a la Home page.
+
+- [ ] Home page que incluye:
+- __Navbar__ con __searchbar__ para encontrar videojuegos por nombre, y botón para acceder al __formulario__ de creación de videojuegos.
+- Panel para __filtrar__ por género y por videojuego existente o agregado por nosotros, y __ordenar__ tanto ascendentemente como descendentemente los videojuegos por orden alfabético y por valoración.
+- __Grilla__ donde se verá el listado de __100 videojuegos__, ya sean originales como creados por el usuario. Cada uno incluye __imagen, nombre, géneros y valoración__.
+- __Paginado__ configurado para mostrar __15 videojuegos por página__.
+
+- [ ] __Detalle__ del videojuego, donde se puede encontrar información adicional del mismo como __descripción, fecha de lanzamiento y plataformas__ para jugarlo.
+
+- [ ] Creación de videojuego a partir de un __formulario controlado__ con los siguientes campos:
+  - Nombre
+  - Descripción
+  - Fecha de lanzamiento
+  - Rating
+  - Géneros
+  - Plataformas
+
+## Back-End
+Desarrollado con __Node.js y Express__. Contiene las siguientes rutas:
+
+- [ ] __GET /videogames__:
+  - Obtener un listado de los videojuegos con la información necesaria a mostrarse en las cards individuales de la grilla.
+
+- [ ] __GET /videogames?name="..."__:
+  - Obtener un listado de los primeros 15 videojuegos que contengan la palabra ingresada por query, o comunicar adecuadamente que no existe ningún videojuego con ese nombre.
+
+- [ ] __GET /videogame/{idVideogame}__:
+  - Obtener el detalle de un videojuego en particular, incluyendo los géneros asociados al mismo.
+
+- [ ] __GET /genres__:
+  - Obtener todos los tipos de géneros de videojuegos posibles y guardar los mismo en la base de datos.
+
+- [ ] __POST /videogame__:
+  - Obtener los datos recolectados desde el formulario controlado de la ruta de creación de videojuego por para crear un videojuego en la base de datos.
+
+#### Rutas de API utilizadas
+  - GET https://api.rawg.io/api/games
+  - GET https://api.rawg.io/api/games?search={game}
+  - GET https://api.rawg.io/api/genres
+  - GET https://api.rawg.io/api/games/{id}
+
+## Base de datos
+Desarrollada en __PostgreSQL y Sequelize__. Contiene las siguientes entidades:
+
+- [ ] Videojuego con las siguientes propiedades:
+  - ID
+  - Nombre
+  - Descripción
+  - Fecha de lanzamiento
+  - Rating
+  - Plataformas
+
+- [ ] Género con las siguientes propiedades:
+  - ID
+  - Nombre
+
+La __relación__ entre ambas entidades es __de muchos a muchos__ ya que un videojuego puede pertenecer a varios géneros en simultaneo y, a su vez, un género puede contener múltiples videojuegos distintos. 
