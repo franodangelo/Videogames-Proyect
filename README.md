@@ -1,75 +1,74 @@
 # Videogames SPA
 
-__[Spanish version]([https://rawg.io/apidocs](https://github.com/franodangelo/VideogamesProyect/blob/main/README-Spanish))__
+__[Spanish version](https://github.com/franodangelo/VideogamesProyect/blob/main/README-Spanish)__
 
 #### App created using React, Redux, Node.js, PostgreSQL and Sequelize.
 __3-week individual__ project.
 
-#### App creada utlizando React, Redux, Node.js, PostgreSQL y Sequelize.
-Proyecto realizado de manera __individual__ a lo largo de __3 semanas__. 
+### About the Videogames SPA
 
-### Sobre el proyecto
+Inside the app you can see 100 available videogames with relevant information about them such as name, rating and genres, and also you have the opportunity to search for one in particular or just filter and order them. There's a button that allows you to create a brand new videogame in the platform. 
 
-La idea general del mismo fue crear una aplicación en la cual se puedan ver los distintos videojuegos disponibles junto con información relevante de los mismos utilizando la api externa __[rawg](https://rawg.io/apidocs)__ y a partir de ella poder buscar, filtrar y ordenar videojuegos, verlos en detalle, y agregar nuevos.
+I used the external API __[rawg](https://rawg.io/apidocs)__ in this project.
 
-## Frontend
-Desarrollado con __React y Redux__. Contiene las siguientes páginas:
+## Front-End
+It was developed using __React and Redux__. It has the following pages:
 
-- [ ] Landing page con botón para ingresar a la Home page.
+- [ ] Landing page.
 
-- [ ] Home page que incluye:
-- __Navbar__ con __searchbar__ para encontrar videojuegos por nombre, y botón para acceder al __formulario__ de creación de videojuegos.
-- Panel para __filtrar__ por género y por videojuego existente o agregado por nosotros, y __ordenar__ tanto ascendentemente como descendentemente los videojuegos por orden alfabético y por valoración.
-- __Grilla__ donde se verá el listado de __100 videojuegos__, ya sean originales como creados por el usuario. Cada uno incluye __imagen, nombre, géneros y valoración__.
-- __Paginado__ configurado para mostrar __15 videojuegos por página__.
+- [ ] Home page with:
+- A __Navbar__ with a __searchbar__ to search videogames by name, and a button to go to the videogame's creation __form__.
+- A Panel for __filter__ by genre and original or created videogames, and __order__ them ascending or descending by rating or alphabetical order.
+- A __Grid__ with all __100 videogames__, both original and created by the user. Each card shows the main info of the videogame: __image, name, genres and rating__.
+- A __pagination__ configured to show __15 videogames per page__.
 
-- [ ] __Detalle__ del videojuego, donde se puede encontrar información adicional del mismo como __descripción, fecha de lanzamiento y plataformas__ para jugarlo.
+- [ ] __Videogame detail__ page, where you can find additional information like a __description, date of release and platforms__ where you can play it.
 
-- [ ] Creación de videojuego a partir de un __formulario controlado__ con los siguientes campos:
-  - Nombre
-  - Descripción
-  - Fecha de lanzamiento
+- [ ] __Creation form__ with the following fields:
+  - Name
+  - Description
+  - Date of release
   - Rating
-  - Géneros
-  - Plataformas
+  - Genres
+  - Platforms
 
-## Backend
-Desarrollado con __Node.js y Express__. Contiene las siguientes rutas:
+## Back-End
+Developed with __Node.js and Express__. It has the following routing:
 
 - [ ] __GET /videogames__:
-  - Obtener un listado de los videojuegos con la información necesaria a mostrarse en las cards individuales de la grilla.
+  - Gives you a list of videogames with the main information to show in the cards in the Home page.
 
 - [ ] __GET /videogames?name="..."__:
-  - Obtener un listado de los primeros 15 videojuegos que contengan la palabra ingresada por query, o comunicar adecuadamente que no existe ningún videojuego con ese nombre.
+  - Gives you a list of the first 15 videogames that match with the word you wrote in the searchbar. If there are no results, you'll receive an information message.
 
 - [ ] __GET /videogame/{idVideogame}__:
-  - Obtener el detalle de un videojuego en particular, incluyendo los géneros asociados al mismo.
+  - Gives you the detail of a singular videogame, including its genres.
 
 - [ ] __GET /genres__:
-  - Obtener todos los tipos de géneros de videojuegos posibles y guardar los mismo en la base de datos.
+  - Gives you all the possible genres and then saves them in the database.
 
 - [ ] __POST /videogame__:
-  - Obtener los datos recolectados desde el formulario controlado de la ruta de creación de videojuego por para crear un videojuego en la base de datos.
+  - Gives you all the collected data in the creation form and create a new videogame in the database.
 
-#### Endpoints utilizados
+#### Endpoints that I used:
   - GET https://api.rawg.io/api/games
   - GET https://api.rawg.io/api/games?search={game}
   - GET https://api.rawg.io/api/genres
   - GET https://api.rawg.io/api/games/{id}
 
-## Base de datos
-Desarrollada en __PostgreSQL y Sequelize__. Contiene las siguientes entidades:
+## Database
+Created in __PostgreSQL and Sequelize__. Includes the following entities:
 
-- [ ] Videojuego con las siguientes propiedades:
+- [ ] Videogame with the next properties:
   - ID
-  - Nombre
-  - Descripción
-  - Fecha de lanzamiento
+  - Name
+  - Description
+  - Date of release
   - Rating
-  - Plataformas
+  - Platforms
 
-- [ ] Género con las siguientes propiedades:
+- [ ] Genres with the next properties:
   - ID
-  - Nombre
+  - Name
 
-La __relación__ entre ambas entidades es __de muchos a muchos__ ya que un videojuego puede pertenecer a varios géneros en simultaneo y, a su vez, un género puede contener múltiples videojuegos distintos. 
+The __relationships__ between entities were both __belongsToMany__ because a videogame can have many genres simultaneously, and so the genres can contain multiple videogames. 
