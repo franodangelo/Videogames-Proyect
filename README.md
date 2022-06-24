@@ -1,5 +1,7 @@
 # Videogames SPA
 
+__[Spanish version]([https://rawg.io/apidocs](https://github.com/franodangelo/VideogamesProyect/blob/main/README-Spanish))__
+
 #### App created using React, Redux, Node.js, PostgreSQL and Sequelize.
 __3-week individual__ project.
 
