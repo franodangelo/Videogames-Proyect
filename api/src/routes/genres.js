@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const router = Router();
 const axios = require('axios');
-// const {apiKey} = process.env; CONSULTAR PARA PODER USARLA
 
 const { Genre } = require('../db');
 
