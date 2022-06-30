@@ -41,7 +41,7 @@ router.get('/:id', async (req, res, next) => {
         }
         res.send(foundVideogame);
     } catch (error) {
-        console.log(error)
+        next(error)
     }
 });
 
@@ -65,7 +65,7 @@ router.post('/', async (req, res, next) => {
         });
         res.send(newVideogame);
     } catch (error) {
-        console.log(error)
+        next(error)
     }
 });
 

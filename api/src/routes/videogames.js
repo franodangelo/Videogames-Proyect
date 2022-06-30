@@ -5,8 +5,6 @@ const axios = require('axios');
 const { apiKey } = process.env;
 const { Videogame, Genre } = require('../db');
 
-// let videogames = []; // me parece que puede funcionar sin esta declaracion, descomentar en caso de que no
-
 router.get("/", async (req, res, next) => {
     try {
         const { name } = req.query;
