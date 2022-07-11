@@ -183,32 +183,32 @@ export default function Form() {
             <form className={moduleStyles.formContainer} onSubmit={(e) => handleSubmit(e)}>
                 <div className={moduleStyles.formInput}>
                     <label htmlFor='name'>Name:</label>
-                    <input name='name' type='text' className={moduleStyles.select} placeholder='3 characters at least' value={videogameLocalState.name} onChange={(e) => handleChange(e)}></input>
+                    <input required='required' name='name' type='text' minlength='3' className={moduleStyles.select} placeholder='3 characters at least' value={videogameLocalState.name} onChange={(e) => handleChange(e)}></input>
                     <br />
                     <div>{formErrors.name && (<p>{formErrors.name}</p>)}</div>
                 </div>
                 <div className={moduleStyles.formInput}>
                     <label htmlFor='description'>Description:</label>
-                    <input name='description' type='text' className={moduleStyles.select} value={videogameLocalState.description} onChange={(e) => handleChange(e)}></input>
+                    <input required='required' name='description' type='text' minlength='20' className={moduleStyles.select} value={videogameLocalState.description} onChange={(e) => handleChange(e)}></input>
                     {formErrors.description && (<p>{formErrors.description}</p>)}
                 </div>
                 <div className={moduleStyles.formInput}>
                     <label htmlFor='released'>Date of release:</label>
-                    <input name='released' type='date' className={moduleStyles.select} value={videogameLocalState.released} onChange={(e) => handleChange(e)}></input>
+                    <input required='required' name='released' type='date' className={moduleStyles.select} value={videogameLocalState.released} onChange={(e) => handleChange(e)}></input>
                     {formErrors.released && (<p>{formErrors.released}</p>)}
                 </div>
                 <div className={moduleStyles.formInput}>
                     <label htmlFor='rating'>Rating:</label>
-                    <input name='rating' type='number' className={moduleStyles.select} placeholder='Rate between 1-5' value={videogameLocalState.rating} onChange={(e) => handleChange(e)}></input>
+                    <input required='required' name='rating' type='number' min='0' max='5' className={moduleStyles.select} placeholder='Rate between 1-5' value={videogameLocalState.rating} onChange={(e) => handleChange(e)}></input>
                     {formErrors.rating && (<p>{formErrors.rating}</p>)}
                 </div>
                 <div className={moduleStyles.formInput}>
                     <label htmlFor='img'>Image:</label>
-                    <input name='img' type='url' className={moduleStyles.select} value={videogameLocalState.img} onChange={(e) => handleChange(e)}></input>
+                    <input required='required' name='img' type='url' className={moduleStyles.select} value={videogameLocalState.img} onChange={(e) => handleChange(e)}></input>
                 </div>
                 <div className={moduleStyles.formInput}>
                     <label htmlFor='platforms'>Platforms:</label>
-                    <select name='platforms' className={moduleStyles.select} onChange={(e) => handleChangePlatforms(e)}>
+                    <select required='required' name='platforms' className={moduleStyles.select} onChange={(e) => handleChangePlatforms(e)}>
                         <option hidden={true}>Select some platforms</option>
                         {platforms.map(pl => <option value={pl} className={moduleStyles.select}>{pl}</option>)}
                     </select>
@@ -225,7 +225,7 @@ export default function Form() {
                 </div>
                 <div className={moduleStyles.formInput}>
                     <label htmlFor='genres'>Genres:</label>
-                    <select name='genres' className={moduleStyles.select} onChange={(e) => handleChangeGenres(e)}>
+                    <select required='required' name='genres' className={moduleStyles.select} onChange={(e) => handleChangeGenres(e)}>
                         <option hidden={true}>Select some genres</option>
                         {genres.map(g => <option value={g.name} className={moduleStyles.select}>{g.name}</option>)}
                     </select>
