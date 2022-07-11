@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Home from './views/Home';
 import VgDetail from './views/VgDetail';
-import Landing from './views/Landing';
+import Landing from './views/Landing/Landing.jsx';
 import Form from './views/Form';
 import InvalidPath from './views/InvalidPath';
 
