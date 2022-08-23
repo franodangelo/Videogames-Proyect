@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getGenres, createVideogame, getVideogames } from "../redux/actions";
 import { Link, useNavigate } from "react-router-dom";
-import moduleStyles from "../Styles.module.css";
 
 function validate(videogameLocalState) {
     let errors = {};
@@ -42,15 +41,6 @@ export default function Form() {
     const [formErrors, setFormErrors] = useState({});
 
     const genres = useSelector(state => state.genres);
-
-    // const plats = useSelector(state => state.videogames);
-    // const mapPlats = plats.map(p => p.platforms);
-    // const arrayPlats = [];
-    // mapPlats?.map(p => p.map(a => {
-    //     arrayPlats.push(a)
-    // }));
-    // const mySet = new Set(arrayPlats);
-    // const setPlats = [...mySet];
 
     let platforms = [
         "PC",
@@ -177,40 +167,38 @@ export default function Form() {
     }
 
     return (
-        <div className={moduleStyles.formContainer}>
-            <br />
+        <div>
             <h1>Create your own videogame</h1>
-            <form className={moduleStyles.formContainer} onSubmit={(e) => handleSubmit(e)}>
-                <div className={moduleStyles.formInput}>
+            <form onSubmit={(e) => handleSubmit(e)}>
+                <div>
                     <label htmlFor="name">Name:</label>
-                    <input required name="name" type="text" minlength="3" className={moduleStyles.select} placeholder="3 characters at least" value={videogameLocalState.name} onChange={(e) => handleChange(e)}></input>
-                    <br />
+                    <input required name="name" type="text" minlength="3" placeholder="3 characters at least" value={videogameLocalState.name} onChange={(e) => handleChange(e)}></input>
                     <div>{formErrors.name && (<p>{formErrors.name}</p>)}</div>
                 </div>
-                <div className={moduleStyles.formInput}>
+                <div>
                     <label htmlFor="description">Description:</label>
-                    <input required name="description" type="text" minlength="20" className={moduleStyles.select} value={videogameLocalState.description} onChange={(e) => handleChange(e)}></input>
+                    <input required name="description" type="text" minlength="20" value={videogameLocalState.description} onChange={(e) => handleChange(e)}></input>
                     {formErrors.description && (<p>{formErrors.description}</p>)}
                 </div>
-                <div className={moduleStyles.formInput}>
+                <div >
                     <label htmlFor="released">Date of release:</label>
-                    <input required name="released" type="date" className={moduleStyles.select} value={videogameLocalState.released} onChange={(e) => handleChange(e)}></input>
+                    <input required name="released" type="date" value={videogameLocalState.released} onChange={(e) => handleChange(e)}></input>
                     {formErrors.released && (<p>{formErrors.released}</p>)}
                 </div>
-                <div className={moduleStyles.formInput}>
+                <div>
                     <label htmlFor="rating">Rating:</label>
-                    <input required name="rating" type="number" min="0" max="5" className={moduleStyles.select} placeholder="Rate between 1-5" value={videogameLocalState.rating} onChange={(e) => handleChange(e)}></input>
+                    <input required name="rating" type="number" min="0" max="5" placeholder="Rate between 1-5" value={videogameLocalState.rating} onChange={(e) => handleChange(e)}></input>
                     {formErrors.rating && (<p>{formErrors.rating}</p>)}
                 </div>
-                <div className={moduleStyles.formInput}>
+                <div>
                     <label htmlFor="img">Image:</label>
-                    <input required name="img" type="url" className={moduleStyles.select} value={videogameLocalState.img} onChange={(e) => handleChange(e)}></input>
+                    <input required name="img" type="url" value={videogameLocalState.img} onChange={(e) => handleChange(e)}></input>
                 </div>
-                <div className={moduleStyles.formInput}>
+                <div>
                     <label htmlFor="platforms">Platforms:</label>
-                    <select required name="platforms" className={moduleStyles.select} onChange={(e) => handleChangePlatforms(e)}>
+                    <select required name="platforms" onChange={(e) => handleChangePlatforms(e)}>
                         <option hidden={true}>Select some platforms</option>
-                        {platforms.map(pl => <option value={pl} className={moduleStyles.select}>{pl}</option>)}
+                        {platforms.map(pl => <option value={pl} >{pl}</option>)}
                     </select>
                     <div>
                         {formErrors.platforms && (<p>{formErrors.platforms}</p>)}
@@ -218,31 +206,31 @@ export default function Form() {
                     <div>
                         {videogameLocalState.platforms.map(p =>
                             <div>
-                                <button type="button" className={moduleStyles.chip} onClick={() => handleDeletePlatforms(p)}>{p}</button>
+                                <button type="button" onClick={() => handleDeletePlatforms(p)}>{p}</button>
                             </div>
                         )}
                     </div>
                 </div>
-                <div className={moduleStyles.formInput}>
+                <div >
                     <label htmlFor="genres">Genres:</label>
-                    <select required name="genres" className={moduleStyles.select} onChange={(e) => handleChangeGenres(e)}>
+                    <select required name="genres" onChange={(e) => handleChangeGenres(e)}>
                         <option hidden={true}>Select some genres</option>
-                        {genres.map(g => <option value={g.name} className={moduleStyles.select}>{g.name}</option>)}
+                        {genres.map(g => <option value={g.name}>{g.name}</option>)}
                     </select>
                     {videogameLocalState.genres.map(g =>
                         <div>
-                            <button type="button" className={moduleStyles.chip} onClick={() => handleDeleteGenres(g)}>{g}</button>
+                            <button type="button" onClick={() => handleDeleteGenres(g)}>{g}</button>
                         </div>
                     )}
                 </div>
                 <br />
-                <div className={moduleStyles.formButtons}>
-                    <button type="submit" className={moduleStyles.button}>Create videogame</button>
+                <div >
+                    <button type="submit">Create videogame</button>
                 </div>
-                <div className={moduleStyles.formButtons}>
-                    <Link to="/home"><button className={moduleStyles.buttonSecondary}>Cancel</button></Link>
+                <div >
+                    <Link to="/home"><button>Cancel</button></Link>
                 </div>
             </form>
         </div>
     );
-}
+};
