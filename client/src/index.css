@@ -1,19 +1,19 @@
-body {
-  margin: 0;
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'Poppins', 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Poppins', 'Courier New',
-    monospace;
-}
+@layer base {
 
-a:link, :visited, :hover, :active {
-  text-decoration: none;
-  color: #F1FAEE;
+    *{
+        @apply font-mono
+    }
+
+    li {
+        @apply p-6
+    }
+
+    button {
+        @apply py-2 px-4 text-slate-900 font-semibold bg-amber-400 rounded-md shadow-md
+        hover:bg-amber-500 hover:shadow-xl hover:ease-in duration-200
+    }
 }
