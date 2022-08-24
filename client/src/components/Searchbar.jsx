@@ -15,9 +15,9 @@ export default function SearchBar() {
         setSearchName("");
     }
     return (
-        <div>
-            <input onChange={(e) => handleInputChange(e)} type='text' placeholder='Find your videogame...'></input>
-            <button onClick={(e) => handleSearchSubmit(e)} type='submit'>Search</button>
+        <div className='flex gap-2 items-center'>
+            <input className='h-full pl-2 border-2 border-palette-800 rounded-md placeholder-white bg-palette-800/20' onChange={(e) => handleInputChange(e)} type='text' placeholder='Find your videogame...'></input>
+            <button className='bg-palette-100 text-white rounded-tr-lg rounded-br-lg' onClick={(e) => handleSearchSubmit(e)} type='submit'>Search</button>
         </div>
     )
 };
