@@ -5,7 +5,7 @@
 @layer base {
 
     *{
-        @apply font-mono
+        @apply font-sans
     }
 
     li {
@@ -13,7 +13,6 @@
     }
 
     button {
-        @apply py-2 px-4 text-slate-900 font-semibold bg-amber-400 rounded-md shadow-md
-        hover:bg-amber-500 hover:shadow-xl hover:ease-in duration-200
+        @apply py-2 px-4 font-semibold text-white uppercase bg-palette-900 rounded-md shadow-md hover:shadow-xl hover:ease-in duration-200
     }
 }
