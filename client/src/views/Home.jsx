@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Card from "../components/Card";
-import Paginated from "../components/Paginated";
+import { Link } from 'react-router-dom';
+import { getVideogames, filterByCreation, filterByGenre, orderByName, orderByRating } from "../redux/actions";
 import Navbar from "../components/Navbar";
 import InvalidSearch from "./InvalidSearch";
 import NoGamesCreated from "./NoGamesCreated";
+import Card from "../components/Card";
+import Paginated from "../components/Paginated";
 import Loader from "./Loader";
-import { Link } from 'react-router-dom';
-import { getVideogames, filterByCreation, filterByGenre, orderByName, orderByRating } from "../redux/actions";
+import Footer from "../components/Footer";
 
 export default function Home() {
 
@@ -49,16 +50,16 @@ export default function Home() {
 
     function handleSortByName(e) {
         e.preventDefault();
-        dispatch(orderByName(e.target.value))
+        dispatch(orderByName(e.target.value));
         setCurrentPage(1);
-        setOrder(`Ordered ${e.target.value}`)
+        setOrder(`Ordered ${e.target.value}`);
     }
 
     function handleSortByRating(e) {
         e.preventDefault();
-        dispatch(orderByRating(e.target.value))
+        dispatch(orderByRating(e.target.value));
         setCurrentPage(1);
-        setOrder(`Ordered ${e.target.value}`)
+        setOrder(`Ordered ${e.target.value}`);
     }
 
     return (
@@ -123,17 +124,12 @@ export default function Home() {
                                     </Link>)
                     }
                 </div>
-                <div >
-                    <Paginated videogamesPerPage={videogamesPerPage} allVideogames={allVideogames.length} paginated={paginated} />
-                </div>
             </div>
-            <div>
-                <ul>
-                    <li><a href="https://www.linkedin.com/in/franco-dangelo/">Linkedin</a></li>
-                    <li><a href="https://github.com/franodangelo">GitHub</a></li>
-                </ul>
-                <h1>Created by Franco D'Angelo - 2022</h1>
-            </div>
+            <Paginated
+                videogamesPerPage={videogamesPerPage}
+                allVideogames={allVideogames.length}
+                paginated={paginated} />
+            <Footer />
         </main>
     )
 };
