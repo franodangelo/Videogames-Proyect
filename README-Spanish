@@ -13,7 +13,7 @@ Desarrollado con __React y Redux__. Contiene las siguientes páginas:
 - [ ] Landing page con botón para ingresar a la Home page.
 
 - [ ] Home page que incluye:
-- __Navbar__ con __searchbar__ para encontrar videojuegos por nombre, y botón para acceder al __formulario__ de creación de videojuegos.
+- __NavBar__ con __searchbar__ para encontrar videojuegos por nombre, y botón para acceder al __formulario__ de creación de videojuegos.
 - Panel para __filtrar__ por género y por videojuego existente o agregado por nosotros, y __ordenar__ tanto ascendentemente como descendentemente los videojuegos por orden alfabético y por valoración.
 - __Grilla__ donde se verá el listado de __100 videojuegos__, ya sean originales como creados por el usuario. Cada uno incluye __imagen, nombre, géneros y valoración__.
 - __Paginado__ configurado para mostrar __15 videojuegos por página__.

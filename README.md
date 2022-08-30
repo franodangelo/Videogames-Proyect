@@ -17,7 +17,7 @@ It was developed using __React and Redux__. It has the following pages:
 - [ ] Landing page.
 
 - [ ] Home page with:
-- A __Navbar__ with a __searchbar__ to search videogames by name, and a button to go to the videogame's creation __form__.
+- A __NavBar__ with a __searchbar__ to search videogames by name, and a button to go to the videogame's creation __form__.
 - A Panel for __filter__ by genre and original or created videogames, and __order__ them ascending or descending by rating or alphabetical order.
 - A __Grid__ with all __100 videogames__, both original and created by the user. Each card shows the main info of the videogame: __image, name, genres and rating__.
 - A __pagination__ configured to show __15 videogames per page__.
