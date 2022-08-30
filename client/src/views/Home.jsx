@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import { getVideogames, filterByCreation, filterByGenre, orderByName, orderByRating } from "../redux/actions";
-import Navbar from "../components/Navbar";
+import NavBar from "../components/NavBar";
 import InvalidSearch from "./InvalidSearch";
 import NoGamesCreated from "./NoGamesCreated";
 import Card from "../components/Card";
@@ -63,12 +63,11 @@ export default function Home() {
     }
 
     return (
-        <main className="w-full">
-            <Navbar />
-            <div>
+        <main className="flex flex-col w-full gap-8 items-center">
+            <div className="flex flex-col items-center">
                 <div className="flex w-full items-center justify-center p-4 gap-8 md:justify-end md:items-end">
                     <button className="text-sm bg-transparent border-2 border-palette-900 text-palette-900" onClick={e => handleReset(e)}>Clear filters</button>
-                    <div className="flex flex-col">
+                    <div className="mt-20 flex flex-col">
                         <h4 className="text-center">Filter by:</h4>
                         <div className="flex">
                             <select className="p-2 mt-2 text-sm rounded bg-palette-900/50 border-2 border-palette-900" onChange={e => handleFilterByCreation(e)}>
