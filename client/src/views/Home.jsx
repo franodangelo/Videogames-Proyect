@@ -7,7 +7,6 @@ import NoGamesCreated from "./NoGamesCreated";
 import Card from "../components/Card";
 import Paginated from "../components/Paginated";
 import Loader from "./Loader";
-import Footer from "../components/Footer";
 
 export default function Home() {
 
@@ -127,7 +126,6 @@ export default function Home() {
                 videogamesPerPage={videogamesPerPage}
                 allVideogames={allVideogames.length}
                 paginated={paginated} />
-            <Footer />
         </main>
     )
 };
