@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Card from "../components/Card";
-import Paginated from "../components/Paginated";
-import Navbar from "../components/Navbar";
-import InvalidSearch from "./InvalidSearch";
-import NoGamesCreated from "./NoGamesCreated";
-import Loader from "./Loader";
 import { Link } from 'react-router-dom';
 import { getVideogames, filterByCreation, filterByGenre, orderByName, orderByRating } from "../redux/actions";
+import InvalidSearch from "./InvalidSearch";
+import NoGamesCreated from "./NoGamesCreated";
+import Card from "../components/Card";
+import Paginated from "../components/Paginated";
+import Loader from "./Loader";
+import Footer from "../components/Footer";
 
 export default function Home() {
 
@@ -49,25 +49,24 @@ export default function Home() {
 
     function handleSortByName(e) {
         e.preventDefault();
-        dispatch(orderByName(e.target.value))
+        dispatch(orderByName(e.target.value));
         setCurrentPage(1);
-        setOrder(`Ordered ${e.target.value}`)
+        setOrder(`Ordered ${e.target.value}`);
     }
 
     function handleSortByRating(e) {
         e.preventDefault();
-        dispatch(orderByRating(e.target.value))
+        dispatch(orderByRating(e.target.value));
         setCurrentPage(1);
-        setOrder(`Ordered ${e.target.value}`)
+        setOrder(`Ordered ${e.target.value}`);
     }
 
     return (
-        <main className="w-full">
-            <Navbar />
-            <div>
+        <main className="flex flex-col w-full gap-8 items-center">
+            <div className="flex flex-col items-center">
                 <div className="flex w-full items-center justify-center p-4 gap-8 md:justify-end md:items-end">
                     <button className="text-sm bg-transparent border-2 border-palette-900 text-palette-900" onClick={e => handleReset(e)}>Clear filters</button>
-                    <div className="flex flex-col">
+                    <div className="mt-20 flex flex-col">
                         <h4 className="text-center">Filter by:</h4>
                         <div className="flex">
                             <select className="p-2 mt-2 text-sm rounded bg-palette-900/50 border-2 border-palette-900" onChange={e => handleFilterByCreation(e)}>
@@ -123,17 +122,12 @@ export default function Home() {
                                     </Link>)
                     }
                 </div>
-                <div >
-                    <Paginated videogamesPerPage={videogamesPerPage} allVideogames={allVideogames.length} paginated={paginated} />
-                </div>
             </div>
-            <div>
-                <ul>
-                    <li><a href="https://www.linkedin.com/in/franco-dangelo/">Linkedin</a></li>
-                    <li><a href="https://github.com/franodangelo">GitHub</a></li>
-                </ul>
-                <h1>Created by Franco D'Angelo - 2022</h1>
-            </div>
+            <Paginated
+                videogamesPerPage={videogamesPerPage}
+                allVideogames={allVideogames.length}
+                paginated={paginated} />
+            <Footer />
         </main>
     )
 };
