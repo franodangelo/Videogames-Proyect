@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import { getVideogames, filterByCreation, filterByGenre, orderByName, orderByRating } from "../redux/actions";
-import NavBar from "../components/NavBar";
 import InvalidSearch from "./InvalidSearch";
 import NoGamesCreated from "./NoGamesCreated";
 import Card from "../components/Card";

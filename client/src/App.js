@@ -3,7 +3,6 @@ import Home from './views/Home';
 import VgDetail from './views/VgDetail';
 import Form from './views/Form';
 import InvalidPath from './views/InvalidPath';
-import Landing from './views/Landing';
 import NavBar from './components/NavBar';
 
 export default function App() {
