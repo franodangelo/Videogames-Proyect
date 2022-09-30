@@ -12,7 +12,7 @@ export default function App() {
       <div>
         <NavBar />
         <Routes>
-          <Route exact path='/home' element={<Home />} />
+          <Route path='/home' element={<Home />} />
           <Route path='/videogame' element={<Form />} />
           <Route path='/videogame/:id' element={<VgDetail />} />
           <Route path='/*' element={<InvalidPath />} />
