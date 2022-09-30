@@ -61,19 +61,19 @@ export default function Home() {
     }
 
     return (
-        <main className="flex flex-col w-full gap-8 items-center">
+        <main className="flex flex-col w-full items-center gap-8">
             <div className="flex flex-col items-center">
-                <div className="flex w-full items-center justify-center p-4 gap-8 md:justify-end md:items-end">
-                    <button className="text-sm bg-transparent border-2 border-palette-900 text-palette-900" onClick={e => handleReset(e)}>Clear filters</button>
-                    <div className="mt-20 flex flex-col">
+                <div className="flex w-full p-4 justify-center items-center gap-2 md:justify-end md:items-end">
+                    <button className="text-sm text-palette-900 border-2 border-palette-900 bg-transparent" onClick={e => handleReset(e)}>Clear filters</button>
+                    <div className="flex flex-col">
                         <h4 className="text-center">Filter by:</h4>
-                        <div className="flex">
-                            <select className="p-2 mt-2 text-sm rounded bg-palette-900/50 border-2 border-palette-900" onChange={e => handleFilterByCreation(e)}>
+                        <div className="flex gap-2">
+                            <select className="mt-2 p-2 text-sm rounded border-2 border-palette-900 bg-palette-900/50" onChange={e => handleFilterByCreation(e)}>
                                 <option value='all'>All videogames</option>
                                 <option value='created'>Created by user</option>
                                 <option value='original'>Original videogames</option>
                             </select>
-                            <select className="p-2 mt-2 text-sm rounded bg-palette-900/50 border-2 border-palette-900" onChange={e => handleFilterByGenre(e)}>
+                            <select className="mt-2 p-2 text-sm rounded border-2 border-palette-900 bg-palette-900/50" onChange={e => handleFilterByGenre(e)}>
                                 <option value="All">All genres</option>
                                 <option value="Action">Action</option>
                                 <option value="Adventure">Adventure</option>
@@ -99,19 +99,19 @@ export default function Home() {
                     </div>
                     <div className="flex flex-col">
                         <h4 className="text-center">Order by:</h4>
-                        <div className="flex">
-                            <select className="p-2 mt-2 text-sm rounded bg-palette-900/50 border-2 border-palette-900" onChange={e => handleSortByName(e)}>
+                        <div className="flex gap-2">
+                            <select className="mt-2 p-2 text-sm rounded border-2 border-palette-900 bg-palette-900/50" onChange={e => handleSortByName(e)}>
                                 <option value='AZ'># - Z</option>
                                 <option value='ZA'>Z - #</option>
                             </select>
-                            <select className="p-2 mt-2 text-sm rounded bg-palette-900/50 border-2 border-palette-900" onChange={e => handleSortByRating(e)}>
+                            <select className="mt-2 p-2 text-sm rounded border-2 border-palette-900 bg-palette-900/50" onChange={e => handleSortByRating(e)}>
                                 <option value='LTH'>Lower ratings</option>
                                 <option value='HTL'>Higher ratings</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                <div className="w-full grid grid-cols-1 m-auto px-4 justify-center items-center gap-4 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+                <div className="grid grid-cols-1 w-full m-auto p-4 justify-center items-center gap-4 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
                     {currentVideogames[0] === 'No games created' ? <NoGamesCreated />
                         : currentVideogames[0] === "No results" ? <InvalidSearch />
                             : currentVideogames.length === 0 ? <Loader />
