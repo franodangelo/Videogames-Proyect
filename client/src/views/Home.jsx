@@ -61,7 +61,7 @@ export default function Home() {
     }
 
     return (
-        <main className="flex flex-col w-full items-center">
+        <main className="flex flex-col min-h-screen w-full items-center">
             <div className="flex flex-col items-center">
                 <div className="flex w-full p-4 justify-center items-center gap-2 md:justify-end md:items-end">
                     <button className="text-sm text-palette-900 border-2 border-palette-900 bg-transparent" onClick={e => handleReset(e)}>Clear filters</button>
