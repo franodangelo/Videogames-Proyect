@@ -18,13 +18,13 @@ export default function VideogameDetail() {
     function handleDelete(id) {
         dispatch(deleteVideogame(id));
         alert('Your videogame was deleted correctly')
-        navigate('/home');
+        navigate('/');
     }
 
     return (
         <main>
             <button className='bg-palette-100 text-sm text-white rounded-tr-lg rounded-br-lg'>
-                <Link to='/home'><p>Back home</p></Link>
+                <Link to='/'><p>Back home</p></Link>
             </button>
             <div className='flex h-screen m-8'>
                 <div className='flex flex-col basis-4/12 items-center self-center'>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { getVideogames, filterByCreation, filterByGenre, orderByName, orderByRating } from "../redux/actions";
 import InvalidSearch from "./InvalidSearch";
 import NoGamesCreated from "./NoGamesCreated";
@@ -44,7 +44,7 @@ export default function Home() {
         setCurrentPage(1);
     }
 
-    const [order, setOrder] = useState('');
+    const [order, setOrder] = useState("");
 
     function handleSortByName(e) {
         e.preventDefault();
@@ -69,9 +69,9 @@ export default function Home() {
                         <h4 className="text-center">Filter by:</h4>
                         <div className="flex gap-2">
                             <select className="mt-2 p-2 text-sm rounded border-2 border-palette-900 bg-palette-900/50" onChange={e => handleFilterByCreation(e)}>
-                                <option value='all'>All videogames</option>
-                                <option value='created'>Created by user</option>
-                                <option value='original'>Original videogames</option>
+                                <option value="all">All videogames</option>
+                                <option value="created">Created by user</option>
+                                <option value="original">Original videogames</option>
                             </select>
                             <select className="mt-2 p-2 text-sm rounded border-2 border-palette-900 bg-palette-900/50" onChange={e => handleFilterByGenre(e)}>
                                 <option value="All">All genres</option>
@@ -101,18 +101,18 @@ export default function Home() {
                         <h4 className="text-center">Order by:</h4>
                         <div className="flex gap-2">
                             <select className="mt-2 p-2 text-sm rounded border-2 border-palette-900 bg-palette-900/50" onChange={e => handleSortByName(e)}>
-                                <option value='AZ'># - Z</option>
-                                <option value='ZA'>Z - #</option>
+                                <option value="AZ"># - Z</option>
+                                <option value="ZA">Z - #</option>
                             </select>
                             <select className="mt-2 p-2 text-sm rounded border-2 border-palette-900 bg-palette-900/50" onChange={e => handleSortByRating(e)}>
-                                <option value='LTH'>Lower ratings</option>
-                                <option value='HTL'>Higher ratings</option>
+                                <option value="LTH">Lower ratings</option>
+                                <option value="HTL">Higher ratings</option>
                             </select>
                         </div>
                     </div>
                 </div>
                 <div className="grid grid-cols-1 w-full m-auto p-4 justify-center items-center gap-4 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
-                    {currentVideogames[0] === 'No games created' ? <NoGamesCreated />
+                    {currentVideogames[0] === "No games created" ? <NoGamesCreated />
                         : currentVideogames[0] === "No results" ? <InvalidSearch />
                             : currentVideogames.length === 0 ? <Loader />
                                 : currentVideogames.map(vg =>

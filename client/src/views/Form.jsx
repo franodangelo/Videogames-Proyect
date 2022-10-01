@@ -148,7 +148,7 @@ export default function Form() {
                 platforms: [],
                 genres: []
             })
-            navigate("/home");
+            navigate("/");
         }
     }
 
@@ -228,7 +228,7 @@ export default function Form() {
                     <button type="submit">Create videogame</button>
                 </div>
                 <div >
-                    <Link to="/home"><button>Cancel</button></Link>
+                    <Link to="/"><button>Cancel</button></Link>
                 </div>
             </form>
         </div>
