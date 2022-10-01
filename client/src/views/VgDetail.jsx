@@ -23,37 +23,25 @@ export default function VideogameDetail() {
 
     return (
         <main>
-            <div>
-                <div>
-                    <Link to='/home'><h1>{'<'} Back home</h1></Link>
-                </div>
-                <div>
-                    <Link to='/videogame'><button>Create videogame</button></Link>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <h1>{videogameDetail.name}</h1>
+            <button className='bg-palette-100 text-sm text-white rounded-tr-lg rounded-br-lg'>
+                <Link to='/home'><p>Back home</p></Link>
+            </button>
+            <div className='flex h-screen m-8'>
+                <div className='flex flex-col basis-4/12 items-center self-center'>
+                    <h1 className='font-bold text-2xl uppercase'>{videogameDetail.name}</h1>
                     <h2>{videogameDetail.genres?.join(" - ")}</h2>
                     <h3>Platforms: {videogameDetail.platforms?.join(", ")} </h3>
                     <h4>Date of released: {videogameDetail.released}</h4>
                     {typeof videogameDetail.id !== 'number'
-                        ? <button onClick={() => handleDelete(id)}>DELETE VIDEOGAME</button>
+                        ? <button onClick={() => handleDelete(id)}>Delete videogame</button>
                         : null
                     }
                 </div>
-                <div>
+                <div className='flex flex-col basis-8/12'>
                     <h4>Rating: {videogameDetail.rating}</h4>
-                    <img src={videogameDetail.img} alt="Videogame cover" />
-                    <p dangerouslySetInnerHTML={{ __html: videogameDetail.description }}></p>
+                    <img className='self-end w-auto h-80 object-contain' src={videogameDetail.img} alt="Videogame cover" />
+                    <p className='text-sm' dangerouslySetInnerHTML={{ __html: videogameDetail.description }}></p>
                 </div>
-            </div>
-            <div>
-                <ul>
-                    <li><a href="https://www.linkedin.com/in/franco-dangelo/">Linkedin</a></li>
-                    <li><a href="https://github.com/franodangelo">GitHub</a></li>
-                </ul>
-                <h1>Created by Franco D'Angelo - 2022</h1>
             </div>
         </main>
     )
