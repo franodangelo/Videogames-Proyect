@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getVideogameDetail, deleteVideogame } from "../redux/actions";
 
 export default function VideogameDetail() {
@@ -20,35 +20,33 @@ export default function VideogameDetail() {
     }
 
     return (
-        <main className="mx-8 my-4">
-            <button className="m-auto bg-palette-100 text-sm text-white rounded-tr-lg rounded-br-lg">
-                <Link to="/">
-                    <p>Back home</p>
-                </Link>
-            </button>
-            <div className="flex h-screen">
-                <div className="flex flex-col basis-4/12 self-center">
-                    <h4 className="text-sm">{videogameDetail.released}</h4>
-                    <div className="flex py-2 gap-6">
-                        <h1 className="font-bold text-5xl uppercase">{videogameDetail.name}</h1>
-                    </div>
-                    <h2 className="py-2 font-thin text-2xl">{videogameDetail.genres?.join(" - ")}</h2>
-                    <h3 className="py-2 text-lg">{videogameDetail.platforms?.join(", ")}</h3>
+        <main className="flex flex-col lg:flex-row min-h-screen w-full my-auto items-center bg-shades-600 md:bg-shades-600/90">
+            <div className="-z-10 invisible md:visible absolute w-full h-full overflow-hidden">
+                <img className="w-full h-full object-cover"
+                    src={videogameDetail.img}
+                    alt={`${videogameDetail.name} thumbnail`} />
+            </div>
+            <section className="flex lg:flex-col lg:basis-6/12 p-8">
+                <div className="flex flex-col">
+                    <h4 className="text-sm text-start tracking-widest">{videogameDetail.released}</h4>
+                    <h1 className="py-4 font-bold text-2xl md:text-3xl lg:text-4xl text-palette-900 uppercase">{videogameDetail.name}</h1>
+                    <h2 className="font-thin text-lg md:text-xl">{videogameDetail.genres.join(" ")}</h2>
+                    <p className="py-4 md:text-sm" dangerouslySetInnerHTML={{ __html: videogameDetail.description }} />
                     {typeof videogameDetail.id !== "number"
                         ? <button onClick={() => handleDelete(id)}>Delete videogame</button>
                         : null
                     }
                 </div>
-                <div className="flex flex-col basis-8/12">
-                    <h4 className="z-40 w-fit -mb-12 mr-4 px-2 py-1 self-end font-bold text-sm text-white rounded-lg bg-palette-100">{videogameDetail.rating}</h4>
-                    <div className="w-full overflow-hidden rounded-lg">
-                        <img className="w-[full] object-cover"
-                            src={videogameDetail.img}
-                            alt={`${videogameDetail.name} thumbnail`} />
-                    </div>
-                    <p className="text-sm" dangerouslySetInnerHTML={{ __html: videogameDetail.description }} />
+            </section>
+            <section className="flex flex-col lg:basis-6/12 p-8 self-center">
+                <h4 className="z-10 w-fit -mb-12 mr-4 px-2 py-1 self-end font-bold text-sm rounded-lg bg-palette-100">{videogameDetail.rating}</h4>
+                <div className="w-full overflow-hidden rounded-xl mb-4 shadow-lg shadow-shades-800">
+                    <img className="w-full object-cover"
+                        src={videogameDetail.img}
+                        alt={`${videogameDetail.name} thumbnail`} />
                 </div>
-            </div>
+                <h3 className="font-thin">Available in {videogameDetail.platforms.join(", ")}</h3>
+            </section>
         </main>
     )
-};
+}
