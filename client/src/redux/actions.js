@@ -8,9 +8,9 @@ import {
     ORDER_BY_NAME,
     ORDER_BY_RATING,
     DELETE_VIDEOGAME
-} from './constants';
+} from "./constants";
 
-import axios from 'axios';
+import axios from "axios";
 
 export const createVideogame = (payload) => {
     return async () => {
@@ -21,7 +21,7 @@ export const createVideogame = (payload) => {
             console.log(error)
         }
     }
-};
+}
 
 export const getVideogames = () => {
     return async (dispatch) => {
@@ -35,7 +35,7 @@ export const getVideogames = () => {
             console.log(error)
         }
     }
-};
+}
 
 export const getNameVideogame = (payload) => {
     return async (dispatch) => {
@@ -63,7 +63,7 @@ export const getVideogameDetail = (id) => {
             console.log(error)
         }
     }
-};
+}
 
 export const getGenres = () => {
     return async (dispatch) => {
@@ -77,28 +77,28 @@ export const getGenres = () => {
             console.log(error)
         }
     }
-};
+}
 
 export function filterByCreation(payload) {
     return {
         type: FILTER_BY_CREATION,
         payload
     }
-};
+}
 
 export function filterByGenre(payload) {
     return {
         type: FILTER_BY_GENRE,
         payload
     }
-};
+}
 
 export function orderByName(payload) {
     return {
         type: ORDER_BY_NAME,
         payload
     }
-};
+}
 
 export function orderByRating(payload) {
     return {

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { getVideogames, filterByCreation, filterByGenre, orderByName, orderByRating } from '../redux/actions';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getVideogames, filterByCreation, filterByGenre, orderByName, orderByRating } from "../redux/actions";
 
 export default function ActionBar() {
 
@@ -24,7 +24,7 @@ export default function ActionBar() {
         setCurrentPage(1);
     }
     
-    const [order, setOrder] = useState('');
+    const [order, setOrder] = useState("");
 
     function handleSortByName(e) {
         e.preventDefault();
@@ -52,8 +52,8 @@ export default function ActionBar() {
             <section className="flex flex-col">
                 <h4 className="text-center">Filters</h4>
                 <div className="flex gap-4">
-                    <div className='flex flex-col items-center gap-2'>
-                        <label className='uppercase font-thin text-sm' for="type">Type</label>
+                    <div className="flex flex-col items-center gap-2">
+                        <label className="uppercase font-thin text-sm" for="type">Type</label>
                         <select className="p-2 w-40 text-sm rounded bg-palette-900/50 border-2 border-palette-900"
                             onChange={handleFilterByCreation}
                             name="type"
@@ -64,8 +64,8 @@ export default function ActionBar() {
                             <option value="original">Original</option>
                         </select>
                     </div>
-                    <div className='flex flex-col items-center gap-2'>
-                        <label className='uppercase font-thin text-sm' for="genres">Genre</label>
+                    <div className="flex flex-col items-center gap-2">
+                        <label className="uppercase font-thin text-sm" for="genres">Genre</label>
                         <select className="p-2 w-40 text-sm rounded bg-palette-900/50 border-2 border-palette-900"
                             onChange={handleFilterByGenre}
                             name="genres"
@@ -99,8 +99,8 @@ export default function ActionBar() {
             <section className="flex flex-col">
                 <h4 className="text-center">Sorts</h4>
                 <div className="flex gap-4">
-                    <div className='flex flex-col items-center gap-2'>
-                        <label className='uppercase font-thin text-sm' for="alphabet">Alphabetically</label>
+                    <div className="flex flex-col items-center gap-2">
+                        <label className="uppercase font-thin text-sm" for="alphabet">Alphabetically</label>
                         <select className="p-2 w-40 text-sm rounded bg-palette-900/50 border-2 border-palette-900"
                             onChange={e => handleSortByName(e)}
                             name="alphabet"
@@ -110,8 +110,8 @@ export default function ActionBar() {
                             <option value="ZA">Z - #</option>
                         </select>
                     </div>
-                    <div className='flex flex-col items-center gap-2'>
-                        <label className='uppercase font-thin text-sm' for="ratings">By rating</label>
+                    <div className="flex flex-col items-center gap-2">
+                        <label className="uppercase font-thin text-sm" for="ratings">By rating</label>
                         <select className="p-2 w-40 text-sm rounded bg-palette-900/50 border-2 border-palette-900"
                             onChange={e => handleSortByRating(e)}
                             name="ratings"

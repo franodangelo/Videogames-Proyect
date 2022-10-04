@@ -39,7 +39,6 @@ export default function Form() {
     })
 
     const [formErrors, setFormErrors] = useState({});
-
     const genres = useSelector(state => state.genres);
 
     let platforms = [
@@ -92,14 +91,14 @@ export default function Form() {
         "3DO",
         "Jaguar",
         "Game Gear",
-        "Neo Geo",
-    ];
+        "Neo Geo"
+    ]
 
     useEffect(() => {
         dispatch(getGenres())
         dispatch(getVideogames())
     }
-        , [dispatch]);
+        , [dispatch])
 
     function handleChange(e) {
         setVideogameLocalState({
@@ -109,7 +108,7 @@ export default function Form() {
         setFormErrors(validate({
             ...videogameLocalState,
             [e.target.name]: e.target.value
-        }));
+        }))
     }
 
     function handleChangePlatforms(e) {
@@ -232,5 +231,5 @@ export default function Form() {
                 </div>
             </form>
         </div>
-    );
-};
+    )
+}
