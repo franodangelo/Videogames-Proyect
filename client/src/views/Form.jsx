@@ -12,11 +12,11 @@ function validate(videogameLocalState) {
     } else if (!videogameLocalState.description) {
         errors.description = "You must provide a description"
     } else if (videogameLocalState.description.length < 20) {
-        errors.description = "Come on... give us some more words about your videogame!"
+        errors.description = "Give us some more words about your videogame!"
     } else if (!videogameLocalState.released) {
-        errors.released = "You must provide a release date"
+        errors.released = "Enter a release date"
     } else if (!videogameLocalState.rating) {
-        errors.rating = "You must provide a rate"
+        errors.rating = "Enter a rate"
     } else if (videogameLocalState.rating > 5 || videogameLocalState.rating < 0) {
         errors.rating = "Rate must be a number between 1-5"
     }
@@ -137,7 +137,7 @@ export default function Form() {
         else {
             e.preventDefault();
             dispatch(createVideogame(videogameLocalState));
-            alert("Videogame created succesfully!");
+            alert("Videogame created successfully!");
             setVideogameLocalState({
                 name: "",
                 description: "",
@@ -166,70 +166,113 @@ export default function Form() {
     }
 
     return (
-        <div>
-            <h1>Create your own videogame</h1>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <div>
-                    <label htmlFor="name">Name:</label>
-                    <input required name="name" type="text" minlength="3" placeholder="3 characters at least" value={videogameLocalState.name} onChange={(e) => handleChange(e)}></input>
-                    <div>{formErrors.name && (<p>{formErrors.name}</p>)}</div>
-                </div>
-                <div>
-                    <label htmlFor="description">Description:</label>
-                    <input required name="description" type="text" minlength="20" value={videogameLocalState.description} onChange={(e) => handleChange(e)}></input>
-                    {formErrors.description && (<p>{formErrors.description}</p>)}
-                </div>
-                <div >
-                    <label htmlFor="released">Date of release:</label>
-                    <input required name="released" type="date" value={videogameLocalState.released} onChange={(e) => handleChange(e)}></input>
-                    {formErrors.released && (<p>{formErrors.released}</p>)}
-                </div>
-                <div>
-                    <label htmlFor="rating">Rating:</label>
-                    <input required name="rating" type="number" min="0" max="5" placeholder="Rate between 1-5" value={videogameLocalState.rating} onChange={(e) => handleChange(e)}></input>
-                    {formErrors.rating && (<p>{formErrors.rating}</p>)}
-                </div>
-                <div>
-                    <label htmlFor="img">Image:</label>
-                    <input required name="img" type="url" value={videogameLocalState.img} onChange={(e) => handleChange(e)}></input>
-                </div>
-                <div>
-                    <label htmlFor="platforms">Platforms:</label>
-                    <select required name="platforms" onChange={(e) => handleChangePlatforms(e)}>
-                        <option hidden={true}>Select some platforms</option>
-                        {platforms.map(pl => <option value={pl} >{pl}</option>)}
-                    </select>
-                    <div>
-                        {formErrors.platforms && (<p>{formErrors.platforms}</p>)}
-                    </div>
-                    <div>
-                        {videogameLocalState.platforms.map(p =>
-                            <div>
-                                <button type="button" onClick={() => handleDeletePlatforms(p)}>{p}</button>
-                            </div>
-                        )}
-                    </div>
-                </div>
-                <div >
-                    <label htmlFor="genres">Genres:</label>
-                    <select required name="genres" onChange={(e) => handleChangeGenres(e)}>
-                        <option hidden={true}>Select some genres</option>
-                        {genres.map(g => <option value={g.name}>{g.name}</option>)}
-                    </select>
-                    {videogameLocalState.genres.map(g =>
-                        <div>
-                            <button type="button" onClick={() => handleDeleteGenres(g)}>{g}</button>
+        <main className="flex flex-col w-full h-screen items-center p-16 bg-shades-600">
+            <h1 className="w-fit self-center font-bold text-2xl text-center">Create your own videogame</h1>
+            <form className="flex w-[65%] flex-col items-center h-auto p-8 gap-8" onSubmit={(e) => handleSubmit(e)}>
+                <div className="flex w-full justify-between">
+                    <section className="flex flex-col h-[400px]">
+                        <div className="flex flex-col w-96 h-28 gap-2">
+                            <label className="text-lg" htmlFor="name">Name</label>
+                            <input className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
+                                required
+                                name="name"
+                                type="text"
+                                minlength="3"
+                                placeholder="3 characters at least"
+                                value={videogameLocalState.name}
+                                onChange={(e) => handleChange(e)}>
+                            </input>
+                            <div>{formErrors.name && (<p className="font-bold text-xs text-palette-900">{formErrors.name}</p>)}</div>
                         </div>
-                    )}
+                        <div className="flex flex-col w-96 h-40 gap-2">
+                            <label className="text-lg" htmlFor="description">Description</label>
+                            <input className="px-2 py-8 rounded text-sm placeholder-palette-700 text-shades-600"
+                                required
+                                name="description"
+                                type="text"
+                                minlength="20"
+                                value={videogameLocalState.description}
+                                onChange={(e) => handleChange(e)}>
+                            </input>
+                            {formErrors.description && (<p className="font-semibold text-sm text-palette-900">{formErrors.description}</p>)}
+                        </div>
+                        <div className="flex justify-between">
+                            <div className="flex flex-col w-40 h-24 gap-2">
+                                <label className="text-lg" htmlFor="released">Date of release</label>
+                                <input className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
+                                    required
+                                    name="released"
+                                    type="date"
+                                    value={videogameLocalState.released}
+                                    onChange={(e) => handleChange(e)}>
+                                </input>
+                                {formErrors.released && (<p className="font-semibold text-sm text-palette-900">{formErrors.released}</p>)}
+                            </div>
+                            <div className="flex flex-col w-40 h-24 gap-2">
+                                <label className="text-lg" htmlFor="rating">Rating</label>
+                                <input className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
+                                    required
+                                    name="rating"
+                                    type="number"
+                                    min="0"
+                                    max="5"
+                                    placeholder="Rate between 1-5"
+                                    value={videogameLocalState.rating}
+                                    onChange={(e) => handleChange(e)}>
+                                </input>
+                                {formErrors.rating && (<p className="font-semibold text-sm text-palette-900">{formErrors.rating}</p>)}
+                            </div>
+                        </div>
+                    </section>
+                    <section className="flex flex-col h-[400px]">
+                        <div className="flex flex-col w-96 h-28 gap-2">
+                            <label className="text-lg" htmlFor="img">Image (URL)</label>
+                            <input className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
+                                required
+                                name="img"
+                                type="url"
+                                value={videogameLocalState.img}
+                                onChange={(e) => handleChange(e)}>
+                            </input>
+                        </div>
+                        <div className="flex flex-col w-96 h-40 gap-2">
+                            <label className="text-lg" htmlFor="platforms">Platforms</label>
+                            <select className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
+                                required
+                                name="platforms"
+                                onChange={(e) => handleChangePlatforms(e)}>
+                                <option hidden={true}>Select some platforms</option>
+                                {platforms.map(pl => <option className="text-shades-600" value={pl} >{pl}</option>)}
+                            </select>
+                            {formErrors.platforms && (<p>{formErrors.platforms}</p>)}
+                            <div className="flex flex-wrap gap-2">
+                                {videogameLocalState.platforms.map(p =>
+                                    <p className="px-2 text-sm bg-palette-200 rounded" type="button" onClick={() => handleDeletePlatforms(p)}>{p}</p>
+                                )}
+                            </div>
+                        </div>
+                        <div className="flex flex-col w-96 h-40 gap-2">
+                            <label className="text-lg" htmlFor="genres">Genres</label>
+                            <select className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
+                                required
+                                name="genres"
+                                onChange={(e) => handleChangeGenres(e)}>
+                                <option hidden={true}>Select some genres</option>
+                                {genres.map(g => <option className="text-shades-600" value={g.name}>{g.name}</option>)}
+                            </select>
+                            <div className="flex flex-wrap gap-2">
+                                {videogameLocalState.genres.map(g =>
+                                    <p className="px-2 text-sm bg-palette-200 rounded" type="button" onClick={() => handleDeleteGenres(g)}>{g}</p>
+                                )}
+                            </div>
+                        </div>
+                    </section>
                 </div>
-                <br />
-                <div >
-                    <button type="submit">Create videogame</button>
-                </div>
-                <div >
+                <div className="flex w-full justify-end gap-2">
                     <Link to="/"><button>Cancel</button></Link>
+                    <button>Create videogame</button>
                 </div>
             </form>
-        </div>
+        </main>
     )
 }
