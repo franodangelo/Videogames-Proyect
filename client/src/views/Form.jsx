@@ -166,12 +166,12 @@ export default function Form() {
     }
 
     return (
-        <main className="flex flex-col w-full h-screen items-center p-16 bg-shades-600">
+        <main className="flex flex-col w-full h-full items-center p-4 md:p-16 bg-shades-600">
             <h1 className="w-fit self-center font-bold text-2xl text-center">Create your own videogame</h1>
-            <form className="flex w-[65%] flex-col items-center h-auto p-8 gap-8" onSubmit={(e) => handleSubmit(e)}>
-                <div className="flex w-full justify-between">
-                    <section className="flex flex-col h-[400px]">
-                        <div className="flex flex-col w-96 h-28 gap-2">
+            <form className="flex flex-col h-auto w-full md:w-[65%] md:items-center p-8 gap-8" onSubmit={(e) => handleSubmit(e)}>
+                <div className="flex flex-col md:flex-row w-full md:justify-between">
+                    <section className="flex flex-col md:h-[400px]">
+                        <div className="flex flex-col md:w-96 h-28 gap-2">
                             <label className="text-lg" htmlFor="name">Name</label>
                             <input className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
                                 required
@@ -184,7 +184,7 @@ export default function Form() {
                             </input>
                             <div>{formErrors.name && (<p className="font-bold text-xs text-palette-900">{formErrors.name}</p>)}</div>
                         </div>
-                        <div className="flex flex-col w-96 h-40 gap-2">
+                        <div className="flex flex-col md:w-96 h-40 gap-2">
                             <label className="text-lg" htmlFor="description">Description</label>
                             <input className="px-2 py-8 rounded text-sm placeholder-palette-700 text-shades-600"
                                 required
@@ -196,8 +196,8 @@ export default function Form() {
                             </input>
                             {formErrors.description && (<p className="font-semibold text-sm text-palette-900">{formErrors.description}</p>)}
                         </div>
-                        <div className="flex justify-between">
-                            <div className="flex flex-col w-40 h-24 gap-2">
+                        <div className="flex justify-between gap-4 md:gap-0">
+                            <div className="flex flex-col w-full md:w-40 h-24 gap-2">
                                 <label className="text-lg" htmlFor="released">Date of release</label>
                                 <input className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
                                     required
@@ -208,7 +208,7 @@ export default function Form() {
                                 </input>
                                 {formErrors.released && (<p className="font-semibold text-sm text-palette-900">{formErrors.released}</p>)}
                             </div>
-                            <div className="flex flex-col w-40 h-24 gap-2">
+                            <div className="flex flex-col w-full md:w-40 h-24 gap-2">
                                 <label className="text-lg" htmlFor="rating">Rating</label>
                                 <input className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
                                     required
@@ -224,8 +224,8 @@ export default function Form() {
                             </div>
                         </div>
                     </section>
-                    <section className="flex flex-col h-[400px]">
-                        <div className="flex flex-col w-96 h-28 gap-2">
+                    <section className="flex flex-col md:h-[400px]">
+                        <div className="flex flex-col md:w-96 h-28 gap-2">
                             <label className="text-lg" htmlFor="img">Image (URL)</label>
                             <input className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
                                 required
@@ -235,7 +235,7 @@ export default function Form() {
                                 onChange={(e) => handleChange(e)}>
                             </input>
                         </div>
-                        <div className="flex flex-col w-96 h-40 gap-2">
+                        <div className="flex flex-col md:w-96 h-40 gap-2">
                             <label className="text-lg" htmlFor="platforms">Platforms</label>
                             <select className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
                                 required
@@ -251,7 +251,7 @@ export default function Form() {
                                 )}
                             </div>
                         </div>
-                        <div className="flex flex-col w-96 h-40 gap-2">
+                        <div className="flex flex-col md:w-96 h-40 gap-2">
                             <label className="text-lg" htmlFor="genres">Genres</label>
                             <select className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
                                 required
@@ -268,7 +268,7 @@ export default function Form() {
                         </div>
                     </section>
                 </div>
-                <div className="flex w-full justify-end gap-2">
+                <div className="flex w-full justify-center md:justify-end gap-2">
                     <Link to="/"><button>Cancel</button></Link>
                     <button>Create videogame</button>
                 </div>
