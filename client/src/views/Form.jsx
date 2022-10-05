@@ -166,79 +166,76 @@ export default function Form() {
     }
 
     return (
-        <main className="flex flex-col w-full h-full items-center p-4 md:p-16 bg-shades-600">
-            <h1 className="w-fit self-center font-bold text-2xl text-center">Create your own videogame</h1>
-            <form className="flex flex-col h-auto w-full md:w-[65%] md:items-center p-8 gap-8" onSubmit={(e) => handleSubmit(e)}>
-                <div className="flex flex-col md:flex-row w-full md:justify-between">
+        <main className="flex flex-col w-full h-full items-center px-4 py-8 md:p-16 bg-shades-600">
+            <h1 className="w-fit self-center font-bold text-2xl md:text-3xl text-center">Create your own videogame</h1>
+
+            <form className="flex flex-col h-auto w-auto md:items-center p-4 md:p-8 gap-4 md:gap-8"
+                onSubmit={(e) => handleSubmit(e)}>
+
+                <div className="flex flex-col md:flex-row w-full md:gap-8">
+
                     <section className="flex flex-col md:h-[400px]">
-                        <div className="flex flex-col md:w-96 h-28 gap-2">
+
+                        <div className="flex flex-col md:w-96 h-32 gap-2">
                             <label className="text-lg" htmlFor="name">Name</label>
-                            <input className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
-                                required
-                                name="name"
-                                type="text"
-                                minlength="3"
-                                placeholder="3 characters at least"
+                            <input required className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
+                                name="name" type="text" minlength="3" placeholder="3 characters at least"
                                 value={videogameLocalState.name}
                                 onChange={(e) => handleChange(e)}>
                             </input>
                             <div>{formErrors.name && (<p className="font-bold text-xs text-palette-900">{formErrors.name}</p>)}</div>
                         </div>
+
                         <div className="flex flex-col md:w-96 h-40 gap-2">
                             <label className="text-lg" htmlFor="description">Description</label>
-                            <input className="px-2 py-8 rounded text-sm placeholder-palette-700 text-shades-600"
-                                required
-                                name="description"
-                                type="text"
-                                minlength="20"
+                            <input required className="px-2 py-8 rounded text-sm placeholder-palette-700 text-shades-600"
+                                name="description" type="text" minlength="20"
                                 value={videogameLocalState.description}
                                 onChange={(e) => handleChange(e)}>
                             </input>
                             {formErrors.description && (<p className="font-semibold text-sm text-palette-900">{formErrors.description}</p>)}
                         </div>
+
                         <div className="flex justify-between gap-4 md:gap-0">
-                            <div className="flex flex-col w-full md:w-40 h-24 gap-2">
+
+                            <div className="flex flex-col w-full md:w-40 h-32 gap-2">
                                 <label className="text-lg" htmlFor="released">Date of release</label>
-                                <input className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
-                                    required
-                                    name="released"
-                                    type="date"
+                                <input required className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
+                                    name="released" type="date"
                                     value={videogameLocalState.released}
                                     onChange={(e) => handleChange(e)}>
                                 </input>
                                 {formErrors.released && (<p className="font-semibold text-sm text-palette-900">{formErrors.released}</p>)}
                             </div>
-                            <div className="flex flex-col w-full md:w-40 h-24 gap-2">
+
+                            <div className="flex flex-col w-full md:w-40 h-32 gap-2">
                                 <label className="text-lg" htmlFor="rating">Rating</label>
-                                <input className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
-                                    required
-                                    name="rating"
-                                    type="number"
-                                    min="0"
-                                    max="5"
-                                    placeholder="Rate between 1-5"
+                                <input required className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
+                                    name="rating" type="number" min="0" max="5" placeholder="Rate between 1-5"
                                     value={videogameLocalState.rating}
                                     onChange={(e) => handleChange(e)}>
                                 </input>
                                 {formErrors.rating && (<p className="font-semibold text-sm text-palette-900">{formErrors.rating}</p>)}
                             </div>
+
                         </div>
+
                     </section>
+
                     <section className="flex flex-col md:h-[400px]">
-                        <div className="flex flex-col md:w-96 h-28 gap-2">
+
+                        <div className="flex flex-col md:w-96 h-32 gap-2">
                             <label className="text-lg" htmlFor="img">Image (URL)</label>
-                            <input className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
-                                required
-                                name="img"
-                                type="url"
+                            <input required className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
+                                name="img" type="url"
                                 value={videogameLocalState.img}
                                 onChange={(e) => handleChange(e)}>
                             </input>
                         </div>
-                        <div className="flex flex-col md:w-96 h-40 gap-2">
+
+                        <div className="flex flex-col md:w-96 h-32 md:h-40 gap-2">
                             <label className="text-lg" htmlFor="platforms">Platforms</label>
-                            <select className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
-                                required
+                            <select required className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
                                 name="platforms"
                                 onChange={(e) => handleChangePlatforms(e)}>
                                 <option hidden={true}>Select some platforms</option>
@@ -251,10 +248,10 @@ export default function Form() {
                                 )}
                             </div>
                         </div>
-                        <div className="flex flex-col md:w-96 h-40 gap-2">
+
+                        <div className="flex flex-col md:w-96 h-32 md:h-40 gap-2">
                             <label className="text-lg" htmlFor="genres">Genres</label>
-                            <select className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
-                                required
+                            <select required className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
                                 name="genres"
                                 onChange={(e) => handleChangeGenres(e)}>
                                 <option hidden={true}>Select some genres</option>
@@ -262,17 +259,21 @@ export default function Form() {
                             </select>
                             <div className="flex flex-wrap gap-2">
                                 {videogameLocalState.genres.map(g =>
-                                    <p className="px-2 text-sm bg-palette-200 rounded" type="button" onClick={() => handleDeleteGenres(g)}>{g}</p>
+                                    <p className="px-2 text-sm text-center bg-palette-200 rounded" type="button" onClick={() => handleDeleteGenres(g)}>{g}</p>
                                 )}
                             </div>
                         </div>
+
                     </section>
+
                 </div>
+
                 <div className="flex w-full justify-center md:justify-end gap-2">
-                    <Link to="/"><button>Cancel</button></Link>
-                    <button>Create videogame</button>
+                    <Link to="/"><button className="secondaryButton">Cancel</button></Link>
+                    <button className="primaryButton">Create videogame</button>
                 </div>
             </form>
+
         </main>
     )
 }
