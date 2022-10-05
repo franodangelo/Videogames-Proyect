@@ -12,7 +12,11 @@
         @apply p-6
     }
 
-    button {
-        @apply py-2 px-4 font-semibold text-white uppercase bg-palette-900 rounded-md shadow-md hover:shadow-xl hover:ease-in duration-200
+    .primaryButton {
+        @apply py-2 px-4 font-semibold text-white uppercase hover:scale-105 bg-palette-900 shadow-md hover:shadow-palette-900/20 hover:shadow-lg hover:ease-in duration-300
+    }
+
+    .secondaryButton {
+        @apply py-2 px-4 font-semibold text-palette-900 uppercase bg-palette-900/10 border-2 border-palette-900 shadow-md hover:shadow-xl hover:ease-in duration-200
     }
 }
