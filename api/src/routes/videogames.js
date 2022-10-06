@@ -4,6 +4,7 @@ const { Op } = require('sequelize');
 const axios = require('axios');
 const { apiKey } = process.env;
 const { Videogame, Genre } = require('../db');
+const { verify } = require('jsonwebtoken');
 
 router.get("/", async (req, res, next) => {
     try {
@@ -18,7 +19,7 @@ router.get("/", async (req, res, next) => {
                 },
                 include: Genre,
                 limit: 15
-            })
+            });
             if (nameDb.length > 0) {
                 gamesDb = nameDb.map((vg) => {
                     return {
@@ -49,10 +50,10 @@ router.get("/", async (req, res, next) => {
                         rating: vg.rating,
                         platforms: vg.platforms?.map((p) => p.platform.name),
                         genres: vg.genres?.map((g) => g.name),
-                        ratings: vg.ratings.map(r => [r.title, r.percent]),
+                        ratings: vg.ratings.map(r => r.title),
                         metacritic: vg.metacritic,
                         playtime: vg.playtime,
-                        tags: vg.tags.map(t => [t.name, t.image_background]),
+                        tags: vg.tags.map(t => t.name),
                         esrbating: vg.esrb_rating,
                         shortScreenshots: vg.short_screenshots.map(s => s.image)
                     }
@@ -76,10 +77,10 @@ router.get("/", async (req, res, next) => {
                     rating: vg.rating,
                     platforms: vg.platforms?.map((p) => p.platform.name),
                     genres: vg.genres.map((g) => g.name),
-                    ratings: vg.ratings.map(r => [r.title, r.percent]),
+                    ratings: vg.ratings.map(r => r.title),
                     metacritic: vg.metacritic,
                     playtime: vg.playtime,
-                    tags: vg.tags.map(t => [t.name, t.image_background]),
+                    tags: vg.tags.map(t => t.name),
                     esrbating: vg.esrb_rating,
                     shortScreenshots: vg.short_screenshots.map(s => s.image)
                 })
@@ -105,10 +106,10 @@ router.get("/", async (req, res, next) => {
                     rating: vg.rating,
                     platforms: vg.platforms.map(p => p.platform.name),
                     genres: vg.genres.map(g => g.name),
-                    ratings: vg.ratings.map(r => [r.title, r.percent]),
+                    ratings: vg.ratings.map(r => r.title),
                     metacritic: vg.metacritic,
                     playtime: vg.playtime,
-                    tags: vg.tags.map(t => [t.name, t.image_background]),
+                    tags: vg.tags.map(t => t.name),
                     esrbating: vg.esrb_rating,
                     shortScreenshots: vg.short_screenshots.map(s => s.image)
                 })

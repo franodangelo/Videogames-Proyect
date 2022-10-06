@@ -35,7 +35,7 @@ module.exports = (sequelize) => {
       defaultValue: true
     },
     ratings: {
-      type: DataTypes.JSON
+      type: DataTypes.JSONB
     },
     metacritic: {
       type: DataTypes.DECIMAL

@@ -24,12 +24,7 @@ router.get('/:id', async (req, res, next) => {
                 rating: response.rating,
                 platforms: response.platforms,
                 genres: response.genres.map(g => g.name),
-                ratings: vg.ratings.map(r => [r.title, r.percent]),
-                metacritic: vg.metacritic,
-                playtime: vg.playtime,
-                tags: vg.tags.map(t => [t.name, t.image_background]),
-                esrbating: vg.esrb_rating,
-                shortScreenshots: vg.short_screenshots.map(s => s.image)
+                ratings: response.ratings.map(r => r.title)
             }
         } else {
             response = await axios.get(`https://api.rawg.io/api/games/${id}?key=${apiKey}`);
@@ -42,22 +37,17 @@ router.get('/:id', async (req, res, next) => {
                 rating: response.data.rating,
                 platforms: response.data.platforms.map(p => p.platform.name),
                 genres: response.data.genres.map(g => g.name),
-                ratings: vg.ratings.map(r => [r.title, r.percent]),
-                metacritic: vg.metacritic,
-                playtime: vg.playtime,
-                tags: vg.tags.map(t => [t.name, t.image_background]),
-                esrbating: vg.esrb_rating,
-                shortScreenshots: vg.short_screenshots.map(s => s.image)
+                ratings: response.data.ratings.map(r => r.title)
             }
         }
         res.send(foundVideogame);
     } catch (error) {
-        next(error);
+        next(error)
     }
 })
 
 router.post('/', async (req, res, next) => {
-    const { img, name, released, genres, rating, description, platforms } = req.body;
+    const {img, name, released, genres, rating, description, platforms} = req.body;
     try {
         const newVideogame = await Videogame.create({
             img,
@@ -70,7 +60,7 @@ router.post('/', async (req, res, next) => {
         })
         genres?.forEach(async g => {
             var foundGenre = await Genre.findOne({
-                where: { name: genres }
+                where: {name: genres}
             })
             newVideogame.addGenre(foundGenre);
         })

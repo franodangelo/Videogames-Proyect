@@ -30,7 +30,7 @@ export default function VideogameDetail() {
                 <div className="flex flex-col">
                     <h4 className="text-sm text-start tracking-widest">{videogameDetail.released}</h4>
                     <h1 className="py-4 font-bold text-2xl md:text-3xl lg:text-4xl text-palette-900 uppercase">{videogameDetail.name}</h1>
-                    <h2 className="font-thin text-lg md:text-xl">{videogameDetail.genres.join(" ")}</h2>
+                    <h2 className="font-thin text-lg md:text-xl">{videogameDetail.genres}</h2>
                     <p className="py-4 md:text-sm" dangerouslySetInnerHTML={{ __html: videogameDetail.description }} />
                     {typeof videogameDetail.id !== "number"
                         ? <button onClick={() => handleDelete(id)}>Delete videogame</button>
@@ -45,7 +45,8 @@ export default function VideogameDetail() {
                         src={videogameDetail.img}
                         alt={`${videogameDetail.name} thumbnail`} />
                 </div>
-                <h3 className="font-thin">Available in {videogameDetail.platforms.join(", ")}</h3>
+                <p className="uppercase">{videogameDetail.ratings}</p>
+                <h3 className="font-thin">Available in {videogameDetail.platforms}</h3>
             </section>
         </main>
     )

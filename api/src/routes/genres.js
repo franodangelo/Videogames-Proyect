@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const router = Router();
 const axios = require('axios');
-
 const { Genre } = require('../db');
 
 router.get("/", async (req, res, next) => {
@@ -12,13 +11,13 @@ router.get("/", async (req, res, next) => {
                 where: {
                     name: genre.name
                 }
-            });
-        });
+            })
+        })
         const genreDb = await Genre.findAll();
         res.send(genreDb);
     } catch (error) {
         next(error);
     }
-});
+})
 
 module.exports = router;
