@@ -33,6 +33,26 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
+    },
+    ratings: {
+      type: DataTypes.JSON
+    },
+    metacritic: {
+      type: DataTypes.DECIMAL
+    },
+    playtime: {
+      type: DataTypes.DECIMAL,
+      allowNull: false
+    },
+    tags: {
+      type: DataTypes.ARRAY(DataTypes.JSON),
+      allowNull: false
+    },
+    esrbRating: {
+      type: DataTypes.JSON
+    },
+    shortScreenshots: {
+      type: DataTypes.ARRAY(DataTypes.JSON)
     }
-  });
-};
+  })
+}

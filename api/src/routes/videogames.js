@@ -17,8 +17,8 @@ router.get("/", async (req, res, next) => {
                     }
                 },
                 include: Genre,
-                limit: 15,
-            });
+                limit: 15
+            })
             if (nameDb.length > 0) {
                 gamesDb = nameDb.map((vg) => {
                     return {
@@ -27,9 +27,15 @@ router.get("/", async (req, res, next) => {
                         img: vg.img,
                         released: vg.released,
                         rating: vg.rating,
-                        genres: vg.genres
-                    };
-                });
+                        genres: vg.genres,
+                        ratings: vg.ratings,
+                        metacritic: vg.metacritic,
+                        playtime: vg.playtime,
+                        tags: vg.tags,
+                        esrbRating: vg.esrbRating,
+                        shortScreenshots: vg.shortScreenshots
+                    }
+                })
             }
             const nameApi = (await axios.get(`https://api.rawg.io/api/games?search=${name}&key=${apiKey}`)).data.results;
             let gamesApi = [];
@@ -42,21 +48,25 @@ router.get("/", async (req, res, next) => {
                         released: vg.released,
                         rating: vg.rating,
                         platforms: vg.platforms?.map((p) => p.platform.name),
-                        genres: vg.genres?.map((g) => g.name)
-                    };
-                });
+                        genres: vg.genres?.map((g) => g.name),
+                        ratings: vg.ratings.map(r => [r.title, r.percent]),
+                        metacritic: vg.metacritic,
+                        playtime: vg.playtime,
+                        tags: vg.tags.map(t => [t.name, t.image_background]),
+                        esrbating: vg.esrb_rating,
+                        shortScreenshots: vg.short_screenshots.map(s => s.image)
+                    }
+                })
             }
             let videogames = [...gamesDb, ...gamesApi];
             videogames = videogames.slice(0, 15);
-            videogames.length === 0 
-            ? res.send(["No results"])
-            : res.send(videogames);
+            videogames.length === 0 ? res.send(["No results"]) : res.send(videogames);
         } else {
             let videogames = [];
             const videogamesDb = await Videogame.findAll({
                 include: Genre,
-                limit: 100,
-            });
+                limit: 100
+            })
             videogamesDb.forEach((vg) => {
                 videogames.push({
                     id: vg.id,
@@ -64,9 +74,16 @@ router.get("/", async (req, res, next) => {
                     img: vg.img,
                     released: vg.released,
                     rating: vg.rating,
-                    genres: vg.genres.map((g) => g.name)
-                });
-            });
+                    platforms: vg.platforms?.map((p) => p.platform.name),
+                    genres: vg.genres.map((g) => g.name),
+                    ratings: vg.ratings.map(r => [r.title, r.percent]),
+                    metacritic: vg.metacritic,
+                    playtime: vg.playtime,
+                    tags: vg.tags.map(t => [t.name, t.image_background]),
+                    esrbating: vg.esrb_rating,
+                    shortScreenshots: vg.short_screenshots.map(s => s.image)
+                })
+            })
             const firstPagePetition = axios.get(`https://api.rawg.io/api/games?key=${apiKey}`);
             const secondPagePetition = axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=2`);
             const thirdPagePetition = axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=3`);
@@ -86,15 +103,21 @@ router.get("/", async (req, res, next) => {
                     img: vg.background_image,
                     released: vg.released,
                     rating: vg.rating,
-                    platforms: vg.platforms.map((p) => p.platform.name),
-                    genres: vg.genres.map((g) => g.name),
-                });
-            });
+                    platforms: vg.platforms.map(p => p.platform.name),
+                    genres: vg.genres.map(g => g.name),
+                    ratings: vg.ratings.map(r => [r.title, r.percent]),
+                    metacritic: vg.metacritic,
+                    playtime: vg.playtime,
+                    tags: vg.tags.map(t => [t.name, t.image_background]),
+                    esrbating: vg.esrb_rating,
+                    shortScreenshots: vg.short_screenshots.map(s => s.image)
+                })
+            })
             res.send(videogames);
         }
     } catch (error) {
         next(error);
     }
-});
+})
 
 module.exports = router;

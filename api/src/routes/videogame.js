@@ -2,7 +2,6 @@ const { Router } = require('express');
 const router = Router();
 const axios = require('axios');
 const { apiKey } = process.env;
-
 const { Videogame, Genre } = require('../db');
 
 router.get('/:id', async (req, res, next) => {
@@ -15,7 +14,7 @@ router.get('/:id', async (req, res, next) => {
                     id: id
                 },
                 include: Genre
-            });
+            })
             foundVideogame = {
                 id: response.id,
                 name: response.name,
@@ -24,8 +23,14 @@ router.get('/:id', async (req, res, next) => {
                 released: response.released,
                 rating: response.rating,
                 platforms: response.platforms,
-                genres: response.genres.map(g => g.name)
-            };
+                genres: response.genres.map(g => g.name),
+                ratings: vg.ratings.map(r => [r.title, r.percent]),
+                metacritic: vg.metacritic,
+                playtime: vg.playtime,
+                tags: vg.tags.map(t => [t.name, t.image_background]),
+                esrbating: vg.esrb_rating,
+                shortScreenshots: vg.short_screenshots.map(s => s.image)
+            }
         } else {
             response = await axios.get(`https://api.rawg.io/api/games/${id}?key=${apiKey}`);
             foundVideogame = {
@@ -36,17 +41,23 @@ router.get('/:id', async (req, res, next) => {
                 released: response.data.released,
                 rating: response.data.rating,
                 platforms: response.data.platforms.map(p => p.platform.name),
-                genres: response.data.genres.map(g => g.name)
-            };
+                genres: response.data.genres.map(g => g.name),
+                ratings: vg.ratings.map(r => [r.title, r.percent]),
+                metacritic: vg.metacritic,
+                playtime: vg.playtime,
+                tags: vg.tags.map(t => [t.name, t.image_background]),
+                esrbating: vg.esrb_rating,
+                shortScreenshots: vg.short_screenshots.map(s => s.image)
+            }
         }
         res.send(foundVideogame);
     } catch (error) {
-        next(error)
+        next(error);
     }
-});
+})
 
 router.post('/', async (req, res, next) => {
-    const {img, name, released, genres, rating, description, platforms} = req.body;
+    const { img, name, released, genres, rating, description, platforms } = req.body;
     try {
         const newVideogame = await Videogame.create({
             img,
@@ -56,18 +67,18 @@ router.post('/', async (req, res, next) => {
             rating,
             description,
             platforms
-        });
+        })
         genres?.forEach(async g => {
             var foundGenre = await Genre.findOne({
-                where: {name: genres}
-            });
+                where: { name: genres }
+            })
             newVideogame.addGenre(foundGenre);
-        });
+        })
         res.send(newVideogame);
     } catch (error) {
-        next(error)
+        next(error);
     }
-});
+})
 
 router.delete('/:id', async (req, res, next) => {
     try {
@@ -76,12 +87,12 @@ router.delete('/:id', async (req, res, next) => {
             where: {
                 id: id
             }
-        });
+        })
         res.status(200).send(`The videogame with id ${id} was deleted`);
     } catch (error) {
-        next(error)
+        next(error);
     }
-});
+})
 
 router.put('/:id', async (req, res, next) => {
     try {
@@ -91,11 +102,11 @@ router.put('/:id', async (req, res, next) => {
             where: {
                 id: id
             }
-        });
+        })
         res.status(200).send(`The videogame with id ${id} was updated`);
     } catch (error) {
-        next(error)
+        next(error);
     }
-});
+})
 
 module.exports = router;
