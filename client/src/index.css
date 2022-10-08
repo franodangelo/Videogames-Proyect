@@ -8,15 +8,19 @@
         @apply font-sans text-white
     }
 
-    li {
-        @apply p-6
-    }
-
     .primaryButton {
-        @apply py-2 px-4 font-semibold text-white uppercase hover:scale-105 bg-palette-900 shadow-md hover:shadow-palette-900/20 hover:shadow-lg hover:ease-in duration-300
+        @apply py-2 px-4 font-semibold text-sm md:text-base text-white uppercase hover:scale-105 bg-palette-900 shadow-md hover:shadow-palette-900/20 hover:shadow-lg hover:ease-in duration-300
     }
 
     .secondaryButton {
-        @apply py-2 px-4 font-semibold text-palette-900 uppercase bg-palette-900/10 border-2 border-palette-900 shadow-md hover:shadow-xl hover:ease-in duration-200
+        @apply py-2 px-4 font-semibold text-sm md:text-base text-palette-900 uppercase bg-palette-900/10 border-2 border-palette-900 shadow-md hover:shadow-xl hover:ease-in duration-200
+    }
+
+    .select {
+        @apply w-[160px] py-2 px-4 border-2 focus:border-white text-sm md:text-base border-palette-900 bg-palette-900/50 cursor-pointer
+    }
+
+    .page {
+        @apply flex w-6 h-6 p-4 justify-center items-center font-bold text-palette-900 border-2 border-palette-900 bg-transparent active:bg-palette-900 hover:bg-palette-900 hover:text-white ease-in-out duration-200
     }
 }

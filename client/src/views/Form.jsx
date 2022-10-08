@@ -178,7 +178,7 @@ export default function Form() {
 
                         <div className="flex flex-col md:w-96 h-32 gap-2">
                             <label className="text-lg" htmlFor="name">Name</label>
-                            <input required className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
+                            <input required className="p-2  text-sm placeholder-palette-700 text-shades-600"
                                 name="name" type="text" minlength="3" placeholder="3 characters at least"
                                 value={videogameLocalState.name}
                                 onChange={(e) => handleChange(e)}>
@@ -188,7 +188,7 @@ export default function Form() {
 
                         <div className="flex flex-col md:w-96 h-40 gap-2">
                             <label className="text-lg" htmlFor="description">Description</label>
-                            <input required className="px-2 py-8 rounded text-sm placeholder-palette-700 text-shades-600"
+                            <input required className="px-2 py-8  text-sm placeholder-palette-700 text-shades-600"
                                 name="description" type="text" minlength="20"
                                 value={videogameLocalState.description}
                                 onChange={(e) => handleChange(e)}>
@@ -200,7 +200,7 @@ export default function Form() {
 
                             <div className="flex flex-col w-full md:w-40 h-32 gap-2">
                                 <label className="text-lg" htmlFor="released">Date of release</label>
-                                <input required className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
+                                <input required className="p-2  text-sm placeholder-palette-700 text-shades-600"
                                     name="released" type="date"
                                     value={videogameLocalState.released}
                                     onChange={(e) => handleChange(e)}>
@@ -210,7 +210,7 @@ export default function Form() {
 
                             <div className="flex flex-col w-full md:w-40 h-32 gap-2">
                                 <label className="text-lg" htmlFor="rating">Rating</label>
-                                <input required className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
+                                <input required className="p-2  text-sm placeholder-palette-700 text-shades-600"
                                     name="rating" type="number" min="0" max="5" placeholder="Rate between 1-5"
                                     value={videogameLocalState.rating}
                                     onChange={(e) => handleChange(e)}>
@@ -226,7 +226,7 @@ export default function Form() {
 
                         <div className="flex flex-col md:w-96 h-32 gap-2">
                             <label className="text-lg" htmlFor="img">Image (URL)</label>
-                            <input required className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
+                            <input required className="p-2  text-sm placeholder-palette-700 text-shades-600"
                                 name="img" type="url"
                                 value={videogameLocalState.img}
                                 onChange={(e) => handleChange(e)}>
@@ -235,7 +235,7 @@ export default function Form() {
 
                         <div className="flex flex-col md:w-96 h-32 md:h-40 gap-2">
                             <label className="text-lg" htmlFor="platforms">Platforms</label>
-                            <select required className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
+                            <select required className="p-2  text-sm placeholder-palette-700 text-shades-600"
                                 name="platforms"
                                 onChange={(e) => handleChangePlatforms(e)}>
                                 <option hidden={true}>Select some platforms</option>
@@ -244,14 +244,14 @@ export default function Form() {
                             {formErrors.platforms && (<p>{formErrors.platforms}</p>)}
                             <div className="flex flex-wrap gap-2">
                                 {videogameLocalState.platforms.map(p =>
-                                    <p className="px-2 text-sm bg-palette-200 rounded" type="button" onClick={() => handleDeletePlatforms(p)}>{p}</p>
+                                    <p className="px-2 text-sm bg-palette-200 " type="button" onClick={() => handleDeletePlatforms(p)}>{p}</p>
                                 )}
                             </div>
                         </div>
 
                         <div className="flex flex-col md:w-96 h-32 md:h-40 gap-2">
                             <label className="text-lg" htmlFor="genres">Genres</label>
-                            <select required className="p-2 rounded text-sm placeholder-palette-700 text-shades-600"
+                            <select required className="p-2  text-sm placeholder-palette-700 text-shades-600"
                                 name="genres"
                                 onChange={(e) => handleChangeGenres(e)}>
                                 <option hidden={true}>Select some genres</option>
@@ -259,7 +259,7 @@ export default function Form() {
                             </select>
                             <div className="flex flex-wrap gap-2">
                                 {videogameLocalState.genres.map(g =>
-                                    <p className="px-2 text-sm text-center bg-palette-200 rounded" type="button" onClick={() => handleDeleteGenres(g)}>{g}</p>
+                                    <p className="px-2 text-sm text-center bg-palette-200 " type="button" onClick={() => handleDeleteGenres(g)}>{g}</p>
                                 )}
                             </div>
                         </div>
