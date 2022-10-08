@@ -3,6 +3,7 @@ const router = Router();
 const axios = require('axios');
 const { apiKey } = process.env;
 const { Videogame, Genre } = require('../db');
+const { response } = require('../app');
 
 router.get('/:id', async (req, res, next) => {
     try {
@@ -23,31 +24,35 @@ router.get('/:id', async (req, res, next) => {
                 released: response.released,
                 rating: response.rating,
                 platforms: response.platforms,
-                genres: response.genres.map(g => g.name),
-                ratings: response.ratings.map(r => r.title)
+                genres: response.genres.map(g => g.name)
             }
         } else {
-            response = await axios.get(`https://api.rawg.io/api/games/${id}?key=${apiKey}`);
+            gameAPIData = await axios.get(`https://api.rawg.io/api/games/${id}?key=${apiKey}`);
             foundVideogame = {
-                id: response.data.id,
-                name: response.data.name,
-                img: response.data.background_image,
-                description: response.data.description,
-                released: response.data.released,
-                rating: response.data.rating,
-                platforms: response.data.platforms.map(p => p.platform.name),
-                genres: response.data.genres.map(g => g.name),
-                ratings: response.data.ratings.map(r => r.title)
+                id: gameAPIData.data.id,
+                name: gameAPIData.data.name,
+                img: gameAPIData.data.background_image,
+                description: gameAPIData.data.description_raw,
+                tags: gameAPIData.data.tags.map(t => t.name),
+                released: gameAPIData.data.released,
+                platforms: gameAPIData.data.platforms.map(p => p.platform.name),
+                genres: gameAPIData.data.genres.map(g => g.name),
+                rating: gameAPIData.data.rating,
+                esrbRating: gameAPIData.data.esrb_rating.name,
+                metacritic: gameAPIData.data.metacritic,
+                metacriticURL: gameAPIData.data.metacritic_url,
+                developedBy: gameAPIData.data.developers.map(d => d.name),
+                website: gameAPIData.data.website
             }
         }
         res.send(foundVideogame);
     } catch (error) {
-        next(error)
+        next(error);
     }
 })
 
 router.post('/', async (req, res, next) => {
-    const {img, name, released, genres, rating, description, platforms} = req.body;
+    const { img, name, released, genres, rating, description, platforms } = req.body;
     try {
         const newVideogame = await Videogame.create({
             img,
@@ -60,7 +65,7 @@ router.post('/', async (req, res, next) => {
         })
         genres?.forEach(async g => {
             var foundGenre = await Genre.findOne({
-                where: {name: genres}
+                where: { name: genres }
             })
             newVideogame.addGenre(foundGenre);
         })
