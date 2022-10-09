@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getVideogameDetail, deleteVideogame } from "../redux/actions";
 import { HiLink } from "react-icons/hi";
 
@@ -21,7 +21,7 @@ export default function VideogameDetail() {
     }
 
     return (
-        // <main className="flex flex-col lg:flex-row min-h-screen w-full my-auto items-center bg-shades-600 md:bg-shades-600/90">
+        // <main className="flex flex-col lg:flex-row min-h-screen w-full my-auto items-center bg-roses-600 md:bg-roses-600/90">
         //     <div className="-z-10 invisible md:visible absolute w-full h-full">
         //         <img className="w-full h-full object-cover"
         //             src={videogameDetail.img}
@@ -30,7 +30,7 @@ export default function VideogameDetail() {
         //     <section className="flex lg:flex-col lg:basis-6/12 p-8">
         //         <div className="flex flex-col">
         //             <h4 className="text-sm text-start tracking-widest">{videogameDetail.released}</h4>
-        //             <h1 className="py-4 font-bold text-2xl md:text-3xl lg:text-4xl text-palette-900 uppercase">{videogameDetail.name}</h1>
+        //             <h1 className="py-4 font-bold text-2xl md:text-3xl lg:text-4xl text-slate-900 uppercase">{videogameDetail.name}</h1>
         //             <h2 className="font-thin text-lg md:text-xl">{videogameDetail.genres}</h2>
         //             <p className="py-4 md:text-sm" dangerouslySetInnerHTML={{ __html: videogameDetail.description }} />
         //             {typeof videogameDetail.id !== "number"
@@ -40,8 +40,8 @@ export default function VideogameDetail() {
         //         </div>
         //     </section>
         //     <section className="flex flex-col lg:basis-6/12 p-8 self-center">
-        //         <h4 className="z-10 w-fit -mb-12 mr-4 px-2 py-1 self-end font-bold text-sm -lg bg-palette-100">{videogameDetail.rating}</h4>
-        //         <div className="w-full overflow-hidden -xl mb-4 shadow-lg shadow-shades-800">
+        //         <h4 className="z-10 w-fit -mb-12 mr-4 px-2 py-1 self-end font-bold text-sm -lg bg-slate-100">{videogameDetail.rating}</h4>
+        //         <div className="w-full overflow-hidden -xl mb-4 shadow-lg shadow-roses-800">
         //             <img className="w-full object-cover"
         //                 src={videogameDetail.img}
         //                 alt={`${videogameDetail.name} thumbnail`} />
@@ -52,23 +52,25 @@ export default function VideogameDetail() {
         // </main>
         <main className="relative">
             <img className="absolute w-full h-full object-cover" src={videogameDetail.bgImgDetail} alt={`${videogameDetail.name} thumbnail`} />
-            <div className="relative grid grid-cols-1 md:grid-cols-2 w-full h-full p-10 gap-10 bg-slate-900/90">
+            <div className="relative grid grid-cols-1 md:grid-cols-2 w-full h-full p-10 gap-10 bg-slate-900/80">
                 <section className="col-span-2 md:col-span-1 flex flex-col gap-4">
-                    <div className="flex flex-col md:flex-row gap-2 md:gap-0 justify-between">
-                        <div className="flex flex-col lg:flex-row w-fit gap-1 px-2 py-1 text-xs uppercase bg-slate-600">
-                            <p>Available in:</p>
-                            {videogameDetail.platforms?.join(" - ")}
-                        </div>
+                    <div className="flex flex-row gap-2 justify-between">
                         <div className="flex w-fit gap-2">
-                            <p className="px-2 py-1 items-center text-xs uppercase bg-slate-600">{videogameDetail.rating}</p>
-                            <p className="px-2 py-1 items-center text-xs uppercase bg-slate-600">{videogameDetail.esrbRating}</p>
+                            <a href={videogameDetail.metacriticURL} target="_blank" rel="noreferrer">
+                                <div className="flex px-2 py-1 gap-1 bg-slate-600">
+                                    <img className="w-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Metacritic.svg/1024px-Metacritic.svg.png" alt="metacritic thumbnail" />
+                                    <p className="text-xs">Review {videogameDetail.metacritic}</p>
+                                </div>
+                            </a>
+                            <p className="flex px-2 py-1 text-xs uppercase bg-slate-600">{videogameDetail.esrbRating}</p>
                         </div>
+                        <p className="flex px-2 py-1 text-xs uppercase bg-slate-600">{videogameDetail.rating}</p>
                     </div>
                     <img className="h-60 md:h-full object-cover rounded-lg" src={videogameDetail.img} alt={`${videogameDetail.name} thumbnail`} />
                 </section>
                 <section className="col-span-2 md:col-span-1 flex flex-col items-center justify-center gap-4">
                     <div className="flex flex-col w-full items-center md:items-start p-10 gap-2 bg-slate-800 rounded-lg">
-                        <div className="flex flex-col lg:flex-row w-fit gap-1 px-2 py-1 text-center text-xs uppercase bg-slate-600">
+                        <div className="flex flex-col lg:flex-row w-fit gap-1 px-2 py-1 text-center md:text-start text-xs bg-slate-600">
                             {videogameDetail.developedBy?.join(" - ")}
                         </div>
                         <div className="flex items-center gap-4">
@@ -82,9 +84,8 @@ export default function VideogameDetail() {
                                 return <p className="py-1 px-2 text-xs uppercase text-slate-800 bg-slate-200">{genre}</p>
                             })}
                         </div>
-                        <div className="flex gap-2">
-                            <p className="uppercase">Metacritic {videogameDetail.metacritic}</p>
-                            <a href={videogameDetail.metacriticURL}>(more detail)</a>
+                        <div className="flex flex-col w-full md:w-fit px-2 py-1 bg-slate-600">
+                            <p className="text-xs text-center md:text-start">Available in: {videogameDetail.platforms?.join(" - ")}</p>
                         </div>
                     </div>
                     <p className="text-sm">{videogameDetail.description}</p>
@@ -95,6 +96,10 @@ export default function VideogameDetail() {
                             return <p className="py-1 px-2 text-xs uppercase bg-slate-600">{tag}</p>
                         })}
                     </div>
+                    {typeof videogameDetail.id !== "number"
+                        ? <button onClick={() => handleDelete(id)}>Delete videogame</button>
+                        : null
+                    }
                 </section>
             </div>
         </main>
