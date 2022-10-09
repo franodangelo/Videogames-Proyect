@@ -32,6 +32,7 @@ router.get('/:id', async (req, res, next) => {
                 id: gameAPIData.data.id,
                 name: gameAPIData.data.name,
                 img: gameAPIData.data.background_image,
+                bgImgDetail: gameAPIData.data.background_image_additional,
                 description: gameAPIData.data.description_raw,
                 tags: gameAPIData.data.tags.map(t => t.name),
                 released: gameAPIData.data.released,
