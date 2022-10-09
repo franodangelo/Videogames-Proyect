@@ -61,7 +61,7 @@ export default function Home() {
     }
 
     return (
-        <main className="flex flex-col min-h-screen w-full items-center bg-shades-700">
+        <main className="flex flex-col min-h-screen w-full items-center bg-roses-700">
             <div className="flex flex-col w-full items-center">
                 <div className="flex flex-col-reverse md:flex-row flex-wrap md:flex-nowrap w-full p-8 justify-center items-center gap-4 md:justify-end">
                     <button className="h-auto secondaryButton"

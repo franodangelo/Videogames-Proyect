@@ -44,7 +44,7 @@ export default function ActionBar() {
         <div className="flex w-full items-center justify-center p-4 gap-8 md:justify-end">
 
             <button
-                className="text-sm bg-transparent border-2 border-palette-900 text-palette-900"
+                className="text-sm bg-transparent border-2 border-slate-900 text-slate-900"
                 onClick={handleReset}>
                 Reset filters & sorts
             </button>
@@ -54,7 +54,7 @@ export default function ActionBar() {
                 <div className="flex gap-4">
                     <div className="flex flex-col items-center gap-2">
                         <label className="uppercase font-thin text-sm" for="type">Type</label>
-                        <select className="p-2 w-40 text-sm  bg-palette-900/50 border-2 border-palette-900"
+                        <select className="p-2 w-40 text-sm  bg-slate-900/50 border-2 border-slate-900"
                             onChange={handleFilterByCreation}
                             name="type"
                             id="type"
@@ -66,7 +66,7 @@ export default function ActionBar() {
                     </div>
                     <div className="flex flex-col items-center gap-2">
                         <label className="uppercase font-thin text-sm" for="genres">Genre</label>
-                        <select className="p-2 w-40 text-sm  bg-palette-900/50 border-2 border-palette-900"
+                        <select className="p-2 w-40 text-sm  bg-slate-900/50 border-2 border-slate-900"
                             onChange={handleFilterByGenre}
                             name="genres"
                             id="genres"
@@ -101,7 +101,7 @@ export default function ActionBar() {
                 <div className="flex gap-4">
                     <div className="flex flex-col items-center gap-2">
                         <label className="uppercase font-thin text-sm" for="alphabet">Alphabetically</label>
-                        <select className="p-2 w-40 text-sm  bg-palette-900/50 border-2 border-palette-900"
+                        <select className="p-2 w-40 text-sm  bg-slate-900/50 border-2 border-slate-900"
                             onChange={e => handleSortByName(e)}
                             name="alphabet"
                             id="alphabet"
@@ -112,7 +112,7 @@ export default function ActionBar() {
                     </div>
                     <div className="flex flex-col items-center gap-2">
                         <label className="uppercase font-thin text-sm" for="ratings">By rating</label>
-                        <select className="p-2 w-40 text-sm  bg-palette-900/50 border-2 border-palette-900"
+                        <select className="p-2 w-40 text-sm  bg-slate-900/50 border-2 border-slate-900"
                             onChange={e => handleSortByRating(e)}
                             name="ratings"
                             id="ratings"

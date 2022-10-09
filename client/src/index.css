@@ -5,22 +5,22 @@
 @layer base {
 
     *{
-        @apply font-sans text-white
+        @apply font-sans text-white 
     }
 
     .primaryButton {
-        @apply py-2 px-4 font-semibold text-sm md:text-base text-white uppercase hover:scale-105 bg-palette-900 shadow-md hover:shadow-palette-900/20 hover:shadow-lg hover:ease-in duration-300
+        @apply py-2 px-4 font-semibold text-sm md:text-base text-white uppercase hover:scale-105 bg-rose-700 shadow-md hover:shadow-slate-900/50 hover:shadow-lg hover:ease-in duration-300
     }
 
     .secondaryButton {
-        @apply py-2 px-4 font-semibold text-sm md:text-base text-palette-900 uppercase bg-palette-900/10 border-2 border-palette-900 shadow-md hover:shadow-xl hover:ease-in duration-200
+        @apply py-2 px-4 font-semibold text-sm md:text-base text-white uppercase bg-rose-700/20 border border-rose-700 shadow-md hover:shadow-xl hover:ease-in duration-200
     }
 
     .select {
-        @apply w-[160px] py-2 px-4 border-2 focus:border-white text-sm md:text-base border-palette-900 bg-palette-900/50 cursor-pointer
+        @apply w-[160px] py-2 px-4 border-2 focus:border-white text-sm md:text-base border-slate-900 bg-slate-900/50 cursor-pointer
     }
 
     .page {
-        @apply flex w-6 h-6 p-4 justify-center items-center font-bold text-palette-900 border-2 border-palette-900 bg-transparent active:bg-palette-900 hover:bg-palette-900 hover:text-white ease-in-out duration-200
+        @apply flex w-6 h-6 p-4 justify-center items-center font-bold text-slate-900 border-2 border-slate-900 bg-transparent active:bg-slate-900 hover:bg-slate-900 hover:text-white ease-in-out duration-200
     }
 }

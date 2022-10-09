@@ -19,7 +19,7 @@ export default function SearchBar() {
 
     return (
         <div className="flex gap-2 items-center">
-            <input className="h-full py-2 px-4 border-2 border-palette-800 text-sm md:text-base lg:text-lg placeholder-white/90 bg-palette-800/20"
+            <input className="h-full py-2 px-4 border-2 border-slate-800 text-sm md:text-base lg:text-lg placeholder-white/90 bg-slate-800/20"
                 type="text" placeholder="Find your videogame..."
                 onChange={(e) => handleInputChange(e)}>
             </input>

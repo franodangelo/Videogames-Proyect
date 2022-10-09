@@ -3,7 +3,7 @@ import { FaLinkedinIn, FaGithub } from "react-icons/fa";
 
 export default function Footer() {
     return (
-        <div className="flex w-full h-24 mt-auto px-8 justify-between items-center bg-palette-600 text-white">
+        <div className="flex w-full h-24 mt-auto px-8 justify-between items-center bg-slate-600 text-white">
             <div className="flex flex-col gap-2 items-center">
                 <h1 className="">See code:</h1>
                 <a href="https://github.com/franodangelo/Videogames-Proyect"
