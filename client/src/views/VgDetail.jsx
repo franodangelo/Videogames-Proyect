@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getVideogameDetail, deleteVideogame } from "../redux/actions";
+import { HiLink } from "react-icons/hi";
 
 export default function VideogameDetail() {
     let videogameDetail = useSelector(state => state.videogameDetail);
@@ -49,38 +50,53 @@ export default function VideogameDetail() {
         //         <h3 className="font-thin">Available in {videogameDetail.platforms}</h3>
         //     </section>
         // </main>
-        <main className="space-y-10 w-full h-auto p-10 bg-slate-900">
-            <h1>{videogameDetail.name}</h1>
-            <p>{videogameDetail.description}</p>
-            <div className="flex flex-wrap gap-4">
-                {videogameDetail.tags?.map(t => {
-                    return <p className=" bg-slate-600 py-1 px-2 text-sm">{t}</p>
-                })}
+        <main className="relative">
+            <img className="absolute w-full h-full object-cover" src={videogameDetail.bgImgDetail} alt={`${videogameDetail.name} thumbnail`} />
+            <div className="relative grid grid-cols-1 md:grid-cols-2 w-full h-full p-10 gap-10 bg-slate-900/90">
+                <section className="col-span-2 md:col-span-1 flex flex-col gap-4">
+                    <div className="flex flex-col md:flex-row gap-2 md:gap-0 justify-between">
+                        <div className="flex flex-col lg:flex-row w-fit gap-1 px-2 py-1 text-xs uppercase bg-slate-600">
+                            <p>Available in:</p>
+                            {videogameDetail.platforms?.join(" - ")}
+                        </div>
+                        <div className="flex w-fit gap-2">
+                            <p className="px-2 py-1 items-center text-xs uppercase bg-slate-600">{videogameDetail.rating}</p>
+                            <p className="px-2 py-1 items-center text-xs uppercase bg-slate-600">{videogameDetail.esrbRating}</p>
+                        </div>
+                    </div>
+                    <img className="h-60 md:h-full object-cover rounded-lg" src={videogameDetail.img} alt={`${videogameDetail.name} thumbnail`} />
+                </section>
+                <section className="col-span-2 md:col-span-1 flex flex-col items-center justify-center gap-4">
+                    <div className="flex flex-col w-full items-center md:items-start p-10 gap-2 bg-slate-800 rounded-lg">
+                        <div className="flex flex-col lg:flex-row w-fit gap-1 px-2 py-1 text-center text-xs uppercase bg-slate-600">
+                            {videogameDetail.developedBy?.join(" - ")}
+                        </div>
+                        <div className="flex items-center gap-4">
+                            <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl text-center md:text-start uppercase">{videogameDetail.name}</h1>
+                            <a href={videogameDetail.website} target="_blank" rel="noreferrer">
+                                <HiLink />
+                            </a>
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                            {videogameDetail.genres?.map(genre => {
+                                return <p className="py-1 px-2 text-xs uppercase text-slate-800 bg-slate-200">{genre}</p>
+                            })}
+                        </div>
+                        <div className="flex gap-2">
+                            <p className="uppercase">Metacritic {videogameDetail.metacritic}</p>
+                            <a href={videogameDetail.metacriticURL}>(more detail)</a>
+                        </div>
+                    </div>
+                    <p className="text-sm">{videogameDetail.description}</p>
+                </section>
+                <section className="col-span-2">
+                    <div className="flex flex-wrap gap-2">
+                        {videogameDetail.tags?.map(tag => {
+                            return <p className="py-1 px-2 text-xs uppercase bg-slate-600">{tag}</p>
+                        })}
+                    </div>
+                </section>
             </div>
-            <div>
-                <img src={videogameDetail.img} alt="" />
-            </div>
-            <p>{videogameDetail.released}</p>
-            <div className="flex flex-wrap gap-4">
-                {videogameDetail.platforms?.map(t => {
-                    return <p>{t}</p>
-                })}
-            </div>
-            <div className="flex flex-wrap gap-4">
-                {videogameDetail.genres?.map(t => {
-                    return <p>{t}</p>
-                })}
-            </div>
-            <p>{videogameDetail.rating}</p>
-            <p>{videogameDetail.esrbRating}</p>
-            <p>{videogameDetail.metacritic}</p>
-            <p>{videogameDetail.metacriticURL}</p>
-            <div className="flex flex-wrap gap-4">
-                {videogameDetail.developedBy?.map(d => {
-                    return <p>{d}</p>
-                })}
-            </div>
-            <p>{videogameDetail.website}</p>
         </main>
     )
 }
