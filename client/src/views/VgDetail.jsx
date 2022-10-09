@@ -52,25 +52,25 @@ export default function VideogameDetail() {
         // </main>
         <main className="relative">
             <img className="absolute w-full h-full object-cover" src={videogameDetail.bgImgDetail} alt={`${videogameDetail.name} thumbnail`} />
-            <div className="relative grid grid-cols-1 md:grid-cols-2 w-full h-full p-10 gap-10 bg-slate-900/80">
+            <div className="relative grid grid-cols-1 md:grid-cols-2 w-full h-full min-h-screen p-10 gap-10 bg-slate-900/90">
                 <section className="col-span-2 md:col-span-1 flex flex-col gap-4">
                     <div className="flex flex-row gap-2 justify-between">
                         <div className="flex w-fit gap-2">
                             <a href={videogameDetail.metacriticURL} target="_blank" rel="noreferrer">
-                                <div className="flex px-2 py-1 gap-1 bg-slate-600">
+                                <div className="flex px-2 py-1 gap-1 bg-slate-200">
                                     <img className="w-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Metacritic.svg/1024px-Metacritic.svg.png" alt="metacritic thumbnail" />
-                                    <p className="text-xs">Review {videogameDetail.metacritic}</p>
+                                    <p className="text-xs text-slate-800">Review {videogameDetail.metacritic}</p>
                                 </div>
                             </a>
                             <p className="flex px-2 py-1 text-xs uppercase bg-slate-600">{videogameDetail.esrbRating}</p>
                         </div>
-                        <p className="flex px-2 py-1 text-xs uppercase bg-slate-600">{videogameDetail.rating}</p>
+                        <p className="flex px-2 py-1 font-semibold text-xs uppercase bg-rose-600">{videogameDetail.rating}</p>
                     </div>
                     <img className="h-60 md:h-full object-cover rounded-lg" src={videogameDetail.img} alt={`${videogameDetail.name} thumbnail`} />
                 </section>
-                <section className="col-span-2 md:col-span-1 flex flex-col items-center justify-center gap-4">
+                <section className="col-span-2 md:col-span-1 flex flex-col items-center gap-4">
                     <div className="flex flex-col w-full items-center md:items-start p-10 gap-2 bg-slate-800 rounded-lg">
-                        <div className="flex flex-col lg:flex-row w-fit gap-1 px-2 py-1 text-center md:text-start text-xs bg-slate-600">
+                        <div className="flex flex-col lg:flex-row w-fit text-center md:text-start text-xs">
                             {videogameDetail.developedBy?.join(" - ")}
                         </div>
                         <div className="flex items-center gap-4">
@@ -81,12 +81,12 @@ export default function VideogameDetail() {
                         </div>
                         <div className="flex flex-wrap gap-2">
                             {videogameDetail.genres?.map(genre => {
-                                return <p className="py-1 px-2 text-xs uppercase text-slate-800 bg-slate-200">{genre}</p>
+                                return <p className="py-1 px-2 font-semibold text-xs uppercase bg-rose-600">{genre}</p>
                             })}
                         </div>
-                        <div className="flex flex-col w-full md:w-fit px-2 py-1 bg-slate-600">
-                            <p className="text-xs text-center md:text-start">Available in: {videogameDetail.platforms?.join(" - ")}</p>
-                        </div>
+                    </div>
+                    <div className="flex flex-col w-full md:w-fit md:self-start px-2 py-1 bg-slate-200">
+                        <p className="text-xs text-start text-slate-800">Available in: {videogameDetail.platforms?.join(" - ")}</p>
                     </div>
                     <p className="text-sm">{videogameDetail.description}</p>
                 </section>

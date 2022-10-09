@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import NavBar from "./components/NavBar";
+import Navbar from "./components/Navbar";
 import Home from "./views/Home";
 import VgDetail from "./views/VgDetail";
 import Form from "./views/Form";
@@ -10,7 +10,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <div>
-        <NavBar />
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/videogame" element={<Form />} />
