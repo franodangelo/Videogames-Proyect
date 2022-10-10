@@ -9,7 +9,7 @@
     }
 
     .primaryButton {
-        @apply py-2 px-4 font-semibold text-sm md:text-base text-white uppercase rounded-tl-xl rounded-tr-sm rounded-br-xl rounded-bl-sm bg-rose-700 shadow-md
+        @apply py-2 px-4 font-semibold text-sm md:text-base text-white uppercase bg-rose-700 shadow-md
     }
 
     .secondaryButton {
