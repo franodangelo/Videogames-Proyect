@@ -28,15 +28,19 @@ router.get('/:id', async (req, res, next) => {
             }
         } else {
             gameAPIData = await axios.get(`https://api.rawg.io/api/games/${id}?key=${apiKey}`);
+            gameAPIScreenshots = await axios.get(`https://api.rawg.io/api/games/${id}/screenshots?key=${apiKey}`);
+            gameAPISeries = await axios.get(`https://api.rawg.io/api/games/${id}/game-series?key=${apiKey}`);
             foundVideogame = {
                 id: gameAPIData.data.id,
                 name: gameAPIData.data.name,
                 img: gameAPIData.data.background_image,
                 bgImgDetail: gameAPIData.data.background_image_additional,
+                screenshots: gameAPIScreenshots.data.results.map(screenshot => screenshot.image),
                 description: gameAPIData.data.description_raw,
-                tags: gameAPIData.data.tags.map(t => t.name),
+                tags: gameAPIData.data.tags.map(tag => tag.name),
                 released: gameAPIData.data.released,
-                platforms: gameAPIData.data.platforms.map(p => p.platform.name),
+                platforms: gameAPIData.data.platforms.map(platform => platform.platform.name),
+                gameSeries: gameAPISeries.data.results.map(game => { return { name: game.name, img: game.background_image } }),
                 genres: gameAPIData.data.genres.map(g => g.name),
                 rating: gameAPIData.data.rating,
                 esrbRating: gameAPIData.data.esrb_rating.name,
