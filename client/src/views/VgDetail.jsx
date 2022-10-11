@@ -92,7 +92,7 @@ export default function VideogameDetail() {
                     <p className="text-sm">{videogameDetail.description}</p>
                 </section>
                 <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full col-span-2 gap-4">
-                    {videogameDetail.screenshots?.map(screenshot => <img className="rounded-lg shadow-md shadow-slate-900" src={screenshot} alt="" />)}
+                    {videogameDetail.screenshots?.map(screenshot => <img className="w-full h-60 object-cover rounded-lg shadow-md shadow-slate-900" src={screenshot} alt="" />)}
                 </section>
                 <section className="col-span-2">
                     <div className="flex flex-wrap justify-center md:justify-start gap-2">
