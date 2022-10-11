@@ -33,10 +33,11 @@ export default function NavBar() {
                     <input className="w-[160px] md:w-full px-4 text-sm text-white placeholder-slate-400 bg-slate-700 border border-rose-700 focus:ring-rose-500 focus:border-rose-500"
                         placeholder="Search game..."
                         type="text"
-                        id="search-navbar"
+                        id="input"
                         onChange={(e) => handleInputChange(e)}
+                        onSubmit={(e) => handleSearchSubmit(e)}
                     />
-                    <div className="secondaryButton flex w-10 p-0 items-center justify-center" onClick={(e) => handleSearchSubmit(e)}>
+                    <div className="secondaryButton flex w-10 p-0 items-center justify-center cursor-pointer" onClick={(e) => handleSearchSubmit(e)}>
                         <HiSearch />
                     </div>
                 </div>
