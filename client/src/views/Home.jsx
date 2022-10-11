@@ -113,7 +113,7 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                <div className="grid grid-cols-1 w-full m-auto px-8 justify-center items-center gap-4 md:grid-cols-2 lg:grid-cols-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full m-auto px-8 justify-center items-center gap-4">
                     {currentVideogames[0] === "No games created" ? <NoGamesCreated />
                         : currentVideogames[0] === "No results" ? <InvalidSearch />
                             : currentVideogames.length === 0 ? <Loader />
