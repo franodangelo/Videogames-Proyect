@@ -42,7 +42,7 @@ export default function NavBar() {
                     </div>
                 </div>
                 <Link to="/videogame">
-                    <button className="primaryButton text-xs md:text-base">Create game</button>
+                    <button className="primaryButton">Create game</button>
                 </Link>
             </div>
         </nav>
