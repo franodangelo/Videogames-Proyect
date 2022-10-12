@@ -4,7 +4,6 @@ const { Op } = require('sequelize');
 const axios = require('axios');
 const { apiKey } = process.env;
 const { Videogame, Genre } = require('../db');
-const { verify } = require('jsonwebtoken');
 
 router.get("/", async (req, res, next) => {
     try {
@@ -17,45 +16,44 @@ router.get("/", async (req, res, next) => {
                         [Op.iLike]: "%" + name + "%"
                     }
                 },
-                include: Genre,
-                limit: 15
+                include: Genre
             });
             if (nameDb.length > 0) {
-                gamesDb = nameDb.map((vg) => {
+                gamesDb = nameDb.map(game => {
                     return {
-                        id: vg.id,
-                        name: vg.name,
-                        img: vg.img,
-                        released: vg.released,
-                        rating: vg.rating,
-                        genres: vg.genres,
-                        ratings: vg.ratings,
-                        metacritic: vg.metacritic,
-                        playtime: vg.playtime,
-                        tags: vg.tags,
-                        esrbRating: vg.esrbRating,
-                        shortScreenshots: vg.shortScreenshots
+                        id: game.id,
+                        name: game.name,
+                        img: game.img,
+                        released: game.released,
+                        rating: game.rating,
+                        genres: game.genres,
+                        ratings: game.ratings,
+                        metacritic: game.metacritic,
+                        playtime: game.playtime,
+                        tags: game.tags,
+                        esrbRating: game.esrbRating,
+                        shortScreenshots: game.shortScreenshots
                     }
                 })
             }
-            const nameApi = (await axios.get(`https://api.rawg.io/api/games?search=${name}&key=${apiKey}`)).data.results;
+            const nameAPI = (await axios.get(`https://api.rawg.io/api/games?search=${name}&key=${apiKey}`)).data.results;
             let gamesApi = [];
-            if (nameApi.length > 0) {
-                gamesApi = nameApi.map((vg) => {
+            if (nameAPI.length > 0) {
+                gamesApi = nameAPI.map((game) => {
                     return {
-                        id: vg.id,
-                        name: vg.name,
-                        img: vg.background_image,
-                        released: vg.released,
-                        rating: vg.rating,
-                        platforms: vg.platforms?.map((p) => p.platform.name),
-                        genres: vg.genres?.map((g) => g.name),
-                        ratings: vg.ratings.map(r => r.title),
-                        metacritic: vg.metacritic,
-                        playtime: vg.playtime,
-                        tags: vg.tags.map(t => t.name),
-                        esrbating: vg.esrb_rating,
-                        shortScreenshots: vg.short_screenshots.map(s => s.image)
+                        id: game.id,
+                        name: game.name,
+                        img: game.background_image,
+                        released: game.released,
+                        rating: game.rating,
+                        platforms: game.platforms?.map((p) => p.platform.name),
+                        genres: game.genres?.map((g) => g.name),
+                        ratings: game.ratings.map(r => r.title),
+                        metacritic: game.metacritic,
+                        playtime: game.playtime,
+                        tags: game.tags.map(t => t.name),
+                        esrbating: game.esrb_rating,
+                        shortScreenshots: game.short_screenshots.map(s => s.image)
                     }
                 })
             }
@@ -65,31 +63,30 @@ router.get("/", async (req, res, next) => {
         } else {
             let videogames = [];
             const videogamesDb = await Videogame.findAll({
-                include: Genre,
-                limit: 100
+                include: Genre
             })
-            videogamesDb.forEach((vg) => {
+            videogamesDb.forEach(game => {
                 videogames.push({
-                    id: vg.id,
-                    name: vg.name,
-                    img: vg.img,
-                    released: vg.released,
-                    rating: vg.rating,
-                    platforms: vg.platforms?.map((p) => p.platform.name),
-                    genres: vg.genres.map((g) => g.name),
-                    ratings: vg.ratings.map(r => r.title),
-                    metacritic: vg.metacritic,
-                    playtime: vg.playtime,
-                    tags: vg.tags.map(t => t.name),
-                    esrbating: vg.esrb_rating,
-                    shortScreenshots: vg.short_screenshots.map(s => s.image)
+                    id: game.id,
+                    name: game.name,
+                    img: game.img,
+                    released: game.released,
+                    rating: game.rating,
+                    platforms: game.platforms?.map((p) => p.platform.name),
+                    genres: game.genres.map((g) => g.name),
+                    ratings: game.ratings.map(r => r.title),
+                    metacritic: game.metacritic,
+                    playtime: game.playtime,
+                    tags: game.tags.map(t => t.name),
+                    esrbating: game.esrb_rating,
+                    shortScreenshots: game.short_screenshots.map(s => s.image)
                 })
             })
-            const firstPagePetition = axios.get(`https://api.rawg.io/api/games?key=${apiKey}`);
-            const secondPagePetition = axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=2`);
-            const thirdPagePetition = axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=3`);
-            const fourthPagePetition = axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=4`);
-            const fifthPagePetition = axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=5`);
+            const firstPagePetition = axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page_size=40`);
+            const secondPagePetition = axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=2&page_size=40`);
+            const thirdPagePetition = axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=3&page_size=40`);
+            const fourthPagePetition = axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=4&page_size=40`);
+            const fifthPagePetition = axios.get(`https://api.rawg.io/api/games?key=${apiKey}&page=5&page_size=40`);
             let allPetitions = await Promise.all([firstPagePetition, secondPagePetition, thirdPagePetition, fourthPagePetition, fifthPagePetition]);
             pageOne = allPetitions[0].data.results;
             pageTwo = allPetitions[1].data.results;
@@ -97,21 +94,21 @@ router.get("/", async (req, res, next) => {
             pageFour = allPetitions[3].data.results;
             pageFive = allPetitions[4].data.results;
             let allPages = pageOne.concat(pageTwo, pageThree, pageFour, pageFive)
-            allPages.forEach((vg) => {
+            allPages.forEach((game) => {
                 videogames.push({
-                    id: vg.id,
-                    name: vg.name,
-                    img: vg.background_image,
-                    released: vg.released,
-                    rating: vg.rating,
-                    platforms: vg.platforms.map(p => p.platform.name),
-                    genres: vg.genres.map(g => g.name),
-                    ratings: vg.ratings.map(r => r.title),
-                    metacritic: vg.metacritic,
-                    playtime: vg.playtime,
-                    tags: vg.tags.map(t => t.name),
-                    esrbating: vg.esrb_rating,
-                    shortScreenshots: vg.short_screenshots.map(s => s.image)
+                    id: game.id,
+                    name: game.name,
+                    img: game.background_image,
+                    released: game.released,
+                    rating: game.rating,
+                    platforms: game.platforms.map(p => p.platform.name),
+                    genres: game.genres.map(g => g.name),
+                    ratings: game.ratings.map(r => r.title),
+                    metacritic: game.metacritic,
+                    playtime: game.playtime,
+                    tags: game.tags.map(t => t.name),
+                    esrbating: game.esrb_rating,
+                    shortScreenshots: game.short_screenshots.map(s => s.image)
                 })
             })
             res.send(videogames);
