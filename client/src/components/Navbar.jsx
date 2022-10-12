@@ -20,7 +20,7 @@ export default function NavBar() {
     }
 
     return (
-        <nav className="flex sticky top-0 z-20 w-full gap-4 px-8 py-4 md:max-h-[80px] justify-evenly md:justify-between text-white bg-slate-900 shadow-md shadow-slate-900/50">
+        <nav className="flex sticky top-0 z-20 w-full gap-4 px-8 py-4 md:max-h-[80px] justify-evenly md:justify-between bg-slate-800 shadow-md shadow-slate-900">
             <Link to="/" className="hidden md:flex items-center">
                 <img src="https://videogamesspa.vercel.app/static/media/finalLogo.a56c40d2.svg" class="mr-2 h-6" alt="Gameon Logo" />
                 <span className="self-center text-xl font-semibold">Gameon</span>
