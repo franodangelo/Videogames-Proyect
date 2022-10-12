@@ -6,7 +6,6 @@ import InvalidSearch from "./InvalidSearch";
 import NoGamesCreated from "./NoGamesCreated";
 import Card from "../components/Card";
 import Paginated from "../components/Paginated";
-import Loader from "./Loader";
 
 export default function Home() {
 
@@ -61,62 +60,56 @@ export default function Home() {
     }
 
     return (
-        <main className="flex flex-col min-h-screen w-full items-center bg-slate-800">
+        <main className="flex flex-col min-h-screen w-full items-center bg-slate-900/90">
             <div className="flex flex-col w-full items-center">
-                <div className="flex flex-col-reverse md:flex-row flex-wrap md:flex-nowrap w-full p-8 justify-center items-center gap-4 md:justify-end">
+                <div className="flex flex-col-reverse md:flex-row flex-wrap md:flex-nowrap w-full p-8 justify-center items-center gap-2 md:justify-end">
                     <button className="h-auto secondaryButton"
                         onClick={e => handleReset(e)}>Clear filters
                     </button>
-                    <div className="flex flex-col md:gap-4 w-full md:w-fit">
-                        {/* <h4 className="text-center">Filter by:</h4> */}
-                        <div className="flex justify-center gap-4 md:gap-2">
-                            <select className="select" onChange={e => handleFilterByCreation(e)}>
-                                <option value="all">All videogames</option>
-                                <option value="created">Created by user</option>
-                                <option value="original">Original videogames</option>
-                            </select>
-                            <select className="select" onChange={e => handleFilterByGenre(e)}>
-                                <option value="All">All genres</option>
-                                <option value="Action">Action</option>
-                                <option value="Adventure">Adventure</option>
-                                <option value="Arcade">Arcade</option>
-                                <option value="Board Games">Board Games</option>
-                                <option value="Card">Card</option>
-                                <option value="Casual">Casual</option>
-                                <option value="Educational">Educational</option>
-                                <option value="Family">Family</option>
-                                <option value="Fighting">Fighting</option>
-                                <option value="Indie">Indie</option>
-                                <option value="Massively Multiplayer">Massively Multiplayer</option>
-                                <option value="Platformer">Platformer</option>
-                                <option value="Puzzle">Puzzle</option>
-                                <option value="Racing">Racing</option>
-                                <option value="RPG">RPG</option>
-                                <option value="Shooter">Shooter</option>
-                                <option value="Simulation">Simulation</option>
-                                <option value="Sports">Sports</option>
-                                <option value="Strategy">Strategy</option>
-                            </select>
-                        </div>
+                    <div className="flex justify-center gap-2">
+                        <select className="select" onChange={e => handleFilterByCreation(e)}>
+                            <option value="all">All videogames</option>
+                            <option value="created">Created by user</option>
+                            <option value="original">Original videogames</option>
+                        </select>
+                        <select className="select" onChange={e => handleFilterByGenre(e)}>
+                            <option value="All">All genres</option>
+                            <option value="Action">Action</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="Arcade">Arcade</option>
+                            <option value="Board Games">Board Games</option>
+                            <option value="Card">Card</option>
+                            <option value="Casual">Casual</option>
+                            <option value="Educational">Educational</option>
+                            <option value="Family">Family</option>
+                            <option value="Fighting">Fighting</option>
+                            <option value="Indie">Indie</option>
+                            <option value="Massively Multiplayer">Massively Multiplayer</option>
+                            <option value="Platformer">Platformer</option>
+                            <option value="Puzzle">Puzzle</option>
+                            <option value="Racing">Racing</option>
+                            <option value="RPG">RPG</option>
+                            <option value="Shooter">Shooter</option>
+                            <option value="Simulation">Simulation</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Strategy">Strategy</option>
+                        </select>
                     </div>
-                    <div className="flex flex-col md:gap-4 w-full md:w-fit">
-                        {/* <h4 className="text-center">Order by:</h4> */}
-                        <div className="flex justify-center gap-4 md:gap-2">
-                            <select className="select" onChange={e => handleSortByName(e)}>
-                                <option value="AZ"># - Z</option>
-                                <option value="ZA">Z - #</option>
-                            </select>
-                            <select className="select" onChange={e => handleSortByRating(e)}>
-                                <option value="LTH">Lower ratings</option>
-                                <option value="HTL">Higher ratings</option>
-                            </select>
-                        </div>
+                    <div className="flex justify-center gap-2">
+                        <select className="select" onChange={e => handleSortByName(e)}>
+                            <option value="AZ"># - Z</option>
+                            <option value="ZA">Z - #</option>
+                        </select>
+                        <select className="select" onChange={e => handleSortByRating(e)}>
+                            <option value="LTH">Lower ratings</option>
+                            <option value="HTL">Higher ratings</option>
+                        </select>
                     </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full m-auto px-8 justify-center items-center gap-4">
                     {currentVideogames[0] === "No games created" ? <NoGamesCreated />
                         : currentVideogames[0] === "No results" ? <InvalidSearch />
-                            : currentVideogames.length === 0 ? <Loader />
+                            : currentVideogames.length === 0 ? <h1>Loading...</h1>
                                 : currentVideogames.map(vg =>
                                     <Link key={vg.id} to={`/videogame/${vg.id}`}>
                                         <Card name={vg.name} img={vg.img} genres={vg.genres} released={vg.released} rating={vg.rating} />
