@@ -12,7 +12,7 @@ export default function Home() {
     let allVideogames = useSelector((state) => state.videogames);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [videogamesPerPage, setvideogamesPerPage] = useState(20);
+    const [videogamesPerPage, setvideogamesPerPage] = useState(40);
     const indexOfLastVideogame = currentPage * videogamesPerPage;
     const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage;
     const currentVideogames = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame);
@@ -60,13 +60,13 @@ export default function Home() {
     }
 
     return (
-        <main className="flex flex-col min-h-screen w-full items-center bg-slate-900/90">
+        <main className="flex flex-col min-h-screen w-full items-center bg-slate-900">
             <div className="flex flex-col w-full items-center">
-                <div className="flex flex-col-reverse md:flex-row flex-wrap md:flex-nowrap w-full p-8 justify-center items-center gap-2 md:justify-end">
+                <div className="flex flex-col-reverse md:flex-row flex-wrap md:flex-nowrap w-full p-8 justify-center items-center gap-4 md:justify-end">
                     <button className="h-auto secondaryButton"
                         onClick={e => handleReset(e)}>Clear filters
                     </button>
-                    <div className="flex justify-center gap-2">
+                    <div className="flex justify-center gap-4">
                         <select className="select" onChange={e => handleFilterByCreation(e)}>
                             <option value="all">All videogames</option>
                             <option value="created">Created by user</option>
@@ -95,7 +95,7 @@ export default function Home() {
                             <option value="Strategy">Strategy</option>
                         </select>
                     </div>
-                    <div className="flex justify-center gap-2">
+                    <div className="flex justify-center gap-4">
                         <select className="select" onChange={e => handleSortByName(e)}>
                             <option value="AZ"># - Z</option>
                             <option value="ZA">Z - #</option>
