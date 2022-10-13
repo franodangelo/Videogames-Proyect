@@ -6,6 +6,7 @@ import InvalidSearch from "./InvalidSearch";
 import NoGamesCreated from "./NoGamesCreated";
 import Card from "../components/Card";
 import Paginated from "../components/Paginated";
+import Loader from "./Loader";
 
 export default function Home() {
 
@@ -109,7 +110,7 @@ export default function Home() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full m-auto px-8 justify-center items-center gap-4">
                     {currentVideogames[0] === "No games created" ? <NoGamesCreated />
                         : currentVideogames[0] === "No results" ? <InvalidSearch />
-                            : currentVideogames.length === 0 ? <h1>Loading...</h1>
+                            : currentVideogames.length === 0 ? <Loader />
                                 : currentVideogames.map(vg =>
                                     <Link key={vg.id} to={`/videogame/${vg.id}`}>
                                         <Card name={vg.name} img={vg.img} genres={vg.genres} released={vg.released} rating={vg.rating} />
