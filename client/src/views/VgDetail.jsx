@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getVideogameDetail, deleteVideogame } from "../redux/actions";
 import { HiLink } from "react-icons/hi";
 import Loader from "./Loader";
@@ -22,35 +22,6 @@ export default function VideogameDetail() {
     }
 
     return (
-        // <main className="flex flex-col lg:flex-row min-h-screen w-full my-auto items-center bg-roses-600 md:bg-roses-600/90">
-        //     <div className="-z-10 invisible md:visible absolute w-full h-full">
-        //         <img className="w-full h-full object-cover"
-        //             src={videogameDetail.img}
-        //             alt={`${videogameDetail.name} thumbnail`} />
-        //     </div>
-        //     <section className="flex lg:flex-col lg:basis-6/12 p-8">
-        //         <div className="flex flex-col">
-        //             <h4 className="text-sm text-start tracking-widest">{videogameDetail.released}</h4>
-        //             <h1 className="py-4 font-bold text-2xl md:text-3xl lg:text-4xl text-slate-900 uppercase">{videogameDetail.name}</h1>
-        //             <h2 className="font-thin text-lg md:text-xl">{videogameDetail.genres}</h2>
-        //             <p className="py-4 md:text-sm" dangerouslySetInnerHTML={{ __html: videogameDetail.description }} />
-        //             {typeof videogameDetail.id !== "number"
-        //                 ? <button onClick={() => handleDelete(id)}>Delete videogame</button>
-        //                 : null
-        //             }
-        //         </div>
-        //     </section>
-        //     <section className="flex flex-col lg:basis-6/12 p-8 self-center">
-        //         <h4 className="z-10 w-fit -mb-12 mr-4 px-2 py-1 self-end font-bold text-sm -lg bg-slate-100">{videogameDetail.rating}</h4>
-        //         <div className="w-full overflow-hidden -xl mb-4 shadow-lg shadow-roses-800">
-        //             <img className="w-full object-cover"
-        //                 src={videogameDetail.img}
-        //                 alt={`${videogameDetail.name} thumbnail`} />
-        //         </div>
-        //         <p className="uppercase">{videogameDetail.ratings}</p>
-        //         <h3 className="font-thin">Available in {videogameDetail.platforms}</h3>
-        //     </section>
-        // </main>
         <main className="relative h-full">
             {videogameDetail.name ? <div><img className="absolute w-full h-full object-cover" src={videogameDetail.bgImgDetail} alt={`${videogameDetail.name} thumbnail`} />
                 <div className="relative grid grid-cols-1 md:grid-cols-2 w-full h-full min-h-screen p-6 md:p-8 gap-10 bg-slate-900/90">

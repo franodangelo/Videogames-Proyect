@@ -13,7 +13,7 @@ export default function Home() {
     let allVideogames = useSelector((state) => state.videogames);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [videogamesPerPage, setvideogamesPerPage] = useState(40);
+    const [videogamesPerPage] = useState(40);
     const indexOfLastVideogame = currentPage * videogamesPerPage;
     const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage;
     const currentVideogames = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame);
@@ -44,7 +44,7 @@ export default function Home() {
         setCurrentPage(1);
     }
 
-    const [order, setOrder] = useState("");
+    const setOrder = useState("");
 
     function handleSortByName(e) {
         e.preventDefault();
