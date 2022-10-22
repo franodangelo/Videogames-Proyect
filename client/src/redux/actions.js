@@ -65,6 +65,19 @@ export const getVideogameDetail = (id) => {
     }
 }
 
+export const cleanState = () => {
+    return async (dispatch) => {
+        try {
+            dispatch({
+                type: "CLEAN_STATE",
+                payload: {}
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
 export const getGenres = () => {
     return async (dispatch) => {
         try {

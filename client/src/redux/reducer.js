@@ -35,6 +35,11 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 videogameDetail: action.payload
             }
+        case "CLEAN_STATE":
+            return {
+                ...state,
+                videogameDetail: action.payload
+            }
         case GET_GENRES:
             return {
                 ...state,
