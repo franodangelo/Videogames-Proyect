@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getVideogameDetail, deleteVideogame } from "../redux/actions";
+import { getVideogameDetail, deleteVideogame, cleanState } from "../redux/actions";
 import { HiLink } from "react-icons/hi";
 import Loader from "./Loader";
 
@@ -13,6 +13,7 @@ export default function VideogameDetail() {
 
     useEffect(() => {
         dispatch(getVideogameDetail(id));
+        dispatch(cleanState());
     }, [dispatch, id])
 
     function handleDelete(id) {
