@@ -11,7 +11,7 @@ export default function Card({ name, img, rating, genres }) {
             </div>
             <h1 className="py-4 font-bold text-2xl md:text-xl lg:text-lg uppercase truncate">{name || <Skeleton />}</h1>
             <div className="flex flex-wrap gap-1">
-                {genres.slice(0, 3)?.map(genre => {
+                {genres.slice(0, 2)?.map(genre => {
                     return <p className="py-1 px-2 font-semibold text-xs uppercase bg-slate-600">{genre}</p>
                 })}
             </div>
