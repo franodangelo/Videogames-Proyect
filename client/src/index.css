@@ -17,7 +17,7 @@
     }
 
     .select {
-        @apply w-[160px] py-2 px-4 border-2 focus:border-white text-sm md:text-base border-slate-700 bg-slate-800 cursor-pointer
+        @apply w-32 p-2 border focus:border-white text-xs md:text-sm border-slate-700 bg-slate-800 cursor-pointer
     }
 
     .page {
