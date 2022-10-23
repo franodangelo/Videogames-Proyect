@@ -1,6 +1,4 @@
 import React from "react";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 
 export default function Card({ name, img, rating, genres }) {
     return (
@@ -9,7 +7,7 @@ export default function Card({ name, img, rating, genres }) {
             <div className="h-full w-full lg:h-60 xl:h-48 overflow-hidden rounded">
                 <img className="h-80 md:h-48 lg:h-72 w-full object-cover" src={img} alt="Videogame cover" />
             </div>
-            <h1 className="py-4 font-bold text-2xl md:text-xl lg:text-lg uppercase truncate">{name || <Skeleton />}</h1>
+            <h1 className="py-4 font-bold text-2xl md:text-xl lg:text-lg uppercase truncate">{name}</h1>
             <div className="flex flex-wrap gap-1">
                 {genres.slice(0, 2)?.map(genre => {
                     return <p className="py-1 px-2 font-semibold text-xs uppercase bg-slate-600">{genre}</p>
