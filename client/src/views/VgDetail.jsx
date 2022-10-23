@@ -84,7 +84,7 @@ export default function VideogameDetail() {
                             {videogameDetail.gameSeries?.map(game => {
                                 return <div className="flex flex-col h-60">
                                     <img className="w-full h-full object-cover" src={game.img} alt={`${game.name} thumbnail`} />
-                                    <h6 className="py-2 text-sm text-center text-ellipsis">{game.name}</h6>
+                                    <h6 className="py-2 text-sm text-center truncate">{game.name}</h6>
                                 </div>
                             })}
                         </div>
