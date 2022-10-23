@@ -78,17 +78,19 @@ export default function VideogameDetail() {
                             : null
                         }
                     </section>
-                    <section className="flex flex-col col-span-2 p-8 gap-4 rounded-lg bg-slate-800 shadow-md shadow-slate-900">
-                        <h2 className="font-bold text-base md:text-xl lg:text-2xl text-center md:text-start">Games related to "{videogameDetail.name}"</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-4 rounded-lg bg-slate-800">
-                            {videogameDetail.gameSeries?.map(game => {
-                                return <div className="flex flex-col h-60">
-                                    <img className="w-full h-full object-cover" src={game.img} alt={`${game.name} thumbnail`} />
-                                    <h6 className="py-2 text-sm text-center truncate">{game.name}</h6>
-                                </div>
-                            })}
-                        </div>
-                    </section>
+                    {videogameDetail.gameSeries.length > 0 ?
+                        <section className="flex flex-col col-span-2 p-8 gap-4 rounded-lg bg-slate-800 shadow-md shadow-slate-900">
+                            <h2 className="font-bold text-base md:text-xl lg:text-2xl text-center md:text-start">Games related to "{videogameDetail.name}"</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-4 rounded-lg bg-slate-800">
+                                {videogameDetail.gameSeries?.map(game => {
+                                    return <div className="flex flex-col h-60">
+                                        <img className="w-full h-full object-cover" src={game.img} alt={`${game.name} thumbnail`} />
+                                        <h6 className="py-2 text-sm text-center truncate">{game.name}</h6>
+                                    </div>
+                                })}
+                            </div>
+                        </section> : null
+                    }
                 </div>
             </div> : <div className="pt-40 md:pt-24 bg-slate-900"><Loader /></div>}
         </main>
