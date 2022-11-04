@@ -33,20 +33,30 @@ export default function VideogameDetail() {
                         <section className="col-span-2 md:col-span-1 flex flex-col gap-4">
                             <div className="flex flex-row gap-2 justify-between">
                                 <div className="flex w-fit gap-2">
-                                    <a href={videogameDetail.metacriticURL} target="_blank" rel="noreferrer">
-                                        <div className="flex px-2 py-1 gap-1 bg-slate-200">
-                                            <img className="w-4 h-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Metacritic.svg/1024px-Metacritic.svg.png" alt="metacritic thumbnail" />
-                                            <p className="text-xs text-slate-800">Metascore {videogameDetail.metacritic}</p>
-                                            <HiOutlineInformationCircle
-                                                onMouseEnter={() => setShownInfo(true)}
-                                                onMouseLeave={() => setShownInfo(false)} />
-                                        </div>
-                                    </a>
-                                    {shownInfo && (
-                                        <div className="">
-                                            I'll appear when you hover over the button.
-                                        </div>
-                                    )}
+                                    <div className="static flex mr-2 gap-1 items-center">
+                                        <a href={videogameDetail.metacriticURL} target="_blank" rel="noreferrer">
+                                            <div className="flex px-2 py-1 gap-1 bg-slate-200">
+                                                <img className="w-4 h-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Metacritic.svg/1024px-Metacritic.svg.png" alt="metacritic thumbnail" />
+                                                <p className="text-xs text-slate-800">Metascore {videogameDetail.metacritic}</p>
+                                            </div>
+                                        </a>
+                                        <HiOutlineInformationCircle className="cursor-pointer"
+                                            onMouseEnter={() => setShownInfo(true)}
+                                            onMouseLeave={() => setShownInfo(false)} />
+                                        {shownInfo && (
+                                            <div className="absolute flex flex-col w-[360px] md:w-[400px] mt-[224px] mx-auto py-2 px-4 text-sm bg-slate-200">
+                                                <p className="text-slate-800">A <strong className="text-slate-800">metascore</strong> is a weighted average of reviews from top critics and publications for a given video game.</p>
+                                                <h6 className="mt-2 font-semibold text-slate-800 uppercase">General meaning of this score</h6>
+                                                <ul className="flex flex-col">
+                                                    <li className="text-slate-800"><strong className="text-slate-800">Universal Acclaim</strong>: 90-100</li>
+                                                    <li className="text-slate-800"><strong className="text-slate-800">Generally Favorable Reviews</strong>: 75-89</li>
+                                                    <li className="text-slate-800"><strong className="text-slate-800">Mixed on Average Reviews</strong>: 50-74</li>
+                                                    <li className="text-slate-800"><strong className="text-slate-800">Generally Unfavorable Reviews</strong>: 20-49</li>
+                                                    <li className="text-slate-800"><strong className="text-slate-800">Overwhelming Dislike</strong>: 0-19</li>
+                                                </ul>
+                                            </div>
+                                        )}
+                                    </div>
                                     <p className="flex px-2 py-1 text-xs uppercase bg-slate-600">{videogameDetail.esrbRating}</p>
                                 </div>
                                 <p className="flex px-2 py-1 font-semibold text-xs uppercase bg-rose-600">{videogameDetail.rating}</p>
@@ -66,7 +76,7 @@ export default function VideogameDetail() {
                                 </div>
                                 <div className="flex items-center gap-1">
                                     <HiCalendar className="w-4 h-4" />
-                                    <h2 className="text-xs text-start">{videogameDetail.released}</h2>
+                                    <h2 className="text-start text-xs tracking-wide">{videogameDetail.released}</h2>
                                 </div>
                                 <div className="flex flex-wrap gap-2">
                                     {videogameDetail.genres?.map(genre => {
