@@ -2,6 +2,7 @@ import {
     GET_VIDEOGAMES,
     GET_NAME_VIDEOGAME,
     GET_VIDEOGAME_DETAIL,
+    CLEAN_STATE,
     GET_GENRES,
     FILTER_BY_CREATION,
     FILTER_BY_GENRE,
@@ -69,7 +70,7 @@ export const cleanState = () => {
     return async (dispatch) => {
         try {
             dispatch({
-                type: "CLEAN_STATE",
+                type: CLEAN_STATE,
                 payload: {}
             })
         } catch (error) {
