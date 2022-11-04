@@ -3,7 +3,7 @@ import { FaLinkedinIn, FaGithub } from "react-icons/fa";
 
 export default function Footer() {
     return (
-        <footer className="flex flex-col md:flex-row w-full h-40 mt-auto px-8 justify-center gap-8 md:justify-between md:gap-0 items-center bg-slate-800">
+        <footer className="flex flex-col md:flex-row w-full h-20 mt-auto px-8 justify-center gap-8 md:justify-between md:gap-0 items-center bg-slate-800">
             <section className="flex md:flex-col gap-8 md:gap-2">
                 <div className="flex items-center">
                     <img className="mr-2 h-4" alt="Gameon Logo"
