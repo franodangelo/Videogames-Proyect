@@ -29,7 +29,7 @@ export default function VideogameDetail() {
         <main className="relative h-full">
             {videogameDetail.name ?
                 <div><img className="absolute w-full h-full object-cover" src={videogameDetail.bgImgDetail} alt={`${videogameDetail.name} thumbnail`} />
-                    <div className="relative grid grid-cols-1 md:grid-cols-2 w-full h-full min-h-screen p-6 md:p-8 gap-10 bg-slate-900/90">
+                    <div className="relative grid grid-cols-1 md:grid-cols-2 w-full h-full min-h-screen p-6 md:p-8 gap-4 md:gap-10 bg-slate-900/90">
                         <section className="col-span-2 md:col-span-1 flex flex-col gap-4">
                             <div className="flex flex-row gap-2 justify-between">
                                 <div className="flex w-fit gap-2">
