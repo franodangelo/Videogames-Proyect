@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getVideogameDetail, deleteVideogame, cleanState } from "../redux/actions";
-import { HiLink, HiCalendar, HiOutlineInformationCircle } from "react-icons/hi";
+import { HiLink, HiCalendar, HiOutlineInformationCircle, HiStar, HiCode } from "react-icons/hi";
 import { MdVideogameAssetOff } from "react-icons/md";
 import Loader from "./Loader";
 
@@ -60,13 +60,14 @@ export default function VideogameDetail() {
                                     </div>
                                     <p className="flex px-2 py-1 text-xs uppercase bg-slate-600">{videogameDetail.esrbRating}</p>
                                 </div>
-                                <p className="flex px-2 py-1 font-semibold text-xs uppercase bg-rose-600">{videogameDetail.rating}</p>
+                                <p className="flex px-2 py-1 gap-1 items-center font-semibold text-xs uppercase bg-rose-600"><HiStar size="1.2em" />{videogameDetail.rating}</p>
                             </div>
                             <img className="h-60 md:h-full object-cover rounded-lg shadow-xl shadow-slate-900" src={videogameDetail.img} alt={`${videogameDetail.name} thumbnail`} />
                         </section>
                         <section className="col-span-2 md:col-span-1 flex flex-col items-center gap-4">
                             <div className="flex flex-col w-full items-start md:p-10 gap-2 md:bg-slate-800 md:rounded-lg md:shadow-lg md:shadow-slate-900">
-                                <div className="flex flex-col lg:flex-row w-fit text-center md:text-start text-xs">
+                                <div className="flex w-fit gap-1 items-center text-xs">
+                                    <HiCode size="1.5em" />
                                     {videogameDetail.developedBy?.join(" - ")}
                                 </div>
                                 <div className="flex items-center gap-4">
@@ -76,17 +77,17 @@ export default function VideogameDetail() {
                                     </a>
                                 </div>
                                 <div className="flex items-center gap-1">
-                                    <HiCalendar className="w-4 h-4" />
+                                    <HiCalendar />
                                     <h2 className="text-start text-xs tracking-wide">{videogameDetail.released}</h2>
                                 </div>
-                                <div className="flex flex-wrap gap-2">
+                                <div className="flex flex-wrap mt-2 gap-2">
                                     {videogameDetail.genres?.map(genre => {
                                         return <p className="py-1 px-2 font-semibold text-xs uppercase bg-rose-600">{genre}</p>
                                     })}
                                 </div>
                             </div>
                             <div className="flex flex-col w-full md:w-fit md:self-start px-2 py-1 bg-slate-200">
-                                <p className="text-xs text-start text-slate-800">Available in: {videogameDetail.platforms?.join(" - ")}</p>
+                                <p className="text-xs text-start text-slate-800"><strong>Available in:</strong> {videogameDetail.platforms?.join(" - ")}</p>
                             </div>
                             <p className="text-sm">{videogameDetail.description}</p>
                         </section>
