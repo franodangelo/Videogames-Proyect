@@ -30,20 +30,20 @@ export default function VideogameDetail() {
             {videogameDetail.name ?
                 <div>
                     <img className="absolute w-full h-full object-cover" src={videogameDetail.bgImgDetail} alt={`${videogameDetail.name} thumbnail`} />
-                    <div className="relative grid grid-cols-1 md:grid-cols-2 w-full h-full min-h-screen p-6 md:p-8 gap-4 md:gap-10 bg-slate-900/90">
+                    <div className="relative grid grid-cols-1 md:grid-cols-2 w-full h-full min-h-screen p-6 md:p-8 gap-8 bg-slate-900/90">
                         <section className="col-span-2 md:col-span-1 flex flex-col gap-4">
                             <div className="flex flex-row gap-2 justify-between">
                                 <div className="flex w-fit gap-2">
-                                    <div className="static flex mr-2 gap-1 items-center">
-                                        <a href={videogameDetail.metacriticURL} target="_blank" rel="noreferrer">
-                                            <div className="flex px-2 py-1 gap-1 bg-slate-200">
+                                    <div className="static flex items-center">
+                                        <div className="flex px-2 py-1 gap-2 bg-slate-200">
+                                            <a className="flex gap-1" href={videogameDetail.metacriticURL} target="_blank" rel="noreferrer">
                                                 <img className="w-4 h-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Metacritic.svg/1024px-Metacritic.svg.png" alt="metacritic thumbnail" />
                                                 <p className="text-xs text-slate-800">Metascore {videogameDetail.metacritic}</p>
-                                            </div>
-                                        </a>
-                                        <HiOutlineInformationCircle className="cursor-pointer"
-                                            onMouseEnter={() => setShownInfo(true)}
-                                            onMouseLeave={() => setShownInfo(false)} />
+                                            </a>
+                                            <HiOutlineInformationCircle className="cursor-pointer" color="#0f172a"
+                                                onMouseEnter={() => setShownInfo(true)}
+                                                onMouseLeave={() => setShownInfo(false)} />
+                                        </div>
                                         {shownInfo && (
                                             <div className="absolute flex flex-col w-[360px] md:w-[400px] mt-[224px] mx-auto py-2 px-4 text-sm bg-slate-200">
                                                 <p className="text-slate-800">A <strong className="text-slate-800">metascore</strong> is a weighted average of reviews from top critics and publications for a given video game.</p>
@@ -65,12 +65,12 @@ export default function VideogameDetail() {
                             <img className="h-60 md:h-full object-cover rounded-lg shadow-xl shadow-slate-900" src={videogameDetail.img} alt={`${videogameDetail.name} thumbnail`} />
                         </section>
                         <section className="col-span-2 md:col-span-1 flex flex-col items-center gap-4">
-                            <div className="flex flex-col w-full items-center md:items-start p-10 gap-2 bg-slate-800 rounded-lg shadow-lg shadow-slate-900">
+                            <div className="flex flex-col w-full items-start md:p-10 gap-2 md:bg-slate-800 md:rounded-lg md:shadow-lg md:shadow-slate-900">
                                 <div className="flex flex-col lg:flex-row w-fit text-center md:text-start text-xs">
                                     {videogameDetail.developedBy?.join(" - ")}
                                 </div>
                                 <div className="flex items-center gap-4">
-                                    <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl text-center md:text-start uppercase">{videogameDetail.name}</h1>
+                                    <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl text-start uppercase">{videogameDetail.name}</h1>
                                     <a href={videogameDetail.website} target="_blank" rel="noreferrer">
                                         <HiLink />
                                     </a>
@@ -106,7 +106,7 @@ export default function VideogameDetail() {
                         </section>
                         {videogameDetail.gameSeries.length > 0 ?
                             <section className="flex flex-col col-span-2 p-8 gap-4 rounded-lg bg-slate-800 shadow-md shadow-slate-900">
-                                <h2 className="font-bold text-base md:text-xl lg:text-2xl text-center md:text-start">Games related to "{videogameDetail.name}"</h2>
+                                <h2 className="font-bold text-base md:text-xl lg:text-2xl text-start">Games related to "{videogameDetail.name}"</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-4 rounded-lg bg-slate-800">
                                     {videogameDetail.gameSeries?.map(game => {
                                         return <div className="flex flex-col h-60">
