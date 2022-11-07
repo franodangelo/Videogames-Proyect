@@ -115,8 +115,8 @@ export default function VideogameDetail() {
                                                 <img className="w-full h-full object-cover" src={game.img} alt={`${game.name} thumbnail`} /> :
                                                 <div className="flex flex-col w-full h-full items-center justify-center bg-slate-900">
                                                     <div className="flex flex-col p-8 gap-2 items-center justify-center">
-                                                        <MdVideogameAssetOff color="#e11d48" size="4em" />
-                                                        <p className="font-semibold text-sm text-center">No image available</p>
+                                                        <MdVideogameAssetOff color="#475569" size="4em" />
+                                                        <p className="font-semibold text-sm text-center">Image not available</p>
                                                     </div>
                                                 </div>
                                             }
