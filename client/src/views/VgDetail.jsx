@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getVideogameDetail, deleteVideogame, cleanState } from "../redux/actions";
-import { IconContext } from "react-icons";
 import { HiLink, HiCalendar, HiOutlineInformationCircle } from "react-icons/hi";
 import { MdVideogameAssetOff } from "react-icons/md";
 import Loader from "./Loader";
@@ -115,11 +114,7 @@ export default function VideogameDetail() {
                                                 <img className="w-full h-full object-cover" src={game.img} alt={`${game.name} thumbnail`} /> :
                                                 <div className="flex flex-col w-full h-full items-center justify-center bg-slate-900">
                                                     <div className="flex flex-col p-8 gap-2 items-center justify-center">
-                                                        <IconContext.Provider value={{ color: "blue", size: "4em" }}>
-                                                            <div>
-                                                                <MdVideogameAssetOff color="#e11d48" size="4em" />
-                                                            </div>
-                                                        </IconContext.Provider>
+                                                        <MdVideogameAssetOff color="#e11d48" size="4em" />
                                                         <p className="font-semibold text-sm text-center">No image available</p>
                                                     </div>
                                                 </div>
