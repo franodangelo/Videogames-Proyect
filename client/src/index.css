@@ -5,7 +5,7 @@
 @layer base {
 
     *{
-        @apply font-sans text-white 
+        @apply font-sans  
     }
 
     .primaryButton {
