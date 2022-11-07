@@ -32,7 +32,6 @@ export default function Footer() {
                     </a>
                 </section>
             </section>
-
         </footer>
     )
 }
