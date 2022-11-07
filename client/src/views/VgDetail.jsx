@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getVideogameDetail, deleteVideogame, cleanState } from "../redux/actions";
+import { IconContext } from "react-icons";
 import { HiLink, HiCalendar, HiOutlineInformationCircle } from "react-icons/hi";
+import { MdVideogameAssetOff } from "react-icons/md";
 import Loader from "./Loader";
-import { useState } from "react";
 
 export default function VideogameDetail() {
     let videogameDetail = useSelector(state => state.videogameDetail);
@@ -26,9 +27,10 @@ export default function VideogameDetail() {
     }
 
     return (
-        <main className="relative h-full">
+        <main className="relative h-full text-white">
             {videogameDetail.name ?
-                <div><img className="absolute w-full h-full object-cover" src={videogameDetail.bgImgDetail} alt={`${videogameDetail.name} thumbnail`} />
+                <div>
+                    <img className="absolute w-full h-full object-cover" src={videogameDetail.bgImgDetail} alt={`${videogameDetail.name} thumbnail`} />
                     <div className="relative grid grid-cols-1 md:grid-cols-2 w-full h-full min-h-screen p-6 md:p-8 gap-4 md:gap-10 bg-slate-900/90">
                         <section className="col-span-2 md:col-span-1 flex flex-col gap-4">
                             <div className="flex flex-row gap-2 justify-between">
@@ -109,7 +111,19 @@ export default function VideogameDetail() {
                                 <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-4 rounded-lg bg-slate-800">
                                     {videogameDetail.gameSeries?.map(game => {
                                         return <div className="flex flex-col h-60">
-                                            <img className="w-full h-full object-cover" src={game.img} alt={`${game.name} thumbnail`} />
+                                            {game.img ?
+                                                <img className="w-full h-full object-cover" src={game.img} alt={`${game.name} thumbnail`} /> :
+                                                <div className="flex flex-col w-full h-full items-center justify-center bg-slate-900">
+                                                    <div className="flex flex-col p-8 gap-2 items-center justify-center">
+                                                        <IconContext.Provider value={{ color: "blue", size: "4em" }}>
+                                                            <div>
+                                                                <MdVideogameAssetOff color="#e11d48" size="4em" />
+                                                            </div>
+                                                        </IconContext.Provider>
+                                                        <p className="font-semibold text-sm text-center">No image available</p>
+                                                    </div>
+                                                </div>
+                                            }
                                             <h6 className="py-2 text-sm text-center truncate">{game.name}</h6>
                                         </div>
                                     })}
@@ -117,7 +131,11 @@ export default function VideogameDetail() {
                             </section> : null
                         }
                     </div>
-                </div> : <div className="pt-40 md:pt-24 bg-slate-900"><Loader /></div>}
+                </div> :
+                <div className="pt-40 md:pt-24 bg-slate-900">
+                    <Loader />
+                </div>
+            }
         </main>
     )
 }

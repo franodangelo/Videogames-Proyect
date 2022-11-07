@@ -165,7 +165,7 @@ export default function Form() {
     }
 
     return (
-        <main className="flex flex-col w-full h-full items-center px-4 py-8 lg:px-16 lg:py-12 gap-4 bg-slate-900">
+        <main className="flex flex-col w-full h-full items-center px-4 py-8 lg:px-16 lg:py-12 gap-4 text-white bg-slate-900">
             <h1 className="w-fit self-center font-bold text-2xl lg:text-3xl text-center">Create your own game</h1>
             <form className="flex flex-col h-auto w-full m-auto lg:w-auto lg:items-center p-4 md:p-8 gap-4 lg:gap-8 rounded-lg bg-slate-800"
                 onSubmit={e => handleSubmit(e)}>
