@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getNameVideogame } from "../redux/actions";
 import { Link } from "react-router-dom";
@@ -20,16 +20,16 @@ export default function NavBar() {
     }
 
     return (
-        <nav className="flex sticky top-0 z-20 w-full gap-4 px-8 py-4 md:max-h-[80px] justify-evenly md:justify-between text-white bg-slate-800 shadow-md shadow-slate-900">
+        <nav className="flex sticky top-0 z-20 w-full h-[80px] px-8 py-4 gap-4 justify-evenly md:justify-between text-white bg-slate-800 shadow-md shadow-slate-900">
             <Link to="/" className="hidden md:flex items-center">
-                <img src="https://videogamesspa.vercel.app/static/media/finalLogo.a56c40d2.svg" class="mr-2 h-6" alt="Gameon Logo" />
-                <span className="self-center text-xl font-semibold">Gameon</span>
+                <img src="/client/public/finalLogo.svg" class="h-6 mr-2" alt="Gameon Logo" />
+                <span className="self-center font-semibold text-xl">Gameon</span>
             </Link>
             <div className="flex justify-between items-center gap-4">
                 <Link to="/" className="md:hidden items-center">
-                    <img src="https://videogamesspa.vercel.app/static/media/finalLogo.a56c40d2.svg" class="h-6" alt="Gameon Logo" />
+                    <img src="/client/public/finalLogo.svg" class="h-6" alt="Gameon Logo" />
                 </Link>
-                <div className="relative h-full flex">
+                <div className="flex relative h-full">
                     <input className="w-[160px] md:w-full px-4 text-sm text-white placeholder-slate-400 bg-slate-700 border border-rose-700 focus:ring-rose-500 focus:border-rose-500"
                         placeholder="Search game..."
                         type="text"
