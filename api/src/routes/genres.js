@@ -1,7 +1,7 @@
-const { Router } = require('express');
+const { Router } = require("express");
 const router = Router();
-const axios = require('axios');
-const { Genre } = require('../db');
+const axios = require("axios");
+const { Genre } = require("../db");
 
 router.get("/", async (req, res, next) => {
     try {

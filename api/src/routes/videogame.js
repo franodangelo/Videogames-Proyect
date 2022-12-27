@@ -1,11 +1,11 @@
-const { Router } = require('express');
+const { Router } = require("express");
 const router = Router();
-const axios = require('axios');
+const axios = require("axios");
 const { apiKey } = process.env;
-const { Videogame, Genre } = require('../db');
-const { response } = require('../app');
+const { Videogame, Genre } = require("../db");
+const { response } = require("../app");
 
-router.get('/:id', async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
     try {
         const { id } = req.params;
         let foundVideogame;
@@ -56,7 +56,7 @@ router.get('/:id', async (req, res, next) => {
     }
 })
 
-router.post('/', async (req, res, next) => {
+router.post("/", async (req, res, next) => {
     const { img, name, released, genres, rating, description, platforms } = req.body;
     try {
         const newVideogame = await Videogame.create({
@@ -80,7 +80,7 @@ router.post('/', async (req, res, next) => {
     }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
     try {
         const { id } = req.params;
         await Videogame.destroy({
@@ -94,7 +94,7 @@ router.delete('/:id', async (req, res, next) => {
     }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
     try {
         const { id } = req.params;
         const videogame = req.body;
