@@ -1,9 +1,9 @@
-const { Router } = require('express');
+const { Router } = require("express");
 const router = Router();
-const { Op } = require('sequelize');
-const axios = require('axios');
+const { Op } = require("sequelize");
+const axios = require("axios");
 const { apiKey } = process.env;
-const { Videogame, Genre } = require('../db');
+const { Videogame, Genre } = require("../db");
 
 router.get("/", async (req, res, next) => {
     try {
