@@ -1,10 +1,17 @@
 {
     "cSpell.words": [
+        "conectar",
         "DATEONLY",
         "esrb",
         "esrbating",
         "Gameon",
+        "hstore",
         "metacritic",
+        "PGDATABASE",
+        "PGHOST",
+        "PGPASSWORD",
+        "PGPORT",
+        "PGUSER",
         "Platformer",
         "Searchbar",
         "setvideogames",
