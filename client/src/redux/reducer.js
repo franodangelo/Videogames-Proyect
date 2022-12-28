@@ -2,6 +2,7 @@ import {
     GET_VIDEOGAMES,
     GET_NAME_VIDEOGAME,
     GET_VIDEOGAME_DETAIL,
+    CLEAN_STATE,
     GET_GENRES,
     FILTER_BY_CREATION,
     FILTER_BY_GENRE,
@@ -23,7 +24,7 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
                 videogames: action.payload,
-                    videogamesCopy: action.payload
+                videogamesCopy: action.payload
             }
         case GET_NAME_VIDEOGAME:
             return {
@@ -35,7 +36,7 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 videogameDetail: action.payload
             }
-        case "CLEAN_STATE":
+        case CLEAN_STATE:
             return {
                 ...state,
                 videogameDetail: action.payload
@@ -113,7 +114,7 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 videogamesCopy: withoutDeleted
             }
-            default:
-                return state;
+        default:
+            return state;
     }
 }
