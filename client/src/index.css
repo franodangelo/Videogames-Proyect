@@ -5,7 +5,7 @@
 @layer base {
 
     *{
-        @apply font-sans  
+        @apply font-sans scrollbar-hide
     }
 
     .primaryButton {
