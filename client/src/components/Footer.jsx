@@ -1,24 +1,27 @@
 import { FaLinkedinIn, FaGithub } from "react-icons/fa";
+import logo from "../img/finalLogo.svg";
 
 export default function Footer() {
     return (
-        <footer className="flex flex-col md:flex-row w-full h-40 md:h-20 mt-auto px-8 justify-center md:justify-between gap-8 md:gap-0 items-center text-white bg-slate-800">
-            <section className="flex md:flex-col gap-8 md:gap-2">
+        <footer className="flex flex-row w-full h-40 p-8 justify-between gap-0 text-white bg-slate-800">
+            <section className="flex flex-col gap-2">
                 <div className="flex items-center">
-                    <img className="h-4 mr-2" alt="Gameon Logo"
-                        src="https://videogamesspa.vercel.app/static/media/finalLogo.a56c40d2.svg" />
-                    <span className="self-center text-lg font-semibold">Gameon</span>
+                    <img className="h-4 mr-2" alt="Gameon Logo" src={logo} />
+                    <span className="text-lg font-semibold">Gameon</span>
                 </div>
-                <div className="flex items-center gap-2">
-                    <h1 className="text-sm">See code</h1>
+                <div className="flex gap-2">
+                    <h1 className="text-xs">See code</h1>
                     <a href="https://github.com/franodangelo/Videogames-Proyect" target="_blank" rel="noreferrer">
                         <FaGithub />
                     </a>
                 </div>
             </section>
-            <section className="flex flex-col gap-2 items-center md:items-end font-bold">
-                <h1 className="font-medium text-sm">Created by <strong>Franco D'Angelo</strong></h1>
-                <section className="flex gap-2">
+            <section className="flex flex-col">
+                <div className="flex flex-col md:flex-row gap-1 md:items-center">
+                    <h1>All rights reserved:</h1>
+                    <h3 className="font-bold">Franco D'Angelo - 2022</h3>
+                </div>
+                <section className="flex mt-4 gap-2 md:self-end">
                     <a href="https://www.linkedin.com/in/franco-dangelo"
                         target="_blank"
                         rel="noreferrer">
