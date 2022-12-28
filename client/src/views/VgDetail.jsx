@@ -91,15 +91,17 @@ export default function VideogameDetail() {
                         </section>
                         <section className="col-span-2 md:col-span-1 flex flex-col items-center gap-4">
                             <div className="flex flex-col w-full items-start md:p-10 gap-2 md:bg-slate-800 md:rounded-lg md:shadow-lg md:shadow-slate-900">
-                                <div className="flex w-fit gap-1 items-center text-xs">
-                                    <HiCode size="1.5em" />
-                                    {videogameDetail.developedBy?.join(" - ")}
+                                <div className="flex w-full justify-between">
+                                    <div className="flex w-fit gap-1 items-center text-xs">
+                                        <HiCode size="1.5em" />
+                                        {videogameDetail.developedBy?.join(" - ")}
+                                    </div>
+                                    <a className="flex w-fit gap-1 items-center text-xs" href={videogameDetail.website} target="_blank" rel="noreferrer">
+                                        Visit website <HiLink />
+                                    </a>
                                 </div>
                                 <div className="flex items-center gap-4">
                                     <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl text-start uppercase">{videogameDetail.name}</h1>
-                                    <a href={videogameDetail.website} target="_blank" rel="noreferrer">
-                                        <HiLink />
-                                    </a>
                                 </div>
                                 <div className="flex items-center gap-1">
                                     <HiCalendar />
