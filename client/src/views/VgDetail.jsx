@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getVideogameDetail, deleteVideogame, cleanState } from "../redux/actions";
@@ -21,7 +21,7 @@ export default function VideogameDetail() {
 
     function handleDelete(id) {
         dispatch(deleteVideogame(id));
-        alert("Your videogame was deleted correctly")
+        alert("Your videogame was deleted correctly");
         navigate("/");
     }
 
@@ -29,18 +29,30 @@ export default function VideogameDetail() {
         <main className="relative h-full text-white">
             {videogameDetail.name ?
                 <div>
-                    <img className="absolute w-full h-full object-cover" src={videogameDetail.bgImgDetail} alt={`${videogameDetail.name} thumbnail`} />
+                    <img
+                        className="absolute w-full h-full object-cover"
+                        src={videogameDetail.bgImgDetail}
+                        alt={`${videogameDetail.name} thumbnail`} />
                     <div className="relative grid grid-cols-1 md:grid-cols-2 w-full h-full min-h-screen p-6 md:p-8 gap-8 bg-slate-900/90">
                         <section className="col-span-2 md:col-span-1 flex flex-col gap-4">
                             <div className="flex flex-row gap-2 justify-between">
                                 <div className="flex w-fit gap-2">
                                     <div className="static flex items-center">
                                         <div className="flex px-2 py-1 gap-2 bg-slate-200">
-                                            <a className="flex gap-1" href={videogameDetail.metacriticURL} target="_blank" rel="noreferrer">
-                                                <img className="w-4 h-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Metacritic.svg/1024px-Metacritic.svg.png" alt="metacritic thumbnail" />
+                                            <a
+                                                className="flex gap-1"
+                                                href={videogameDetail.metacriticURL}
+                                                target="_blank"
+                                                rel="noreferrer">
+                                                <img
+                                                    className="w-4 h-4"
+                                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Metacritic.svg/1024px-Metacritic.svg.png"
+                                                    alt="metacritic thumbnail" />
                                                 <p className="text-xs text-slate-800">Metascore {videogameDetail.metacritic}</p>
                                             </a>
-                                            <HiOutlineInformationCircle className="cursor-pointer" color="#0f172a"
+                                            <HiOutlineInformationCircle
+                                                className="cursor-pointer"
+                                                color="#0f172a"
                                                 onMouseEnter={() => setShownInfo(true)}
                                                 onMouseLeave={() => setShownInfo(false)} />
                                         </div>
@@ -49,11 +61,21 @@ export default function VideogameDetail() {
                                                 <p className="text-slate-800">A <strong className="text-slate-800">metascore</strong> is a weighted average of reviews from top critics and publications for a given video game.</p>
                                                 <h6 className="mt-2 font-semibold text-slate-800 uppercase">General meaning of this score</h6>
                                                 <ul className="flex flex-col">
-                                                    <li className="text-slate-800"><strong className="text-slate-800">Universal Acclaim</strong>: 90-100</li>
-                                                    <li className="text-slate-800"><strong className="text-slate-800">Generally Favorable Reviews</strong>: 75-89</li>
-                                                    <li className="text-slate-800"><strong className="text-slate-800">Mixed on Average Reviews</strong>: 50-74</li>
-                                                    <li className="text-slate-800"><strong className="text-slate-800">Generally Unfavorable Reviews</strong>: 20-49</li>
-                                                    <li className="text-slate-800"><strong className="text-slate-800">Overwhelming Dislike</strong>: 0-19</li>
+                                                    <li className="text-slate-800">
+                                                        <strong className="text-slate-800">Universal Acclaim</strong>: 90-100
+                                                    </li>
+                                                    <li className="text-slate-800">
+                                                        <strong className="text-slate-800">Generally Favorable Reviews</strong>: 75-89
+                                                    </li>
+                                                    <li className="text-slate-800">
+                                                        <strong className="text-slate-800">Mixed on Average Reviews</strong>: 50-74
+                                                    </li>
+                                                    <li className="text-slate-800">
+                                                        <strong className="text-slate-800">Generally Unfavorable Reviews</strong>: 20-49
+                                                    </li>
+                                                    <li className="text-slate-800">
+                                                        <strong className="text-slate-800">Overwhelming Dislike</strong>: 0-19
+                                                    </li>
                                                 </ul>
                                             </div>
                                         )}
@@ -62,19 +84,24 @@ export default function VideogameDetail() {
                                 </div>
                                 <p className="flex px-2 py-1 gap-1 items-center font-semibold text-xs uppercase bg-rose-600"><HiStar size="1.2em" />{videogameDetail.rating}</p>
                             </div>
-                            <img className="h-60 md:h-full object-cover rounded-lg shadow-xl shadow-slate-900" src={videogameDetail.img} alt={`${videogameDetail.name} thumbnail`} />
+                            <img
+                                className="h-60 md:h-full object-cover rounded-lg shadow-xl shadow-slate-900"
+                                src={videogameDetail.img}
+                                alt={`${videogameDetail.name} thumbnail`} />
                         </section>
                         <section className="col-span-2 md:col-span-1 flex flex-col items-center gap-4">
                             <div className="flex flex-col w-full items-start md:p-10 gap-2 md:bg-slate-800 md:rounded-lg md:shadow-lg md:shadow-slate-900">
-                                <div className="flex w-fit gap-1 items-center text-xs">
-                                    <HiCode size="1.5em" />
-                                    {videogameDetail.developedBy?.join(" - ")}
+                                <div className="flex w-full justify-between">
+                                    <div className="flex w-fit gap-1 items-center text-xs">
+                                        <HiCode size="1.5em" />
+                                        {videogameDetail.developedBy?.join(" - ")}
+                                    </div>
+                                    <a className="flex w-fit gap-1 items-center text-xs" href={videogameDetail.website} target="_blank" rel="noreferrer">
+                                        Visit website <HiLink />
+                                    </a>
                                 </div>
                                 <div className="flex items-center gap-4">
                                     <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl text-start uppercase">{videogameDetail.name}</h1>
-                                    <a href={videogameDetail.website} target="_blank" rel="noreferrer">
-                                        <HiLink />
-                                    </a>
                                 </div>
                                 <div className="flex items-center gap-1">
                                     <HiCalendar />

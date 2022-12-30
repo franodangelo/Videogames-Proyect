@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getVideogames, filterByCreation, filterByGenre, orderByName, orderByRating } from "../redux/actions";
@@ -29,18 +29,18 @@ export default function Home() {
 
     function handleReset(e) {
         e.preventDefault();
-        dispatch(getVideogames())
+        dispatch(getVideogames());
     }
 
     function handleFilterByCreation(e) {
         e.preventDefault();
-        dispatch(filterByCreation(e.target.value))
+        dispatch(filterByCreation(e.target.value));
         setCurrentPage(1);
     }
 
     function handleFilterByGenre(e) {
         e.preventDefault();
-        dispatch(filterByGenre(e.target.value))
+        dispatch(filterByGenre(e.target.value));
         setCurrentPage(1);
     }
 
@@ -113,7 +113,12 @@ export default function Home() {
                             : currentVideogames.length === 0 ? <Loader />
                                 : currentVideogames.map(vg =>
                                     <Link key={vg.id} to={`/videogame/${vg.id}`}>
-                                        <Card name={vg.name} img={vg.img} genres={vg.genres} released={vg.released} rating={vg.rating} />
+                                        <Card
+                                            name={vg.name}
+                                            img={vg.img}
+                                            genres={vg.genres}
+                                            released={vg.released}
+                                            rating={vg.rating} />
                                     </Link>)
                     }
                 </div>

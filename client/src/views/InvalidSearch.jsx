@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function InvalidSearch() {
     return (
         <div className="flex flex-col col-span-full w-full h-[400px] pt-8 md:pt-12 gap-4 items-center text-center text-white">

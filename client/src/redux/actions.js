@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import {
     GET_VIDEOGAMES,
     GET_NAME_VIDEOGAME,
@@ -11,15 +13,13 @@ import {
     DELETE_VIDEOGAME
 } from "./constants";
 
-import axios from "axios";
-
 export const createVideogame = (payload) => {
     return async () => {
         try {
             let postVideogame = await axios.post("http://localhost:3001/api/videogame", payload);
             return postVideogame;
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 }
@@ -33,7 +33,7 @@ export const getVideogames = () => {
                 payload: getApi.data
             })
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 }
@@ -47,7 +47,7 @@ export const getNameVideogame = (payload) => {
                 payload: info.data
             })
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 }
@@ -61,7 +61,7 @@ export const getVideogameDetail = (id) => {
                 payload: getApi.data
             })
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 }
@@ -88,7 +88,7 @@ export const getGenres = () => {
                 payload: genresApi.data
             })
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 }
@@ -130,7 +130,7 @@ export const deleteVideogame = (id) => {
                 payload: deleted.data
             })
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 }
