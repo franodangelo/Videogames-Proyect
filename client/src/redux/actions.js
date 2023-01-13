@@ -13,6 +13,9 @@ import {
     DELETE_VIDEOGAME
 } from "./constants";
 
+// axios.defaults.baseURL = `http://localhost:3001/api`;
+axios.defaults.baseURL = `https://backend-videogames-production-9185.up.railway.app/api`;
+
 export const createVideogame = (payload) => {
     return async () => {
         try {
