@@ -1,9 +1,9 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const port = process.env.DB_PORT || 3001;
+const port = process.env.PORT || 3001;
 
 conn.sync({ force: false }).then(() => {
   server.listen(port, () => {
-    console.log(`%s listening at ${port}`); 
+    console.log(`%s listening at ${port}`);
   })
 })
